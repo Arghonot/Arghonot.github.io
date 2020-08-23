@@ -1,0 +1,16 @@
+{
+"companyName": "DefaultCompany",
+"productName": "PlanetGenerator",
+"productVersion": "0.1",
+"dataUrl": "V9_End.data.unityweb",
+"wasmCodeUrl": "V9_End.wasm.code.unityweb",
+"wasmFrameworkUrl": "V9_End.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.3.0f6"
+}
