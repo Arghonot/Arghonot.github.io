@@ -6175,6 +6175,18 @@ a.close.disabled {
   animation: spinner-grow .75s linear infinite;
 }
 
+.page_title_video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+}
+.page_title_video img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%
+}
+
 .spinner-grow-sm {
   width: 1rem;
   height: 1rem;
