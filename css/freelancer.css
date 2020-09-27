@@ -9801,6 +9801,10 @@ a.text-dark:hover, a.text-dark:focus {
   opacity: 1;
 }
 
+.formspree-Group {
+	width:100%;
+}
+
 .floating-label-form-group {
   position: relative;
   border-bottom: 1px solid #e9ecef;
