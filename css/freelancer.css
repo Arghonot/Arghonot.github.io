@@ -9750,6 +9750,11 @@ a.text-dark:hover, a.text-dark:focus {
 .portfolio {
   margin-bottom: -30px;
 }
+.backgroundTitleImage{
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+	}
 
 .portfolio .portfolio-item {
   cursor: pointer;
@@ -9801,7 +9806,7 @@ a.text-dark:hover, a.text-dark:focus {
   opacity: 1;
 }
 
-@formspree-Group {
+.formspree-Group {
 	width:100%;
 	background-color: red;
 }
