@@ -365,6 +365,7 @@ footer a:hover { color: var(--accent); }
 .modal-overlay.open .modal { transform: none; }
 .modal-hero { position: relative; }
 #modal-media {
+  position: relative;
   width: 100%;
   border-radius: 20px 20px 0 0;
   overflow: hidden;
@@ -377,6 +378,17 @@ footer a:hover { color: var(--accent); }
   object-fit: cover;
   border: 0;
   display: block;
+}
+
+.modal-header-logo {
+  position: absolute;
+  left: var(--card-logo-x, 14px);
+  bottom: var(--card-logo-y, 14px);
+  width: var(--card-logo-size, 120px);
+  height: auto;
+  object-fit: contain;
+  z-index: 2;
+  pointer-events: none;
 }
 .modal-gallery-wrap {
   display: none;
@@ -394,18 +406,29 @@ footer a:hover { color: var(--accent); }
   margin-bottom: 10px;
 }
 .modal-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 22px 0;
 }
 .modal-gallery img {
   width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  border-radius: 8px;
+  height: auto;
+  object-fit: contain;
   display: block;
+  border-radius: 10px;
 }
 @media (max-width: 640px) {
+
+  .modal-header-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .modal-links-top {
+    justify-content: flex-start;
+  }
   .modal-gallery {
     grid-template-columns: 1fr;
   }
@@ -423,9 +446,29 @@ footer a:hover { color: var(--accent); }
 .modal-expand-icon::before { content: '⤢'; }
 .modal.expanded .modal-expand-icon::before { content: '⤡'; }
 .modal-body { padding: 30px 36px 36px; }
+.modal-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 22px;
+}
+.modal-title-block { min-width: 0; }
+.modal-links-top {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+.modal-links-top .btn {
+  font-size: 12px;
+  padding: 9px 16px;
+}
+
 .modal-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
 .modal-title { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 6px; }
-.modal-duration { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--ink3); margin-bottom: 22px; letter-spacing: 0.06em; }
+.modal-duration { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--ink3); margin-bottom: 0; letter-spacing: 0.06em; }
 .modal-desc { font-size: 14px; line-height: 1.8; color: var(--ink2); margin-bottom: 22px; font-weight: 300; }
 .modal-desc p { margin-bottom: 12px; }
 .modal-desc strong { color: var(--ink); font-weight: 500; }
@@ -595,10 +638,11 @@ footer a:hover { color: var(--accent); }
         <div class="skill-item"><div class="skill-dot"></div>TCP / UDP / REST APIs</div>
         <div class="skill-item"><div class="skill-dot"></div>Game jams & rapid proto</div>
       </div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        <a href="https://loick.rivemale.space/img/portfolio/LoickRivemaleResume.pdf" target="_blank" class="btn btn-primary">Download resume</a>
-        <a href="https://www.instagram.com/argrafix" target="_blank" class="btn btn-ghost">Instagram ↗</a>
-      </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="https://loick.rivemale.space/img/portfolio/LoickRivemaleResume.pdf" target="_blank" class="btn btn-primary">Download resume</a>
+          <a href="https://github.com/Arghonot" target="_blank" class="btn btn-ghost">GitHub ↗</a>
+          <a href="https://www.instagram.com/argrafix" target="_blank" class="btn btn-ghost">Instagram ↗</a>
+        </div>
     </div>
   </div>
 </section>
@@ -645,8 +689,13 @@ footer a:hover { color: var(--accent); }
     </div>
     <div class="modal-body">
       <div class="modal-tags" id="modal-tags"></div>
-      <div class="modal-title" id="modal-title"></div>
-      <div class="modal-duration" id="modal-duration"></div>
+      <div class="modal-header-row">
+        <div class="modal-title-block">
+          <div class="modal-title" id="modal-title"></div>
+          <div class="modal-duration" id="modal-duration"></div>
+        </div>
+        <div class="modal-links modal-links-top" id="modal-links"></div>
+      </div>
       <div class="modal-desc" id="modal-desc"></div>
       <div class="modal-tech">
         <div class="modal-tech-label">Technologies</div>
@@ -656,7 +705,6 @@ footer a:hover { color: var(--accent); }
         <div class="modal-gallery-label">Gallery</div>
         <div class="modal-gallery" id="modal-gallery"></div>
       </div>
-      <div class="modal-links" id="modal-links"></div>
     </div>
   </div>
 </div>
@@ -692,6 +740,7 @@ const PRO = [
     title: "Freelance", cols: 3, reverse: true, group: "freelance",
     img: "https://loick.rivemale.space/img/portfolio/Thumbnails/Art2.png",
     tags: ["Unity","VR/AR","Engineering"], duration: "1 years · various",
+    preview: "AYAYAYAYAYAYAYAYAYAY",
     desc: `<p>During my two years as an in-house Unity developer at Retinize, I worked on <strong>Animotive</strong> — a VR-based movie production tool that lets users animate 3D characters and create scenes in real time.</p>
 <ul><li>Created a custom VR UI toolkit based on Unity's UGUI in close collaboration with the UX designer.</li>
 <li>Implemented multiplayer features: spawning logic, camera tools, and networking via Photon Bolt.</li>
@@ -702,6 +751,7 @@ const PRO = [
     title: "Animotive — Freelance", cols: 2, reverse: false, group: "animotive",
     img: "https://loick.rivemale.space/img/portfolio/Thumbnails/LowResAnimotive2.jpg",
     tags: ["VR","Shaders","Remote"], duration: "2 years · Retinize (remote)",
+    preview: "AYAYAYAYAYAYAYAYAYAY",
     desc: `<p>After moving abroad, I continued working with Retinize remotely on <strong>Animotive</strong>.</p>
 <ul><li>Built a GPU-based, collider-less raycasting system for accurate submesh interaction.</li>
 <li>Created custom shaders: teleportation lasers, glow highlights, and visual feedback.</li>
@@ -730,6 +780,7 @@ const PRO = [
     title: "Dragonfly", cols: 2, group: "airbus",
     img: "https://loick.rivemale.space/img/portfolio/Thumbnails/LowResDragonfly2.jpg",
     tags: ["Industrial","VR","Data viz"], duration: "3 years · Airbus Defence & Space",
+    preview: "AYAYAYAYAYAYAYAYAYAY",
     desc: `<p><strong>DragonFly</strong> is a multi-platform industrial data visualization and manipulation tool (Desktop + VR) developed in Unity within Airbus Defence & Space. Chosen as the group's official VR visualizer, it has received multiple internal awards.</p>
 <p>I contributed as feature developer and integration lead, working on measurement tools, 3D gizmos, and custom API integrations (TCP/UDP/REST).</p>`,
     tech: ["C#","C","C++","Java","Unity","Blender","Git","Jira","SQLite","VR/AR","UDP/TCP"], links: []
@@ -765,6 +816,7 @@ const SIDE = [
     title: "Artistic Projects", cols: 3, reverse: true,
     img: "https://loick.rivemale.space/img/portfolio/Thumbnails/Art2.png",
     tags: ["Art","Shaders","3D"], duration: "Ongoing",
+    preview: "AYAYAYAYAYAYAYAYAYAY",
     desc: `<p>Always building something — whether a new shader, a Gaea heightmap, a rendering technique, or an artistic experiment. Recently started sharing work on Instagram and Reddit.</p>
 <p>Currently writing the script for a horror series inspired by the Backrooms, made using virtual reality production.</p>`,
     tech: ["Unity","Shader Graph","Gaea","Blender","HLSL"],
@@ -782,6 +834,7 @@ const SIDE = [
       "https://loick.rivemale.space/img/portfolio/PlanetGallery/PinkCrystalMountains.png"
     ],
     tags: ["Procedural","WebGL","Open source"], duration: "Personal project",
+    preview: "AYAYAYAYAYAYAYAYAYAY",
     desc: `<p>A cartoon (Spore-like) planet generator based on a coherent node graph tool. Noise is generated via a fork of a libnoise port coupled with Xnode.</p>`,
     tech: ["Unity","C#","Shader Graph","xNode","libnoise","WebGL"],
     links: [
@@ -865,12 +918,15 @@ function renderCards(data, gridId) {
     if (p.group) card.dataset.group = p.group;
     card.style.transitionDelay = `${i * 0.06}s`;
 
-    const cleanDesc = p.desc.replace(/<[^>]+>/g, ' ').trim();
+    const previewText = p.preview
+      ? p.preview
+      : p.desc.replace(/<[^>]+>/g, ' ').trim();
+
     const inner = cols >= 2
       ? `
         <div class="card-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
         <div class="card-title">${p.title}</div>
-        <div class="card-desc">${cleanDesc}</div>
+        <div class="card-desc">${previewText}</div>
       `
       : `<div class="card-title">${p.title}</div>`;
 
@@ -902,6 +958,10 @@ function openModal(p) {
   const modalGalleryWrap = document.getElementById('modal-gallery-wrap');
   const modalGallery = document.getElementById('modal-gallery');
   const headerVideo = p.headerVideo || p.video;
+  const modalLogoSrc = p.logo || (p.group ? WORK_LOGOS[p.group] : "") || "";
+  const modalLogoEl = modalLogoSrc
+    ? `<img class="modal-header-logo" src="${modalLogoSrc}" alt="${p.title} logo" loading="lazy">`
+    : "";
 
   if (headerVideo?.type === "youtube") {
     modalMedia.innerHTML = `
@@ -911,10 +971,11 @@ function openModal(p) {
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen>
       </iframe>
+      ${modalLogoEl}
     `;
   } else {
     const headerImg = p.headerImg || p.img;
-    modalMedia.innerHTML = `<img src="${headerImg}" alt="${p.title}">`;
+    modalMedia.innerHTML = `<img src="${headerImg}" alt="${p.title}">${modalLogoEl}`;
   }
 
   if (p.gallery?.length) {
@@ -933,7 +994,7 @@ function openModal(p) {
   document.getElementById('modal-tags').innerHTML = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
   document.getElementById('modal-tech').innerHTML = p.tech.map(t => `<span class="modal-tech-tag">${t}</span>`).join('');
   document.getElementById('modal-links').innerHTML = p.links.map(l =>
-    `<a href="${l.href}" target="_blank" class="btn btn-primary" style="font-size:13px;padding:10px 20px">${l.label}</a>`
+    `<a href="${l.href}" target="_blank" class="btn btn-primary">${l.label}</a>`
   ).join('');
   modal.classList.remove('expanded');
   overlay.classList.add('open');
