@@ -30,6 +30,11 @@
   --card-logo-x: 0px;
   --card-logo-y: 0px;
 
+  /* Modal header logo overlay controls. Separate from card logos so full-image logos do not cover the modal header. */
+  --modal-logo-size: 120px;
+  --modal-logo-x: 0px;
+  --modal-logo-y: 0px;
+
   --card-r:  14px;
   --nav-h:   64px;
   --ease:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -371,8 +376,8 @@ footer a:hover { color: var(--accent); }
   overflow: hidden;
   background: #111;
 }
-#modal-media img,
-#modal-media iframe {
+#modal-media > img,
+#modal-media > iframe {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
@@ -380,14 +385,15 @@ footer a:hover { color: var(--accent); }
   display: block;
 }
 
-.modal-header-logo {
+#modal-media .modal-header-logo {
   position: absolute;
-  left: var(--card-logo-x, 14px);
-  bottom: var(--card-logo-y, 14px);
-  width: var(--card-logo-size, 120px);
+  left: var(--modal-logo-x, 18px);
+  bottom: var(--modal-logo-y, 18px);
+  width: var(--modal-logo-size, 96px);
   height: auto;
+  aspect-ratio: auto;
   object-fit: contain;
-  z-index: 2;
+  z-index: 3;
   pointer-events: none;
 }
 .modal-gallery-wrap {
@@ -749,7 +755,7 @@ const PRO = [
   },
   {
     title: "Animotive — Freelance", cols: 2, reverse: false, group: "animotive",
-    img: "https://loick.rivemale.space/img/portfolio/Thumbnails/LowResAnimotive2.jpg",
+    img: "img/portfolio/Retinize/Animotive1.png",
     tags: ["VR","Shaders","Remote"], duration: "2 years · Retinize (remote)",
     preview: "AYAYAYAYAYAYAYAYAYAY",
     desc: `<p>After moving abroad, I continued working with Retinize remotely on <strong>Animotive</strong>.</p>
@@ -761,7 +767,7 @@ const PRO = [
   },
   {
     title: "Animotive — Employee", cols: 1, reverse: false, group: "animotive",
-    img: "https://loick.rivemale.space/img/portfolio/Thumbnails/LowResAnimotive1.jpg",
+    img: "img/portfolio/Retinize/Animotive2.png",
     tags: ["VR","UI/UX","Networking"], duration: "2 years · Retinize",
     desc: `<p>During my two years as an in-house Unity developer at Retinize, I worked on <strong>Animotive</strong> — a VR-based movie production tool that lets users animate 3D characters and create scenes in real time.</p>
 <ul><li>Created a custom VR UI toolkit in close collaboration with the UX designer.</li>
@@ -771,14 +777,14 @@ const PRO = [
   },
   {
     title: "S³ — Satellite Sizing Suite", cols: 1, group: "airbus",
-    img: "https://loick.rivemale.space/img/portfolio/Thumbnails/LowResS3_2.jpg",
+    img: "https://loick.rivemale.space/img/portfolio/Airbus/s3.jpg",
     tags: ["Aerospace","CAD","Networking"], duration: "16 months · Airbus",
     desc: `<p><strong>S³</strong> is a satellite accommodation pre-design tool. I developed modules enabling another team to use DragonFly as their visualizer: networking features, procedural mesh generation, object snapping, and advanced CAD-style interaction tools.</p>`,
     tech: ["C#","C++","Java","Unity","Eclipse","Git","TCP","Protocol Buffers","JSON"], links: []
   },
   {
     title: "Dragonfly", cols: 2, group: "airbus",
-    img: "https://loick.rivemale.space/img/portfolio/Thumbnails/LowResDragonfly2.jpg",
+    img: "https://loick.rivemale.space/img/portfolio/Airbus/Satellite.png",
     tags: ["Industrial","VR","Data viz"], duration: "3 years · Airbus Defence & Space",
     preview: "AYAYAYAYAYAYAYAYAYAY",
     desc: `<p><strong>DragonFly</strong> is a multi-platform industrial data visualization and manipulation tool (Desktop + VR) developed in Unity within Airbus Defence & Space. Chosen as the group's official VR visualizer, it has received multiple internal awards.</p>
@@ -787,7 +793,7 @@ const PRO = [
   },
   {
     title: "Space Simulation", cols: 1, group: "airbus",
-    img: "https://loick.rivemale.space/img/portfolio/Thumbnails/LowResJUICE2.jpg",
+    img: "https://loick.rivemale.space/img/portfolio/Airbus/juice.jpg",
     tags: ["Simulation","Real-time","Aerospace"], duration: "10 months · Airbus",
     desc: `<p>Built a real-time solar system simulation to visualize satellite missions in Desktop and VR.</p>
 <ul><li>Developed a custom double-precision coordinate system to overcome Unity's floating-point limitations at astronomical scales.</li>
@@ -797,7 +803,7 @@ const PRO = [
   },
   {
     title: "PLA Power Banks", cols: 1, group: "airbus",
-    img: "https://loick.rivemale.space/img/portfolio/Thumbnails/LowResMAIT2.jpg",
+    img: "https://loick.rivemale.space/img/portfolio/Airbus/MAIT.png",
     tags: ["VR","Architecture","Facility"], duration: "3 months · Airbus",
     desc: `<p>Helped a manufacturing team validate facility layout using VR. Users could explore building architecture at scale, test movement flows, and evaluate design choices in a virtual environment.</p>`,
     tech: ["C#","Unity","Git","SQLite","VR","XML"], links: []
@@ -903,9 +909,9 @@ const SIDE = [
 const WORK_LOGOS = {
   // Set these to your logo paths. Example: animotive: "img/logos/retinize.png"
   freelance: "",
-  animotive: "",
-  airbus: "https://loick.rivemale.space/img/portfolio/Thumbnails/LowResDragonfly2.jpg",
-  visiopm: ""
+  animotive: "img/portfolio/Logos/AnimotiveLogoOverlay.png",
+  airbus: "img/portfolio/Logos/AirbusLogoOverlay.png",
+  visiopm: "img/portfolio/Logos/VisioPMLogoOverlay.png"
 };
 
 function renderCards(data, gridId) {
