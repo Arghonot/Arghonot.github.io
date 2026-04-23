@@ -202,7 +202,7 @@ section { padding: 100px 48px; }
 }
 
 .project-card[data-cols="1"] .card-media {
-  height: 230px;
+  height: 250px;
 }
 
 .card-media-frame {
@@ -269,8 +269,8 @@ section { padding: 100px 48px; }
   justify-content: center;
 }
 .project-card[data-cols="1"] .card-body {
-  padding: 10px 14px 6px;
-  flex: 1;
+  padding: 14px 14px 14px;
+  flex: 0;
   justify-content: center;
 }
 
@@ -640,7 +640,7 @@ footer a:hover { color: var(--accent); }
     <p class="hero-sub">Building tools, crafting shaders,<br>and designing 3D environments.</p>
     <div class="hero-ctas">
       <a href="#professional" class="btn btn-primary">View my work</a>
-      <a href="https://loick.rivemale.space/img/portfolio/LoickRivemaleResume.pdf" target="_blank" class="btn btn-ghost">Resume ↗</a>
+      <a href="Resume/LoickRivemaleResume.pdf" target="_blank" class="btn btn-ghost">Resume ↗</a>
     </div>
   </div>
   <div class="hero-scroll"><div class="scroll-line"></div>Scroll<div class="scroll-arrows"><span>⌄</span><span>⌄</span><span>⌄</span></div></div>
@@ -668,7 +668,7 @@ footer a:hover { color: var(--accent); }
       <div class="about-img-badge"><span>8+</span>years exp.</div>
     </div>
     <div class="about-text fade-up" style="transition-delay:0.12s">
-      <div class="s-num">03 — About</div>
+      <div class="s-num">03 — About me</div>
       <div class="s-title" style="font-size:clamp(26px,3.2vw,40px)">Engineering meets<br>creative exploration</div>
       <p>I'm a Unity developer with a passion for blending <strong>solid engineering</strong> with creative exploration. Over the years I've worked on aerospace simulation tools, VR filmmaking software, and personal projects that push the boundaries of real-time graphics.</p>
       <p>I focus on building tools, crafting shaders, and designing 3D environments that inspire developers and artists alike. I love experimenting with rendering techniques, joining game jams, and seeing where curiosity leads.</p>
@@ -683,7 +683,7 @@ footer a:hover { color: var(--accent); }
         <div class="skill-item"><div class="skill-dot"></div>Game jams & rapid proto</div>
       </div>
         <div style="display:flex;gap:12px;flex-wrap:wrap;">
-          <a href="https://loick.rivemale.space/img/portfolio/LoickRivemaleResume.pdf" target="_blank" class="btn btn-primary">Download resume</a>
+          <a href="Resume/LoickRivemaleResume.pdf" target="_blank" class="btn btn-primary">Download resume</a>
           <a href="https://github.com/Arghonot" target="_blank" class="btn btn-ghost">GitHub ↗</a>
           <a href="https://www.instagram.com/argrafix" target="_blank" class="btn btn-ghost">Instagram ↗</a>
         </div>
@@ -707,7 +707,7 @@ footer a:hover { color: var(--accent); }
       <a href="https://www.instagram.com/argrafix" target="_blank" class="contact-link">
         <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Instagram
       </a>
-      <a href="https://linkedin.com/in/loick-rivemale" target="_blank" class="contact-link">
+      <a href="https://www.linkedin.com/in/loick-rivemale-080b9789" target="_blank" class="contact-link">
         <svg viewbox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn
       </a>
     </div>
@@ -716,7 +716,7 @@ footer a:hover { color: var(--accent); }
 
 <!-- Footer -->
 <footer>
-  <span>© 2025 Loïck Rivemale</span>
+  <span>© 2026 Loïck Rivemale</span>
   <span>Unity developer · Earth</span>
   <a href="#hero">↑ Top</a>
 </footer>
@@ -781,7 +781,7 @@ footer a:hover { color: var(--accent); }
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const PRO = [
   {
-    title: "Freelance", cols: 3, reverse: true, group: "freelance",
+    title: "Freelance", cols: 3, reverse: false, group: "freelance",
     img: "https://loick.rivemale.space/img/portfolio/Thumbnails/Art2.png",
     cardVideo: "videos/freelance.mp4",
     headerVideo: {
@@ -802,34 +802,30 @@ const PRO = [
     tech: ["C#","ShaderLab","Shader Graph","Unity","Rider","Git","Virtual Reality"], links: []
   },
   {
-    title: "Animotive — Freelance", cols: 2, reverse: false, group: "animotive",
+    title: "Animotive", cols: 3, reverse: true, group: "animotive",
     img: "img/portfolio/Retinize/Animotive1.png",
-    tags: ["VR","Shaders","Remote"], duration: "2 years · Retinize (remote)",
+    tags: ["VR","Shaders","Remote"], duration: "4 years · Retinize (remote)",
     preview: "Continued remote development on Animotive, focusing on GPU-based interaction systems, custom VR shaders, desktop adaptation, and VR UI rendering R&D.",
-    desc: `<p>After moving abroad, I continued working with Retinize remotely on <strong>Animotive</strong>.</p>
-<ul><li>Built a GPU-based, collider-less raycasting system for accurate submesh interaction.</li>
-<li>Created custom shaders: teleportation lasers, glow highlights, and visual feedback.</li>
-<li>Helped scale the VR UI to desktop, maintaining design and usability consistency.</li>
-<li>Contributed to internal R&D focused on efficient UI rendering for VR environments.</li></ul>`,
+    desc: `<p>I worked on <strong>Animotive</strong>, a VR-based movie production tool that lets users animate 3D characters and create scenes in real time. I first contributed as an in-house Unity developer at Retinize, then continued working on the project remotely after moving abroad.</p>
+    <ul><li>Created a custom VR UI toolkit in close collaboration with the UX designer.</li>
+    <li>Implemented multiplayer features via Photon Bolt.</li>
+    <li>Developed a full-body tracking calibration workflow.</li>
+    <li>Built a GPU-based, collider-less raycasting system for accurate submesh interaction.</li>
+    <li>Created custom shaders for teleportation lasers, glow highlights, and visual feedback.</li>
+    <li>Helped scale the VR UI to desktop, maintaining design and usability consistency.</li>
+    <li>Contributed to internal R&D focused on efficient UI rendering for VR environments.</li></ul>`,
     tech: ["C#","ShaderLab","Shader Graph","Unity","Rider","Git","Virtual Reality"], links: []
   },
-  {
-    title: "Animotive — Employee", cols: 1, reverse: false, group: "animotive",
-    img: "img/portfolio/Retinize/Animotive2.png",
-    tags: ["VR","UI/UX","Networking"], duration: "2 years · Retinize",
-    desc: `<p>During my two years as an in-house Unity developer at Retinize, I worked on <strong>Animotive</strong> — a VR-based movie production tool that lets users animate 3D characters and create scenes in real time.</p>
-<ul><li>Created a custom VR UI toolkit in close collaboration with the UX designer.</li>
-<li>Implemented multiplayer features via Photon Bolt.</li>
-<li>Developed full-body tracking calibration workflow.</li></ul>`,
-    tech: ["C#","ShaderLab","Shader Graph","Unity","Rider","Git","Virtual Reality"], links: []
-  },
-  {
-    title: "S³ — Satellite Sizing Suite", cols: 1, group: "airbus",
-    img: "https://loick.rivemale.space/img/portfolio/Airbus/s3.jpg",
-    tags: ["Aerospace","CAD","Networking"], duration: "16 months · Airbus",
-    desc: `<p><strong>S³</strong> is a satellite accommodation pre-design tool. I developed modules enabling another team to use DragonFly as their visualizer: networking features, procedural mesh generation, object snapping, and advanced CAD-style interaction tools.</p>`,
-    tech: ["C#","C++","Java","Unity","Eclipse","Git","TCP","Protocol Buffers","JSON"], links: []
-  },
+//   {
+//     title: "Animotive — Employee", cols: 1, reverse: false, group: "animotive",
+//     img: "img/portfolio/Retinize/Animotive2.png",
+//     tags: ["VR","UI/UX","Networking"], duration: "2 years · Retinize",
+//     desc: `<p>During my two years as an in-house Unity developer at Retinize, I worked on <strong>Animotive</strong> — a VR-based movie production tool that lets users animate 3D characters and create scenes in real time.</p>
+// <ul><li>Created a custom VR UI toolkit in close collaboration with the UX designer.</li>
+// <li>Implemented multiplayer features via Photon Bolt.</li>
+// <li>Developed full-body tracking calibration workflow.</li></ul>`,
+//     tech: ["C#","ShaderLab","Shader Graph","Unity","Rider","Git","Virtual Reality"], links: []
+//   },
   {
     title: "Dragonfly", cols: 2, group: "airbus",
     img: "https://loick.rivemale.space/img/portfolio/Airbus/Satellite.png",
@@ -838,6 +834,13 @@ const PRO = [
     desc: `<p><strong>DragonFly</strong> is a multi-platform industrial data visualization and manipulation tool (Desktop + VR) developed in Unity within Airbus Defence & Space. Chosen as the group's official VR visualizer, it has received multiple internal awards.</p>
 <p>I contributed as feature developer and integration lead, working on measurement tools, 3D gizmos, and custom API integrations (TCP/UDP/REST).</p>`,
     tech: ["C#","C","C++","Java","Unity","Blender","Git","Jira","SQLite","VR/AR","UDP/TCP"], links: []
+  },
+  {
+    title: "S³ — Satellite Sizing Suite", cols: 1, group: "airbus",
+    img: "https://loick.rivemale.space/img/portfolio/Airbus/s3.jpg",
+    tags: ["Aerospace","CAD","Networking"], duration: "16 months · Airbus",
+    desc: `<p><strong>S³</strong> is a satellite accommodation pre-design tool. I developed modules enabling another team to use DragonFly as their visualizer: networking features, procedural mesh generation, object snapping, and advanced CAD-style interaction tools.</p>`,
+    tech: ["C#","C++","Java","Unity","Eclipse","Git","TCP","Protocol Buffers","JSON"], links: []
   },
   {
     title: "Space Simulation", cols: 1, group: "airbus",
@@ -857,41 +860,44 @@ const PRO = [
     tech: ["C#","Unity","Git","SQLite","VR","XML"], links: []
   },
   {
-    title: "VisioPM", cols: 1, group: "visiopm",
-    img: "img/Thumbnails/PixelatedAutoStereoscopy.png",
-    tags: ["WebGL","computer graphics","rendering"], duration: "3 months · Airbus",
-    desc: `<p>Helped a manufacturing team validate facility layout using VR. Users could explore building architecture at scale, test movement flows, and evaluate design choices in a virtual environment.</p>`,
-    tech: ["C#","Unity","Git","SQLite","VR","XML"], links: []
+    title: "Autostereoscopic Engine", cols: 1, group: "visiopm",
+      img: "img/Thumbnails/PixelatedAutoStereoscopy.png",
+    tags: ["WebGL", "Rendering", "Unity"],
+    duration: "5 months · VisioPM",
+    desc: `<p>Worked on internal rendering tools and early-stage display technology prototypes.</p>
+  <ul><li>Developed a WebGL viewer allowing clients to import images and files into the company’s rendering pipeline.</li>
+  <li>Built an MVP autostereoscopic rendering engine prototype based on Unity.</li></ul>`,
+    tech: ["Unity", "C#", "WebGL", "Rendering"],
+    links: []
   }
 ];
 
 const SIDE = [
   {
-    title: "Artistic Projects", cols: 3, reverse: true,
+    title: "Artistic Projects", cols: 2, reverse: false,
     img: "https://loick.rivemale.space/img/portfolio/Thumbnails/Art2.png",
     tags: ["Art","Shaders","3D"], duration: "Ongoing",
-    preview: "Ongoing technical art experiments exploring shaders, procedural landscapes, rendering techniques, and visual storytelling for personal projects and online sharing.",
-    desc: `<p>Always building something — whether a new shader, a Gaea heightmap, a rendering technique, or an artistic experiment. Recently started sharing work on Instagram and Reddit.</p>
-<p>Currently writing the script for a horror series inspired by the Backrooms, made using virtual reality production.</p>`,
+    preview: "Ongoing technical art experiments focused on shaders, procedural environments, rendering pipelines, and visual storytelling.",
+    desc: `<p>This space gathers my ongoing personal work in technical art and visual development: shader studies, procedural landscapes, rendering experiments, and small artistic prototypes.</p>
+  <p>I use these projects to explore new techniques, refine my visual language, and develop ideas that often feed into videos, worldbuilding, and larger storytelling concepts. Part of this work is shared publicly through my Instagram and other online platforms.</p>`,
     tech: ["Unity","Shader Graph","Gaea","Blender","HLSL"],
     links: [{ label: "Instagram ↗", href: "https://www.instagram.com/argrafix" }]
   },
-
   {
-    title: "Sieur Flamme", cols: 2, reverse: false,
-    cardVideo: "videos/EP1Website.mp4",
-    headerVideo: {
-      type: "mp4",
-      src: "videos/EP1Website.mp4"
-    },
-    tags: ["Procedural","WebGL","Open source"], duration: "Personal project",
-    preview: "A hand made animation series inspired by retro games and fantasy stories.",
-    desc: `<p>A cartoon (Spore-like) planet generator based on a coherent node graph tool. Noise is generated via a fork of a libnoise port coupled with Xnode.</p>`,
-    tech: ["Unity","C#","Shader Graph","xNode","libnoise","WebGL"],
-    links: [
-      { label: "GitHub ↗", href: "https://github.com/Arghonot/TinyPlanetGenerator" },
-      { label: "Try WebGL ↗", href: "https://loick.rivemale.space/builds/PlanetGenerator/" }
-    ]
+    title: "Gaea Landscapes", cols: 1,
+    img: "img/Thumbnails/Gaea/lotr.png",
+    gallery: [
+      "img/Thumbnails/Gaea/grassy1.png",
+      "img/Thumbnails/Gaea/Sand.jpg",
+      "img/Thumbnails/Gaea/Moon.png",
+      "img/Thumbnails/Gaea/MarioLike.png",
+      "img/Thumbnails/Gaea/grassy2.png"
+    ],
+    tags: ["Landscapes","Gaea","World Machine"], duration: "Personal project",
+    desc: `<p>I create procedural landscapes using <strong>Gaea</strong> and <strong>World Machine</strong>, mainly for visual experiments, rendering tests, and video work.</p>
+  <p>These terrains are used as a base for environment studies, look-development, and technical/artistic experiments in Unity, where I explore lighting, shaders, composition, and large-scale landscape rendering.</p>`,
+    tech: ["Gaea 1","Gaea 2","World Machine","Unity","Rendering","Environment Art"],
+    links: []
   },
   {
     title: "XNoise", cols: 1,
@@ -908,6 +914,23 @@ const SIDE = [
     links: [
       { label: "GitHub ↗", href: "https://github.com/Arghonot/XNoise" },
       { label: "itch.io ↗", href: "https://arghonot.itch.io/xnoise" }
+    ]
+  },
+  {
+    title: "Sieur Flamme", cols: 2, reverse: false,
+    cardVideo: "videos/EP1Website.mp4",
+    headerVideo: {
+      type: "mp4",
+      src: "videos/EP1Website.mp4"
+    },
+    tags: ["Storytelling","Rendering","Art Direction"], duration: "Personal project",
+    preview: "A story-driven video series built around a custom retro rendering pipeline, blending fantasy, dungeon synth, and early-game aesthetics.",
+    desc: `<p><strong>Sieur Flamme</strong> is a story-driven video series built around a custom rendering system I created to emulate the look of retro games such as <em>Another World</em>, mixed with dungeon synth and dark fantasy aesthetics.</p>
+  <p>The project is fully self-directed: I handle everything from storyboarding and visual development to asset creation, outsourcing, rendering, editing, and final video release. The goal is to build a coherent visual identity and use it to tell an original story through short-form video.</p>
+  <p>The series is released exclusively on my Instagram profile, which is currently the only place where the videos can be viewed.</p>`,
+    tech: ["Unity","C#","Custom Rendering","Shader Graph","HLSL","Storyboarding","Video Editing","Art Direction"],
+    links: [
+      { label: "Instagram ↗", href: "https://www.instagram.com/argrafix" }
     ]
   },
   {
