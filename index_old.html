@@ -74,17 +74,16 @@ nav.scrolled {
   background: var(--dark);
 }
 .hero-bg {
-  position: absolute;
-  inset: -60px;
-  overflow: hidden;
+  position: absolute; inset: -60px;
+  background-image: url('img/Thumbnails/ArtView.png'); background-size: cover;
   filter: blur(6px) brightness(0.45) saturate(1.3);
+  animation: heroPan 32s ease-in-out infinite alternate;
 }
-.hero-bg video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  pointer-events: none;
+@keyframes heroPan {
+  0%   { background-position: 0% 0%; }
+  30%  { background-position: 80% 15%; }
+  70%  { background-position: 20% 85%; }
+  100% { background-position: 100% 100%; }
 }
 .hero-content { position: relative; z-index: 2; text-align: center; padding: 0 24px; }
 .hero-tag {
@@ -634,13 +633,11 @@ footer a:hover { color: var(--accent); }
 
 <!-- Hero -->
 <section id="hero" style="padding:0;">
-  <div class="hero-bg" style="opacity: 2">
-    <video src="videos/Landing.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
-  </div>
+  <div class="hero-bg" style="opacity: 2"></div>
   <div class="hero-content">
-    <div class="hero-tag">Engineering · XR · Real-time graphics</div>
+    <div class="hero-tag">Unity · VR · Real-time graphics</div>
     <div class="hero-name">Loïck<br><em>Rivemale</em></div>
-    <p class="hero-sub">Building software, crafting shaders,<br>designing visual experiences.</p>
+    <p class="hero-sub">Building tools, crafting shaders,<br>and designing 3D environments.</p>
     <div class="hero-ctas">
       <a href="#professional" class="btn btn-primary">View my work</a>
       <a href="Resume/LoickRivemaleResume.pdf" target="_blank" class="btn btn-ghost">Resume ↗</a>
@@ -701,7 +698,7 @@ footer a:hover { color: var(--accent); }
     <div class="s-title">Let's build something together</div>
     <p class="contact-sub">Open to freelance projects, full-time roles, and interesting collaborations.<br>Every side project on my GitHub is open - feel free to explore.</p>
     <div class="contact-links">
-      <a href="mailto:lo.rivemale@gmail.com" class="contact-link">
+      <a href="mailto:lo.rivemale@email.com" class="contact-link">
               <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>Email
       </a>
       <a href="https://github.com/Arghonot" target="_blank" class="contact-link">
@@ -1170,7 +1167,8 @@ window.addEventListener('resize', () => {
   applyDensity(document.getElementById('tweak-density').value);
 });
 function applySpeed(val) {
-  // Landing video background is static; pan speed tweak is intentionally disabled.
+  const dur = Math.round(32 / parseFloat(val)) + 's';
+  document.querySelector('.hero-bg').style.animationDuration = dur;
 }
 
 window.addEventListener('message', e => {
