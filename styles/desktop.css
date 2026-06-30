@@ -1,0 +1,147 @@
+/* desktop.css — Win98 desktop shell: icons, taskbar, start menu, windows.
+   Builds on win98.css (bevels, fonts). */
+
+:root { --d98-teal: #2f8f88; }
+
+.d98-root, .d98-root * { box-sizing: border-box; }
+.d98-root {
+  position: absolute; inset: 0;
+  background: var(--d98-teal);
+  overflow: hidden;
+  font-family: var(--w98-font);
+  user-select: none;
+  cursor: default;
+}
+
+/* ===== icon layer ===== */
+.d98-iconlayer {
+  position: absolute; top: 8px; left: 8px;
+  display: grid;
+  grid-template-columns: repeat(3, 104px);
+  gap: 6px 8px;
+  z-index: 1;
+}
+.d98-icon {
+  all: unset;
+  width: 104px;
+  padding: 6px 4px 4px;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  cursor: default;
+  text-align: center;
+}
+.d98-icon-imgwrap { position: relative; width: 40px; height: 40px; display: grid; place-items: center; }
+.d98-icon-img { filter: drop-shadow(1px 1px 0 rgba(0,0,0,.35)); }
+.d98-icon.is-sel .d98-icon-img { filter: none; }
+.d98-icon.is-sel .d98-icon-imgwrap::after {
+  content: ""; position: absolute; inset: 0;
+  background: #000080; mix-blend-mode: multiply; opacity: .55;
+}
+.d98-icon-label {
+  font-size: 11px; line-height: 1.15; color: #fff;
+  text-shadow: 1px 1px 0 rgba(0,0,0,.6);
+  max-width: 92px; padding: 1px 2px;
+}
+.d98-icon.is-sel .d98-icon-label {
+  background: #000080; color: #fff; text-shadow: none;
+  outline: 1px dotted #c9c9c9; outline-offset: -1px;
+}
+
+/* ===== managed window ===== */
+.d98-win {
+  position: absolute;
+  background: var(--w98-face);
+  padding: 3px;
+  box-shadow:
+    inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #dfdfdf,
+    inset -2px -2px 0 #808080, inset 2px 2px 0 #ffffff,
+    2px 3px 9px rgba(0,0,0,.32);
+  display: flex; flex-direction: column;
+  max-height: calc(100% - 54px);
+}
+.d98-win-titlebar { cursor: default; }
+.d98-win-titlebar.is-drag { cursor: grabbing; }
+.d98-win-body { flex: 1 1 auto; min-height: 0; overflow: auto; }
+.d98-win.is-min { display: none; }
+
+/* ===== taskbar ===== */
+.d98-taskbar {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 30px;
+  background: var(--w98-face);
+  box-shadow: inset 0 1px 0 #fff, inset 0 2px 0 #dfdfdf;
+  border-top: 1px solid #808080;
+  display: flex; align-items: center; gap: 5px;
+  padding: 2px 3px; z-index: 1000;
+}
+.d98-start {
+  display: flex; align-items: center; gap: 5px;
+  height: 23px; padding: 0 8px 0 5px; font-weight: 700; font-size: 12px;
+  background: var(--w98-face);
+  box-shadow: inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
+  cursor: default;
+}
+.d98-start.is-open {
+  box-shadow: inset 1px 1px 0 #0a0a0a, inset -1px -1px 0 #fff, inset 2px 2px 0 #808080, inset -2px -2px 0 #dfdfdf;
+}
+.d98-start-logo {
+  width: 16px; height: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  transform: skewX(-8deg);
+}
+.d98-start-logo span { display: block; }
+.d98-sep { width: 2px; height: 22px; box-shadow: -1px 0 0 #808080, 1px 0 0 #fff; margin: 0 2px; }
+.d98-qlaunch { display: flex; align-items: center; gap: 2px; }
+.d98-ql-btn {
+  all: unset; width: 22px; height: 22px; display: grid; place-items: center; cursor: default;
+}
+.d98-ql-btn:hover { box-shadow: inset -1px -1px 0 #808080, inset 1px 1px 0 #fff; }
+
+.d98-tasks { flex: 1 1 auto; display: flex; align-items: center; gap: 3px; min-width: 0; overflow: hidden; }
+.d98-taskbtn {
+  display: flex; align-items: center; gap: 6px;
+  height: 23px; min-width: 150px; max-width: 200px; padding: 0 8px;
+  font-size: 11px; cursor: default;
+  background: var(--w98-face);
+  box-shadow: inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
+}
+.d98-taskbtn span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.d98-taskbtn.is-active {
+  font-weight: 700;
+  background: repeating-conic-gradient(#bdbdbd 0% 25%, #c9c9c9 0% 50%) 0 0 / 2px 2px;
+  box-shadow: inset 1px 1px 0 #0a0a0a, inset -1px -1px 0 #fff, inset 2px 2px 0 #808080, inset -2px -2px 0 #dfdfdf;
+}
+.d98-taskbtn .ico { flex: 0 0 auto; image-rendering: pixelated; }
+
+.d98-tray {
+  display: flex; align-items: center; gap: 7px;
+  height: 23px; padding: 0 8px;
+  box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
+}
+.d98-clock { font-size: 11px; }
+
+/* ===== start menu ===== */
+.d98-startmenu {
+  position: absolute; bottom: 30px; left: 2px; z-index: 1100;
+  display: flex;
+  background: var(--w98-face);
+  box-shadow: inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf, 2px 2px 8px rgba(0,0,0,.3);
+  padding: 3px;
+}
+.d98-sm-side {
+  width: 26px; align-self: stretch;
+  background: linear-gradient(#1b3a8c, #04114a);
+  display: flex; align-items: flex-end; justify-content: center;
+  padding-bottom: 8px;
+}
+.d98-sm-side b {
+  writing-mode: vertical-rl; transform: rotate(180deg);
+  color: #c8d2f0; font-size: 16px; letter-spacing: 1px; font-weight: 300;
+}
+.d98-sm-side b i { color: #fff; font-style: normal; font-weight: 300; }
+.d98-sm-list { width: 184px; padding: 2px; }
+.d98-sm-item {
+  display: flex; align-items: center; gap: 9px;
+  padding: 5px 8px; font-size: 12px; cursor: default;
+}
+.d98-sm-item .ico { width: 24px; height: 24px; image-rendering: pixelated; flex: 0 0 auto; }
+.d98-sm-item:hover { background: #000080; color: #fff; }
+.d98-sm-item.arrow::after { content: "\25B8"; margin-left: auto; }
+.d98-sm-divider { height: 0; margin: 3px 2px; border-top: 1px solid #808080; box-shadow: 0 1px 0 #fff; }

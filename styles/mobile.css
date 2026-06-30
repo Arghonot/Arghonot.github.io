@@ -1,0 +1,307 @@
+/* ============================================================
+   mobile.css — Win98 portfolio, phone edition.
+   Builds on win98.css + desktop.css + landing.css. Bumps tap
+   targets + type for touch; adds full-screen slide-up windows,
+   a mobile taskbar/Start menu, and grid / list / hero homes.
+   Prefix: .m98-
+   ============================================================ */
+
+.m98-root, .m98-root * { box-sizing: border-box; }
+.m98-root {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: var(--w98-font);
+  font-size: 13px;
+  color: var(--w98-text);
+  background: var(--d98-teal);
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  cursor: default;
+  --m98-taskbar-h: 48px;
+}
+.m98-root.is-dark-desk { background: #0a1430; }
+
+/* the area above the taskbar where home scrolls and windows overlay */
+.m98-viewport { position: relative; flex: 1 1 auto; min-height: 0; overflow: hidden; }
+.m98-scroll { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; }
+.m98-scroll::-webkit-scrollbar { width: 0; }
+
+/* live wallpaper reel sitting behind the home */
+.m98-wall { position: absolute; inset: 0; z-index: 0; }
+.m98-wall-dim { position: absolute; inset: 0; z-index: 1; background: rgba(8,14,34,.34); }
+
+/* ============================================================
+   TASKBAR  (pinned bottom)
+   ============================================================ */
+.m98-taskbar {
+  position: relative; z-index: 40; flex: 0 0 auto;
+  height: var(--m98-taskbar-h);
+  display: flex; align-items: center; gap: 6px;
+  padding: 4px 5px;
+  background: var(--w98-face);
+  box-shadow: inset 0 1px 0 #fff, inset 0 2px 0 #dfdfdf;
+  border-top: 1px solid #808080;
+}
+.m98-start {
+  display: flex; align-items: center; gap: 7px;
+  height: 38px; padding: 0 14px 0 9px; flex: 0 0 auto;
+  font-weight: 700; font-size: 16px; letter-spacing: .2px;
+  background: var(--w98-face);
+  box-shadow: inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
+}
+.m98-start.is-open {
+  box-shadow: inset 1px 1px 0 #0a0a0a, inset -1px -1px 0 #fff, inset 2px 2px 0 #808080, inset -2px -2px 0 #dfdfdf;
+}
+.m98-start-logo {
+  width: 21px; height: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  transform: skewX(-8deg); flex: 0 0 auto;
+}
+.m98-start-logo span { display: block; }
+.m98-sep { width: 2px; align-self: stretch; margin: 3px 1px; box-shadow: -1px 0 0 #808080, 1px 0 0 #fff; flex: 0 0 auto; }
+
+/* open-window task buttons */
+.m98-tasks { flex: 1 1 auto; display: flex; align-items: center; gap: 4px; min-width: 0; overflow: hidden; }
+.m98-taskbtn {
+  display: flex; align-items: center; gap: 7px;
+  height: 38px; flex: 1 1 0; min-width: 0; max-width: 190px; padding: 0 9px;
+  font-size: 13px;
+  background: var(--w98-face);
+  box-shadow: inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
+}
+.m98-taskbtn span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.m98-taskbtn .ico { flex: 0 0 auto; image-rendering: pixelated; }
+.m98-taskbtn.is-active {
+  font-weight: 700;
+  background: repeating-conic-gradient(#bdbdbd 0% 25%, #c9c9c9 0% 50%) 0 0 / 2px 2px;
+  box-shadow: inset 1px 1px 0 #0a0a0a, inset -1px -1px 0 #fff, inset 2px 2px 0 #808080, inset -2px -2px 0 #dfdfdf;
+}
+.m98-tray {
+  flex: 0 0 auto; display: flex; align-items: center; gap: 8px;
+  height: 38px; padding: 0 11px; font-size: 13px;
+  box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
+}
+
+/* ============================================================
+   START MENU  (slides up from the Start button)
+   ============================================================ */
+.m98-startmenu {
+  position: absolute; left: 4px; bottom: 4px; z-index: 60;
+  width: 256px; display: flex;
+  background: var(--w98-face);
+  box-shadow: inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf, 3px 3px 14px rgba(0,0,0,.45);
+  padding: 3px;
+  animation: m98-sm-in .16s ease-out;
+  transform-origin: bottom left;
+}
+@keyframes m98-sm-in { from { opacity: 0; transform: translateY(10px) scale(.99); } }
+.m98-sm-side {
+  width: 32px; align-self: stretch; flex: 0 0 auto;
+  background: linear-gradient(#1b3a8c, #04114a);
+  display: flex; align-items: flex-end; justify-content: center; padding-bottom: 12px;
+}
+.m98-sm-side b { writing-mode: vertical-rl; transform: rotate(180deg); color: #c8d2f0; font-size: 19px; letter-spacing: 1px; font-weight: 700; }
+.m98-sm-side b i { color: #fff; font-style: normal; }
+.m98-sm-list { flex: 1 1 auto; padding: 2px; }
+.m98-sm-item {
+  display: flex; align-items: center; gap: 11px;
+  padding: 10px 9px; font-size: 15px;
+}
+.m98-sm-item .ico { width: 28px; height: 28px; image-rendering: pixelated; flex: 0 0 auto; }
+.m98-sm-item:active { background: #000080; color: #fff; }
+.m98-sm-item.arrow::after { content: "\25B8"; margin-left: auto; font-size: 13px; }
+.m98-sm-divider { height: 0; margin: 4px 3px; border-top: 1px solid #808080; box-shadow: 0 1px 0 #fff; }
+
+/* scrim behind start menu / catches taps to dismiss */
+.m98-scrim { position: absolute; inset: 0; z-index: 50; }
+
+/* ============================================================
+   HOME — DESKTOP GRID  (faithful)
+   ============================================================ */
+.m98-grid {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 6px 2px; padding: 14px 8px 20px; align-content: start;
+}
+.m98-deskicon {
+  all: unset; display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 8px 2px; text-align: center; border-radius: 2px;
+}
+.m98-deskicon:active { background: rgba(0,0,32,.18); }
+.m98-deskicon .img { filter: drop-shadow(1px 1px 0 rgba(0,0,0,.4)); }
+.m98-deskicon .lbl {
+  font-size: 12px; line-height: 1.2; color: #fff; text-shadow: 1px 1px 0 rgba(0,0,0,.65);
+  max-width: 84px; padding: 1px 3px;
+}
+.m98-deskicon:active .lbl { background: #000080; outline: 1px dotted #c9c9c9; outline-offset: -1px; }
+
+/* ============================================================
+   HOME — APP LIST  (website-with-a-skin)
+   ============================================================ */
+.m98-listwrap { position: relative; z-index: 2; min-height: 100%; padding: 0 0 18px; }
+.m98-titlebanner {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 13px;
+  background: linear-gradient(90deg, var(--w98-navy) 0%, var(--w98-blue) 100%);
+  color: #fff;
+}
+.m98-titlebanner .logo { width: 34px; height: 34px; image-rendering: pixelated; flex: 0 0 auto; filter: drop-shadow(1px 1px 0 rgba(0,0,0,.4)); }
+.m98-titlebanner h1 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: .2px; }
+.m98-titlebanner .sub { font-size: 11px; opacity: .85; margin-top: 1px; font-family: "Courier New", monospace; text-transform: uppercase; letter-spacing: .5px; }
+
+.m98-list { padding: 8px; display: flex; flex-direction: column; gap: 7px; }
+.m98-listhdr {
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px;
+  color: #fff; text-shadow: 1px 1px 0 rgba(0,0,0,.5); padding: 8px 4px 1px;
+}
+.m98-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 12px; min-height: 62px;
+  background: var(--w98-face);
+  box-shadow: inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
+}
+.m98-row:active { box-shadow: inset 1px 1px 0 #0a0a0a, inset -1px -1px 0 #fff, inset 2px 2px 0 #808080, inset -2px -2px 0 #dfdfdf; }
+.m98-row .ico { width: 34px; height: 34px; image-rendering: pixelated; flex: 0 0 auto; }
+.m98-row .meta { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
+.m98-row .nm { font-size: 15px; font-weight: 700; }
+.m98-row .ds { font-size: 12px; color: var(--w98-text-dim); margin-top: 1px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.m98-row .chev { flex: 0 0 auto; color: var(--w98-navy); font-size: 16px; }
+
+/* ============================================================
+   HOME — HERO + SECTIONS
+   ============================================================ */
+.m98-herowrap { position: relative; z-index: 2; padding: 10px 9px 18px; display: flex; flex-direction: column; gap: 11px; }
+.m98-herowin { background: var(--w98-face); padding: 3px;
+  box-shadow: inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #dfdfdf, inset -2px -2px 0 #808080, inset 2px 2px 0 #fff, 2px 3px 9px rgba(0,0,0,.3); }
+.m98-hero-screen { position: relative; aspect-ratio: 16 / 10; }
+.m98-hero-play {
+  position: absolute; inset: 0; z-index: 5; display: grid; place-items: center;
+  background: rgba(2,12,20,.22);
+}
+.m98-hero-play .knob { width: 54px; height: 54px; display: grid; place-items: center; background: var(--w98-face);
+  box-shadow: inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf; }
+.m98-hero-play .tri { width: 0; height: 0; border-left: 18px solid #00007b; border-top: 11px solid transparent; border-bottom: 11px solid transparent; margin-left: 5px; }
+.m98-hero-cap {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  padding: 6px 8px; font-family: "Courier New", monospace; font-size: 11px; text-transform: uppercase;
+  letter-spacing: .5px; color: #303030;
+}
+.m98-hellocard { background: var(--w98-face); padding: 12px 13px;
+  box-shadow: inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf; }
+.m98-hellocard .pmt { font-family: "Courier New", monospace; color: #c0641e; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; }
+.m98-hellocard h2 { margin: 3px 0 2px; font-size: 21px; font-weight: 700; }
+.m98-hellocard .role { font-size: 12px; color: var(--w98-text-dim); }
+.m98-hellocard p { margin: 8px 0 0; font-size: 13px; line-height: 1.5; text-wrap: pretty; }
+
+.m98-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.m98-tile {
+  background: var(--w98-face); padding: 3px; text-align: left;
+  box-shadow: inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #dfdfdf, inset -2px -2px 0 #808080, inset 2px 2px 0 #fff;
+  display: flex; flex-direction: column;
+}
+.m98-tile:active { box-shadow: inset 1px 1px 0 #0a0a0a, inset -1px -1px 0 #dfdfdf, inset 2px 2px 0 #808080, inset -2px -2px 0 #fff; }
+.m98-tile .tb { display: flex; align-items: center; gap: 7px; height: 22px; padding: 0 5px;
+  background: linear-gradient(90deg, var(--w98-navy), var(--w98-blue)); color: #fff; font-size: 12px; font-weight: 700; }
+.m98-tile .body { padding: 11px 9px 12px; display: flex; flex-direction: column; gap: 8px; }
+.m98-tile .body .ico { image-rendering: pixelated; }
+.m98-tile .nm { font-size: 14px; font-weight: 700; }
+.m98-tile .ds { font-size: 11px; color: var(--w98-text-dim); line-height: 1.35; }
+
+/* ============================================================
+   FULL-SCREEN WINDOW  (slide-up; classic min / max / close)
+   ============================================================ */
+.m98-window {
+  position: absolute; inset: 0; z-index: 30;
+  background: var(--w98-face); padding: 3px;
+  display: flex; flex-direction: column;
+  box-shadow: inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #dfdfdf, inset -2px -2px 0 #808080, inset 2px 2px 0 #fff;
+  animation: m98-win-in .26s cubic-bezier(.2,.7,.3,1);
+}
+@keyframes m98-win-in { from { transform: translateY(100%); } }
+.m98-window.is-float {
+  inset: 12px 8px calc(var(--m98-taskbar-h) - 4px) 8px;
+  box-shadow: inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #dfdfdf, inset -2px -2px 0 #808080, inset 2px 2px 0 #fff, 3px 4px 16px rgba(0,0,0,.45);
+  animation: none;
+}
+.m98-window.is-min { transform: translateY(110%); pointer-events: none; transition: transform .24s cubic-bezier(.4,0,.6,1); }
+
+.m98-titlebar {
+  display: flex; align-items: center; gap: 7px; flex: 0 0 auto;
+  height: 30px; padding: 0 3px 0 6px;
+  background: linear-gradient(90deg, var(--w98-navy) 0%, var(--w98-blue) 100%);
+  color: #fff;
+}
+.m98-titlebar .ico { width: 18px; height: 18px; image-rendering: pixelated; flex: 0 0 auto; }
+.m98-titlebar .tt { flex: 1 1 auto; font-weight: 700; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.m98-tb-btns { display: flex; gap: 3px; }
+.m98-tb-btn {
+  width: 28px; height: 24px; display: grid; place-items: center; padding: 0;
+  background: var(--w98-face);
+  box-shadow: inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
+}
+.m98-tb-btn:active { box-shadow: inset 1px 1px 0 #0a0a0a, inset -1px -1px 0 #fff, inset 2px 2px 0 #808080, inset -2px -2px 0 #dfdfdf; }
+
+.m98-menubar { display: flex; gap: 0; padding: 3px 1px; font-size: 13px; flex: 0 0 auto; }
+.m98-menubar .mi { padding: 4px 10px; }
+.m98-menubar .mi u { text-decoration: underline; }
+.m98-menubar .mi:active { background: var(--w98-hi); color: #fff; }
+
+.m98-winbody { flex: 1 1 auto; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; background: var(--w98-face); }
+.m98-winbody::-webkit-scrollbar { width: 0; }
+.m98-pad { padding: 12px 13px 16px; }
+
+/* media player block inside a window */
+.m98-player { }
+.m98-player-screen { position: relative; aspect-ratio: 16 / 9; background: #000;
+  box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080, inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #0a0a0a; padding: 2px; }
+.m98-transport { display: flex; align-items: center; gap: 9px; padding: 8px 2px 2px; }
+.m98-tp-btn { width: 38px; height: 30px; display: grid; place-items: center; background: var(--w98-face);
+  box-shadow: inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf; }
+.m98-tp-btn:active { box-shadow: inset 1px 1px 0 #0a0a0a, inset -1px -1px 0 #fff, inset 2px 2px 0 #808080, inset -2px -2px 0 #dfdfdf; }
+.m98-seek { flex: 1 1 auto; height: 12px; position: relative; background: var(--w98-field);
+  box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080, inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #0a0a0a; }
+.m98-seek .fill { position: absolute; left: 0; top: 0; bottom: 0; background: #000080; }
+.m98-seek .knob { position: absolute; top: -3px; width: 11px; height: 18px; background: var(--w98-face);
+  box-shadow: inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf; }
+.m98-clip { font-family: "Courier New", monospace; font-size: 12px; flex: 0 0 auto; }
+
+/* headings + prose inside windows (mobile sized) */
+.m98-h1 { margin: 0; font-size: 21px; font-weight: 700; letter-spacing: .2px; }
+.m98-sub { font-size: 12px; color: var(--w98-text-dim); margin-top: 2px; }
+.m98-prose { font-size: 13.5px; line-height: 1.55; color: var(--w98-text); }
+.m98-prose p { margin: 0 0 10px; text-wrap: pretty; }
+.m98-group { position: relative; margin-top: 18px; padding: 15px 11px 12px;
+  box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080; }
+.m98-group > .gt { position: absolute; top: -8px; left: 9px; padding: 0 5px; background: var(--w98-face); font-size: 12px; font-weight: 700; }
+.m98-bul { margin: 0; padding: 0; list-style: none; }
+.m98-bul li { position: relative; padding: 4px 0 4px 18px; font-size: 13px; line-height: 1.45; }
+.m98-bul li::before { content: ""; position: absolute; left: 3px; top: 10px; width: 6px; height: 6px; background: var(--w98-navy); }
+.m98-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.m98-chip { font-size: 12px; padding: 4px 9px; background: var(--w98-face);
+  box-shadow: inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf; }
+.m98-btnrow { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.m98-btn { flex: 1 1 auto; min-width: 120px; padding: 11px 12px; font-family: var(--w98-font); font-size: 14px; font-weight: 700;
+  background: var(--w98-face); color: var(--w98-text); text-align: center;
+  box-shadow: inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf; }
+.m98-btn:active { box-shadow: inset 1px 1px 0 #0a0a0a, inset -1px -1px 0 #fff, inset 2px 2px 0 #808080, inset -2px -2px 0 #dfdfdf; }
+.m98-btn.is-default { box-shadow: inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf, 0 0 0 1px #0a0a0a; }
+
+/* about: portrait + identity */
+.m98-portrait { width: 100%; aspect-ratio: 3 / 3.4; display: grid; place-items: center;
+  background: repeating-linear-gradient(135deg, #1c2433 0 8px, #232d40 8px 16px);
+  box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080, inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #0a0a0a; }
+.m98-portrait .ph { font-family: "Courier New", monospace; font-size: 11px; color: #8fb6c4; text-align: center; text-transform: uppercase; letter-spacing: .5px; }
+.m98-aboutgrid { display: grid; grid-template-columns: 120px 1fr; gap: 13px; align-items: start; }
+.m98-field { background: var(--w98-field); padding: 9px 10px; font-size: 13px;
+  box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080, inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #0a0a0a; }
+.m98-field.is-input { color: var(--w98-text-dim); }
+
+.m98-blink { display: inline-block; width: 9px; height: .92em; margin-left: 3px; vertical-align: -1px;
+  background: var(--w98-navy); animation: m98-blink 1s steps(1) infinite; }
+@keyframes m98-blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .m98-blink { animation: none; }
+  .m98-window, .m98-startmenu { animation: none; }
+}
