@@ -1,0 +1,24 @@
+# Loïck Rivemale — Unity XR & Rendering Engineer
+
+> Unity engineer specialising in XR, real-time rendering and technical art. 8+ years
+> building production VR/AR applications and the systems behind them: GPU-based interaction,
+> custom shader libraries and render features, worldspace VR UI toolkits, full-body motion
+> capture. Based in France, works remotely. Open to freelance and contract work.
+> Previously: Retinize (Animotive, 2020-2025), Airbus Defence & Space (Dragonfly, 2017-2020).
+
+The homepage at https://loick.rivemale.space/ is an interactive Windows 98 desktop and requires JavaScript.
+For the complete, plain-HTML career history, read /cv.html - it is the canonical source.
+
+## Primary source
+- [Full CV](https://loick.rivemale.space/cv.html): complete work history with dates, education, technical skills and personal projects, as plain HTML. Includes schema.org ProfilePage structured data.
+- [Resume PDF](https://loick.rivemale.space/files/resume-loick-rivemale.pdf): one-page downloadable resume.
+
+## Also available
+- [Portfolio desktop](https://loick.rivemale.space/): interactive Windows 98 desktop with project windows and galleries.
+- [Legal notice](https://loick.rivemale.space/legal.html): publisher, hosting, intellectual property, privacy.
+
+## Contact
+- Email: lo.rivemale@gmail.com
+- LinkedIn: https://www.linkedin.com/in/loick-rivemale-080b9789
+- GitHub: https://github.com/Arghonot
+- Instagram (art): https://www.instagram.com/argrafix

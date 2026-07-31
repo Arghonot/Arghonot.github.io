@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Page not found | Loïck Rivemale</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="styles/win98.css">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#008080">
+<style>
+  html,body{margin:0;height:100%;}
+  body{background:#3a6ea5;font-family:'Tahoma','MS Sans Serif','Segoe UI',sans-serif;font-size:13px;color:#000;-webkit-font-smoothing:none;display:grid;place-items:center;padding:20px;}
+  .dlg{width:min(460px,100%);background:#c0c0c0;border:2px solid;border-color:#fff #000 #000 #fff;box-shadow:2px 2px 0 rgba(0,0,0,.45);}
+  .bar{display:flex;align-items:center;gap:6px;background:linear-gradient(90deg,#000080,#1084d0);color:#fff;font-weight:700;padding:3px 4px;}
+  .bar span{flex:1 1 auto;font-size:13px;}
+  .bar b{width:18px;height:16px;display:grid;place-items:center;background:#c0c0c0;color:#000;border:1px solid;border-color:#fff #000 #000 #fff;font:700 11px/1 Tahoma;}
+  .body{display:flex;gap:16px;padding:20px 18px 8px;}
+  .glyph{flex:0 0 auto;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;background:#e02020;color:#fff;font:700 30px/1 Tahoma;border:2px solid;border-color:#ff8a8a #7a0000 #7a0000 #ff8a8a;}
+  h1{margin:0 0 8px;font-size:15px;}
+  p{margin:0 0 8px;line-height:1.5;}
+  code{background:#fff;border:1px solid #808080;padding:0 3px;}
+  .acts{display:flex;justify-content:flex-end;gap:8px;padding:8px 18px 18px;}
+  .btn{min-width:96px;padding:6px 14px;background:#c0c0c0;border:2px solid;border-color:#fff #000 #000 #fff;font:700 13px Tahoma;color:#000;text-decoration:none;text-align:center;cursor:pointer;}
+  .btn:active{border-color:#000 #fff #fff #000;}
+  a{color:#000080;}
+  a:hover{color:#1084d0;}
+</style>
+</head>
+<body>
+<div class="dlg" role="alertdialog" aria-labelledby="t404">
+  <div class="bar"><span>Windows — Page Not Found</span><b>&#215;</b></div>
+  <div class="body">
+    <div class="glyph" aria-hidden="true">&#215;</div>
+    <div>
+      <h1 id="t404">Cannot find the file you requested.</h1>
+      <p>The shortcut may be broken, or the page was moved. Error <code>404</code>.</p>
+      <p>Return to the desktop, or read the <a href="cv.html">text CV</a>.</p>
+    </div>
+  </div>
+  <div class="acts"><a class="btn" href="./">OK</a></div>
+</div>
+</body>
+</html>

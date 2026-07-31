@@ -1,0 +1,934 @@
+Arcana Game - Entity Stat Block Addendum
+Working draft for concept refinement
+This addendum converts the current Arcana entity list into a unified stat-block format based on the Tempter template. Values are first-pass design targets intended for playtesting, not final balance.
+Sanity "-" means the entity is not meaningfully affected by sanity damage or morale pressure unless a room rule says otherwise.
+Use notes
+•	Tier is a rough danger / importance indicator, not a strict challenge rating. It is a multiplier for the room the player enter's, the latest we encounter an entity the harder it will be, but tier 4 and 1 still dictates the dangerosity of the entity for that room. An entity tier 1 is always less dangerous than tier 4
+•	Default stance describes how the entity behaves before the players escalate or trigger the room.
+•	Zone preference indicates where the entity wants to stand or pull the conflict.
+•	Defeat / Surrender can change room control without requiring total destruction.
+
+0. The Fool - Wandering Jester
+Room: The Threshold
+Profile	Tier 1 - Trickster / Chaos
+Default Stance: Neutral
+Core Stats	HP 4 · Armor 0 · Sanity -
+Zone Preference	Doorways, crossroads, beside dropped items
+Detection	Often aware before the party is aware of it
+Initiative	Acts early only if amused; otherwise reacts after the first player move
+Actions	Jab or Trip - 1 dmg melee; on hit may force target to drop one held item
+Throw Gift - tosses a random consumable or junk object into any nearby zone
+Mocking Feint - disengage one zone and impose disadvantage on the next attack made against it
+Passives	Passive: Wild Pocket - carries one random item or key fragment
+Passive: Capricious Aid - if treated well, may reveal a safe exit or hidden stash
+Weaknesses	Order, direct questions, confinement in a simple space
+Immunities	Fear, charm
+Defeat / Surrender	Usually flees or laughs off defeat; can be bribed into guiding the party for one room
+Loot	random trinket, bent key, lucky charm
+GM Note	Use as a volatility engine: not lethal, but excellent for introducing uncertainty.
+
+I. The Magician - Arcane Trickster
+Room: The Laboratory
+Profile	Tier 2 - Arcane / Trade
+Default Stance: Wary
+Core Stats	HP 5 · Armor 0 · Sanity 3
+Zone Preference	Near benches, reagents, unstable devices
+Detection	Alert if anyone touches materials
+Initiative	Prefers to speak first, then strike once advantage is established
+Actions	Dart Flask - 1 dmg at range; on hit applies a random minor effect
+Quick Mix - combine nearby ingredients into smoke, acid, or flashburst
+False Offer - proposes a trade; if accepted carelessly, keeps the better half
+Passives	Passive: Prepared Shelves - once per encounter, produces a useful alchemical effect without spending inventory
+Passive: Cheat Unchallenged - if no player questions details, gains one free advantage or hidden resource
+Weaknesses	Precise wording, destroyed reagents, anti-magic disruption
+Immunities	Poison
+Defeat / Surrender	Will surrender knowledge, passage, or one crafted item before risking death
+Loot	alchemical charge, secret note, unstable reagent
+GM Note	A social-technical foe: reward players who inspect, verify, and interrupt.
+
+II. The High Priestess - The Oracle
+Room: The Sanctuary
+Profile	Tier 2 - Divine / Revelation
+Default Stance: Neutral
+Core Stats	HP 4 · Armor 1 · Sanity -
+Zone Preference	At altar, behind veil, within offering lines
+Detection	Always aware inside the sanctuary
+Initiative	Rarely attacks first unless the altar is defiled
+Actions	Pronounce Truth - reveal one fact, weakness, or hidden connection
+Seal of Silence - prevent lies, shouting, or spellcasting in the circle for one round
+Veil Pulse - 1 sanity or 1 dmg to those who violate the sanctum
+Passives	Passive: Hidden Passage - proper offerings unlock a concealed route or cache
+Passive: Sacred Reserve - first harmful effect each scene is reduced or negated
+Weaknesses	Desecration backlash, broken ritual symmetry, honest bargains
+Immunities	Fear, charm, poison
+Defeat / Surrender	Does not submit in a mundane sense; may allow passage or deny aid depending on reverence
+Loot	blessed token, prophecy fragment, altar key
+GM Note	Best used as a gatekeeper of information rather than a combat target.
+
+III. The Empress - Grove Witch
+Room: The Overgrown Hall
+Profile	Tier 2 - Nature / Hex
+Default Stance: Wary
+Core Stats	HP 6 · Armor 0 · Sanity 4
+Zone Preference	Rooted zones, overgrowth, line-of-sight blockers
+Detection	Senses movement through plants in the hall
+Initiative	Often delays until players start clearing vines
+Actions	Thorn Lash - 2 dmg melee/reach through vegetation
+Entangle - restrain or slow one target in a vine-covered zone
+Verdant Mend - heal self or allied beast/spirit by 2 HP
+Passives	Passive: Hall in Bloom - difficult terrain benefits her, not the players
+Passive: Tribute Sense - gifts of blood, seeds, or water can shift stance to Neutral
+Weaknesses	Fire, salt, severed roots, barren ground
+Immunities	Poison, charm
+Defeat / Surrender	May yield the room if tribute is paid or her grove is spared
+Loot	herb bundle, root charm, growth sigil
+GM Note	Pressure players with terrain and tempo, not raw damage.
+
+IV. The Emperor - The Warden
+Room: The Command Hall
+Profile	Tier 3 - Martial / Command
+Default Stance: Hostile
+Core Stats	HP 8 · Armor 2 · Sanity 3
+Zone Preference	Raised positions, map tables, chokepoints
+Detection	Always alert in his own hall
+Initiative	Acts first if intruders are identified
+Actions	Command Strike - 2 dmg melee; may direct an ally to move or attack
+Mark the Advance - reveal one room ahead or lock down a route
+Suppress - force one target to take cover or lose movement
+Passives	Passive: Battlefield Order - lesser enemies in adjacent rooms become calmer, braver, or coordinated while he lives
+Passive: Hold the Line - ignores forced movement unless heavily displaced
+Weaknesses	Isolation, flanking, broken command tools, disobedient minions
+Immunities	Fear
+Defeat / Surrender	Can be beaten into negotiated withdrawal, but never begged into peace
+Loot	command seal, tactical map, iron key
+GM Note	A control anchor; defeating him should change dungeon behavior beyond the room.
+
+V. The Hierophant - Cult Priest
+Room: The Ritual Chamber
+Profile	Tier 2 - Ritual / Faith
+Default Stance: Neutral or Hostile depending on interruption
+Core Stats	HP 5 · Armor 1 · Sanity 4
+Zone Preference	At ritual marks, near sacrificial focus
+Detection	Aware through chanting and ritual senses
+Initiative	Prefers to speak, recruit, or delay before attacking
+Actions	Ritual Bolt - 1 dmg at range; stronger if the ceremony is intact
+False Gospel - offer safe passage, then bind the careless with obligation
+Complete or Break Rite - escalate the room toward blessing, curse, or summoning
+Passives	Passive: Liturgical Lie - sounds convincing unless players verify doctrine or symbols
+Passive: Borrowed Grace - while the rite remains stable, reduces first damage taken each round by 1
+Weaknesses	Interrupted chanting, broken symbols, exposed hypocrisy
+Immunities	Fear
+Defeat / Surrender	Will trade passage, confession, or partial truth to preserve his god's image
+Loot	cult token, ritual ash, hidden scripture
+GM Note	Lean into ambiguity: the players should wonder whether finishing the rite is wise.
+
+VI. The Lovers - The Bound Pair
+Room: The Twin Tombs
+Profile	Tier 3 - Spirit / Duality
+Default Stance: Neutral but unstable
+Core Stats	HP 6 each shared by fate · Armor 0 · Sanity -
+Zone Preference	Opposite sides of mirrored spaces
+Detection	Always aware of whoever opens a tomb
+Initiative	One speaks first; the other reacts violently to favoritism
+Actions	Twin Surge - one spirit aids while the other harms; choose or trigger one side
+Mirror Wound - damage or kindness to one echoes imperfectly onto the other
+Jealous Reversal - swap positions, aggro, or boon/curse targets
+Passives	Passive: Cursed Opposition - helping one worsens the stance of the other
+Passive: Shared Fate - major changes to one spirit alter the room state for both
+Weaknesses	Fairness, reunification rites, symmetrical action
+Immunities	Poison, fear, charm
+Defeat / Surrender	Can be calmed or reconciled; destroying one usually enrages or warps the other
+Loot	mourning ring, twin relic, tomb clue
+GM Note	This is a moral puzzle encounter disguised as a duel.
+
+VII. The Chariot - Iron Knight
+Room: The Arena
+Profile	Tier 3 - Martial / Pursuit
+Default Stance: Hostile
+Core Stats	HP 9 · Armor 3 · Sanity -
+Zone Preference	Center lane, charging distance, open floor
+Detection	Immediately aware once challenge begins
+Initiative	Usually first unless formally granted first move by the arena
+Actions	Lance Drive - 2 dmg charge; may push target back a zone
+Shield Crush - 2 dmg melee and deny disengage this round
+Pursuit Step - follows fleeing targets between connected zones
+Passives	Passive: Trial of Victory - cannot be negotiated with; only challenge conditions matter
+Passive: Relentless - successful flee attempts do not fully end pursuit unless a rule or gate intervenes
+Weaknesses	Trip hazards, arena mechanisms, mobility denial, magnetic or rust effects
+Immunities	Charm, fear, poison
+Defeat / Surrender	Stops only when beaten cleanly, trapped by the room, or outmatched by a recognized victory condition
+Loot	arena crest, knight fragment, heavy weapon part
+GM Note	A benchmark combat test. Keep readable and fair.
+
+VIII. Strength - The Beast Tamer
+Room: The Beast Pit
+Profile	Tier 2 - Hunt / Control
+Default Stance: Wary
+Core Stats	HP 6 · Armor 1 · Sanity 3
+Zone Preference	Near chains, cages, feeding posts
+Detection	Aware through the beast's senses and noise
+Initiative	Often waits behind the beast until cornered
+Actions	Whip Command - 1 dmg and command the beast to move or strike
+Release the Chain - free or partially free the caged creature
+Pacify or Provoke - alter dungeon mood through feeding, pain, or ritual command
+Passives	Passive: Handler's Bond - beast gains accuracy or courage while the tamer stands
+Passive: Last Resort - if bloodied or cornered, immediately escalates by releasing the monster
+Weaknesses	Cut chains at the right moment, separate handler from beast, food bait
+Immunities	Fear while commanding; not while cornered
+Defeat / Surrender	May surrender if offered escape without the beast, or if dominance is clearly broken
+Loot	chain key, beast salve, training whistle
+GM Note	Make the relationship central; the tamer alone is weaker than the encounter suggests.
+
+IX. The Hermit - The Ancient Sage
+Room: The Forgotten Cell
+Profile	Tier 1 - Lore / Guide
+Default Stance: Neutral
+Core Stats	HP 3 · Armor 0 · Sanity -
+Zone Preference	Seated corner, prayer niche, by sealed texts
+Detection	Aware but unthreatening
+Initiative	Never attacks first unless repeatedly insulted or robbed
+Actions	Answer Patiently - reveal origin lore, route advice, or one hidden rule
+Rebuke - 1 sanity to those who demand without listening
+Seal Memory - hide a clue again if treated with disrespect
+Passives	Passive: Crucial Lore - holds one indispensable truth about the dungeon
+Passive: Rewards Patience - careful questions improve the quality of the answer
+Weaknesses	Rudeness, theft, loud haste
+Immunities	Fear, charm, poison
+Defeat / Surrender	Not a combatant; leaves, goes silent, or withholds truth rather than submits
+Loot	lore fragment, prayer bead, old key
+GM Note	A pacing room. Slow the game down here on purpose.
+
+X. Wheel of Fortune - The Fate Spinner
+Room: The Gambling Den
+Profile	Tier 3 - Chance / Curse
+Default Stance: Neutral
+Core Stats	HP 6 · Armor 0 · Sanity -
+Zone Preference	Near carved tables, wheels, item piles
+Detection	Always aware of wagers and greed
+Initiative	Acts when stakes are accepted or when touched
+Actions	Spin the Wheel - randomize inventory, buffs, curses, or position
+Loaded Outcome - secretly skew one result if players failed to define the wager
+Double or Ruin - tempt the party into escalating risk for stronger payout
+Passives	Passive: House Edge - vague terms favor the Spinner
+Passive: Chance Made Flesh - minor randomness leaks into nearby actions each round
+Weaknesses	Refusing the wager, explicit odds, sabotaged devices
+Immunities	Fear, charm, poison
+Defeat / Surrender	Can be forced to honor a declared bet; rarely destroyed, usually outplayed
+Loot	gambling chip, cursed die, lucky token
+GM Note	Best when players knowingly engage with risk, not when randomness is purely imposed.
+
+XI. Justice - The Iron Judge
+Room: The Court of Scales
+Profile	Tier 3 - Law / Trial
+Default Stance: Neutral until evidence weighs in
+Core Stats	HP 8 · Armor 2 · Sanity -
+Zone Preference	At the scales, between accused and exit
+Detection	Fully aware of spoken lies and proven theft in the room
+Initiative	Usually lets testimony occur before passing sentence
+Actions	Verdict Strike - 2 dmg to the guilty target
+Weigh Deeds - surface one past lie, theft, or oathbreak
+Sentence - impose restitution, disarmament, confinement, or passage
+Passives	Passive: Record of Conduct - prior player choices matter here if the GM has tracked them
+Passive: Cold Impartiality - persuasion works only through evidence, not charm
+Weaknesses	Confession, restitution, contradictory records, broken court machinery
+Immunities	Charm, fear, poison
+Defeat / Surrender	Will stand down if judgment is satisfied; otherwise enforces sentence without malice
+Loot	judicial seal, weighed token, debt writ
+GM Note	Excellent for making prior choices feel real.
+
+XII. The Hanged Man - The Suspended Soul
+Room: The Gallows Room
+Profile	Tier 1 - Spirit / Inversion
+Default Stance: Neutral
+Core Stats	HP 3 · Armor 0 · Sanity -
+Zone Preference	At the crossroads point of the room
+Detection	Aware in all directions despite the inversion
+Initiative	Never attacks first
+Actions	Crooked Insight - grants one clue or altered perspective
+Inverted Pull - reverse movement or item behavior for one round
+Cut Me Down - if freed, costs time or creates danger but grants wisdom
+Passives	Passive: Reversed Space - ordinary assumptions fail in this room
+Passive: Price of Mercy - helping the soul changes future pathing, timing, or omen quality
+Weaknesses	Straight-line thinking, impatience, needless violence
+Immunities	Fear, charm, poison
+Defeat / Surrender	Cannot truly be defeated; can only be released, ignored, or angered
+Loot	hanged charm, omen thread, route hint
+GM Note	Use this entity to distort player certainty, not to drain HP.
+
+XIII. Death - The Bone Reaper
+Room: The Crypt
+Profile	Tier 3 - Death / Harvest
+Default Stance: Neutral
+Core Stats	HP 8 · Armor 1 · Sanity -
+Zone Preference	Among remains, beside open graves
+Detection	Always aware of disturbance among the dead
+Initiative	Does not attack first unless the dead are abused
+Actions	Scythe Arc - 2 dmg melee/reach against those who profane or obstruct
+Escort the Fallen - move a corpse, spirit, or dying target through the room without provoking undead
+Name the Next - reveal who is closest to death or doom
+Passives	Passive: Warden of the Dead - undead waves intensify if the crypt is disturbed beyond measure
+Passive: Threshold Courtesy - respectful parties may pass under observation
+Weaknesses	Respectful rites, grave order, exactly measured violence
+Immunities	Fear, poison, charm
+Defeat / Surrender	Will not submit; may grant passage, temporary protection, or a warning
+Loot	bone token, funerary clue, grave dust
+GM Note	Not hostile by default. Make the players choose whether to force a fight.
+
+XIV. Temperance - The Healer
+Room: The Apothecary
+Profile	Tier 1 - Alchemy / Mercy
+Default Stance: Neutral
+Core Stats	HP 4 · Armor 0 · Sanity 2
+Zone Preference	By mixing station, storage shelves, water source
+Detection	Aware if ingredients are touched or wasted
+Initiative	Does not attack first
+Actions	Restore - heal one target by 2 HP once per encounter
+Blend Tonic - combine two ingredients into one beneficial or risky effect
+Secret for Salve - asks for a truth, memory, or confession in exchange for aid
+Passives	Passive: Measured Hand - rewards moderation; greed spoils mixtures
+Passive: Once Freely Given - first act of sincere aid improves stance significantly
+Weaknesses	Contamination, theft, broken apparatus
+Immunities	Poison
+Defeat / Surrender	Withdraws aid rather than fights hard; may lock away supplies if mistreated
+Loot	healing draught, formula note, rare ingredient
+GM Note	A recovery room with social cost, not a free heal fountain.
+
+XV. The Devil - The Tempter
+Room: The Pit of Chains
+Profile	Tier 4 - Infernal / Bargain Power
+Default Stance: Neutral or Wary while bound
+Core Stats	HP 7 · Armor 1 · Sanity -
+Zone Preference	Open, inside circle
+Detection	Always aware
+Initiative	Usually does not attack first while bound unless mocked or provoked
+Actions	Chain Lash - 2 dmg melee/reach while restrained
+Offer - propose bargain for power, truth, or passage
+Corrupt Clause - twist vague bargains in its favor
+Passives	Passive: Contract Engine - if bargain is spoken clearly in the circle, terms are enforced
+Passive: Bound State - cannot leave circle unless restraints are broken or released
+Weaknesses	Narrow wording, leverage through room mechanics, holy binding
+Immunities	Charm, fear, poison
+Defeat / Surrender	Never fully submits; may yield room, passage, or service under enforceable terms
+Loot	obsidian token, infernal clue, pact mark
+GM Note	This is a contract boss, not mainly a damage boss.
+
+XVI. The Tower - The Colossus
+Room: The Crumbling Spire
+Profile	Tier 4 - Ruin / Siege
+Default Stance: Hostile
+Core Stats	HP 12 · Armor 3 · Sanity -
+Zone Preference	Support columns, unstable floor, vertical breaks
+Detection	Always aware through vibration
+Initiative	Acts immediately when disturbed
+Actions	Collapse Blow - 3 dmg melee; also damages terrain or cover
+Falling Masonry - attack a zone rather than a creature
+Destabilize - worsen the room state; future actions risk cave-in or separation
+Passives	Passive: Structural Avatar - harming it can accelerate the room's collapse
+Passive: Collateral Mass - forced movement, misses, and heavy hits can still break scenery
+Weaknesses	Targeted demolition, support manipulation, mobility, patience
+Immunities	Charm, fear, poison
+Defeat / Surrender	Can be buried, redirected, or stranded; pure destruction is risky to everyone
+Loot	stone heart, tower shard, collapse clue
+GM Note	The room and boss are one encounter. Track structural state openly.
+
+XVII. The Star - The Astral Guide
+Room: The Observatory
+Profile	Tier 1 - Astral / Guidance
+Default Stance: Neutral
+Core Stats	HP 4 · Armor 0 · Sanity -
+Zone Preference	Dark edges, beneath star charts, near extinguished light
+Detection	Appears only when darkness is preserved
+Initiative	Never attacks first
+Actions	Safe Path - reveals the least dangerous route forward
+Star Mark - highlight the true mechanism, target, or exit
+Fade from Sight - vanish if bright light or crude force dominates the room
+Passives	Passive: Appears in Darkness - excessive light suppresses or drives it away
+Passive: Once-Only Guidance - after helping, it usually disappears
+Weaknesses	Bright glare, impatience, hostile questioning
+Immunities	Fear, charm, poison
+Defeat / Surrender	Not defeated in a normal sense; simply departs when trust is broken or purpose is fulfilled
+Loot	star chart fragment, celestial dust, direction sigil
+GM Note	A reward for restraint and observation.
+
+XVIII. The Moon - The Shapeshifter
+Room: The Moonlit Labyrinth
+Profile	Tier 3 - Moon / Mimic
+Default Stance: Wary or deceptive
+Core Stats	HP 7 · Armor 1 · Sanity -
+Zone Preference	Corners, shifting corridors, half-light
+Detection	Often spots players before revealing itself
+Initiative	Prefers ambush, misdirection, or impersonation
+Actions	Borrowed Face - mimic another entity's voice, shape, or manner
+Lunge from Shadow - 2 dmg from concealment or after confusion
+False Route - redirect the party toward danger or loops
+Passives	Passive: Shadow Tells Truth - the real form can be identified by its shadow
+Passive: Corridor Drift - room changes amplify its deception each round
+Weaknesses	Strong light, mirrored surfaces, tracking details, shadow checks
+Immunities	Fear, charm, poison
+Defeat / Surrender	If exposed publicly, may flee rather than continue the masquerade
+Loot	skin token, moon shard, mimic clue
+GM Note	Run this as paranoia and inference, not only as a monster reveal.
+
+XIX. The Sun - The Radiant Sentinel
+Room: The Sunlit Court
+Profile	Tier 3 - Light / Judgment
+Default Stance: Neutral
+Core Stats	HP 8 · Armor 2 · Sanity -
+Zone Preference	Bright lanes, revealed mechanisms, central dais
+Detection	Fully aware in light; less precise in shadow
+Initiative	Warns once before force, unless attacked from stealth
+Actions	Blinding Approach - nearby foes suffer obscured vision or disadvantage
+Solar Spear - 2 dmg at range along a lit path
+Judge Intent - friendly if addressed correctly; hostile if intent proves malicious
+Passives	Passive: Illuminate the Hidden - secret writing and mechanisms become visible in its presence
+Passive: Radiant Courtesy - correct address, posture, or symbol can shift stance positively
+Weaknesses	Darkness, reflective trickery, humility, correct forms
+Immunities	Fear, poison
+Defeat / Surrender	Will allow passage to the worthy; will not chase far beyond its court
+Loot	sun sigil, lens piece, revealed inscription
+GM Note	A disciplined test of intent and ritual etiquette.
+
+XX. Judgement - The Herald
+Room: The Resurrection Hall
+Profile	Tier 4 - Death / Revival
+Default Stance: Hostile or solemnly neutral depending on objective
+Core Stats	HP 9 · Armor 1 · Sanity -
+Zone Preference	Near ossuaries, piles of remains, central call point
+Detection	Aware through every stirred bone in the hall
+Initiative	Often opens by awakening the dead instead of striking directly
+Actions	Raise the Failed - animate bones or prior victims as servants
+Final Verdict - choose whether the dead serve your objective or oppose it
+Trumpet of Return - call back a fallen foe or escalate a wave
+Passives	Passive: Mass of Failures - the battlefield grows more dangerous as corpses accumulate
+Passive: Echo of Objective - its hostility can hinge on what the players seek to achieve
+Weaknesses	Fire, consecration, denying remains, severing command focus
+Immunities	Fear, poison, charm
+Defeat / Surrender	Can be silenced, interrupted, or convinced to stay its hand only through decisive symbolic action
+Loot	resurrection sigil, grave horn fragment, soul ledger
+GM Note	Best used late in a run when the dungeon should feel like it remembers previous losses.
+
+XXI. The World - The Dungeon Itself
+Room: The Final Chamber
+Profile	Tier 5 - Primordial / Heart
+Default Stance: Beyond stance; it evaluates
+Core Stats	HP 14 · Armor 4 · Sanity -
+Zone Preference	Entire chamber; walls, floor, voice points
+Detection	Omniscient within the chamber
+Initiative	Acts when spoken to, threatened, or denied
+Actions	Answer Once - responds honestly to one direct question
+Demand Payment - asks a cost in blood, memory, oath, item, or future burden
+World Shift - alter terrain, exits, gravity, or room law itself
+Passives	Passive: Chamber Is Body - normal positioning matters less because the room is the entity
+Passive: Final Accounting - prior bargains, debts, and truths can be called due here
+Weaknesses	Precise questioning, fulfilled obligations, exploiting earlier room logic
+Immunities	Charm, fear, poison, restraint
+Defeat / Surrender	Cannot truly be defeated in a conventional fight; only appeased, escaped, or bound by greater design
+Loot	campaign objective, true answer, permanent mark
+GM Note	This is the climax. Treat it as a negotiation with reality, with combat as one expression of that.
+
+These are the descriptions of the rooms for each major arcana :
+
+0 — The Fool / The Threshold / Wandering Jester
+
+The Threshold is all half-decisions: three exits, none marked, and dust disturbed in circles rather than lines. Something has been here before you, and not in a hurry.
+A Wandering Jester lingers near a dropped object by the crossroads, smiling as if it has already watched you choose badly once. It is Neutral.
+The floor is cluttered with forgotten trinkets, bent nails, a broken lantern ring, and one item that looks a little too useful to be lying there openly. The exits are close enough that the Jester could drift between them, block one, guide one, or make you notice the wrong detail first. It seems like the sort of thing that reacts to tone, gifts, direct questions, or attempts to corner it.
+You could question it directly, offer something small, inspect the dropped items, watch which exit it avoids, try to trap it in a simple space, or close in and attack.
+
+What do you do?
+
+I — The Magician / The Laboratory / Arcane Trickster
+
+The Laboratory smells of solvent, hot glass, and something metallic beneath it. Shelves bend under unlabeled vials, and a workbench still trembles from a recent reaction.
+An Arcane Trickster stands near the central bench, one hand already hovering above the reagents as if deciding whether to mix, trade, or throw. It is Wary.
+In the unstable light you see open ingredients, stained tools, warmed flasks, and a few devices whose purpose is not obvious until touched. Some mixtures look valuable, some dangerous, and some deliberately arranged to tempt careless hands. The Trickster seems more comfortable if left in control of the terms, but the room also looks like the kind of place where precision, interruption, sabotage, or verification could turn the advantage.
+You could question the terms of a trade, inspect the reagents, interrupt its preparations, destroy unstable materials, use the bench yourself, move through Cover, or close in and attack.
+
+What do you do?
+
+II — The High Priestess / The Sanctuary / The Oracle
+
+The Sanctuary is quiet in the way a held breath is quiet. Veils divide the room into measured spaces, and the altar seems older than the walls built around it.
+The Oracle waits beyond the offering line, still as carved stone, aware of you before your first step settles. It is Neutral.
+Soft candlelight reveals offering bowls, veiled niches, a clean line in the floor that should probably not be crossed lightly, and signs that one passage or cache may open only if the room is approached correctly. The sanctum feels responsive to reverence, symmetry, silence, and honest exchange; desecration would likely provoke it faster than noise alone.
+You could make an offering, ask a question, inspect the altar and veils, test the room’s symmetry, step into the circle, disturb the sanctum, or close in and attack.
+
+What do you do?
+
+III — The Empress / The Overgrown Hall / Grove Witch
+
+The Overgrown Hall is alive in ways stone halls should not be. Roots have cracked the flagstones, vines hang thick over the exits, and the air is damp with sap and slow decay.
+A Grove Witch stands half-hidden in the growth, more suggested by movement and thorns than clearly seen at first. She is Wary.
+The hall itself favors her: vine-covered ground that can catch ankles, root clusters thick enough to break line of sight, and plants that seem to react to motion faster than sight. Yet the same growth looks flammable, severable, and perhaps negotiable if approached with tribute rather than steel. The exits are blocked, but not all blockages need to be cut.
+You could offer tribute, inspect the roots and blocked exits, burn or sever the overgrowth, test whether the vines respond to blood or water, move carefully through Cover, or close in and attack.
+
+What do you do?
+
+IV — The Emperor / The Command Hall / The Warden
+
+The Command Hall is laid out for control. Raised platforms overlook narrow approaches, map tables split the room into lanes, and every useful route seems visible from somewhere important.
+The Warden stands where he can see both you and the exits, one hand resting on the table edge as if the room itself were under orders. He is Hostile.
+In the hard light you see tactical maps, markers, chokepoints, and furnishings arranged less for comfort than for suppression. Some routes could be locked down, some could be flanked, and some would become safer if the tools of command were broken first. The hall feels less dangerous if the Warden is isolated, denied line of control, or forced away from the room’s structure.
+You could inspect the maps and command tools, break line of sight, force him off the chokepoint, destroy the command table, move through Cover to flank, or close in and attack.
+
+What do you do?
+
+V — The Hierophant / The Ritual Chamber / Cult Priest
+
+The Ritual Chamber smells of old wax, ash, and fresh blood. The air is warmer around the altar and colder by the walls, as if the ceremony is drawing heat inward.
+A Cult Priest stands in Open, mid-rite, one hand over the marked stone and his voice rising toward a conclusion he would rather not interrupt. He is Neutral, but the ritual is far less neutral than he is.
+The sigils on the floor look unstable, the braziers in Cover are dry but ready, and the altar itself seems like it could be completed, spoiled, or turned against its own purpose. Symbols on the walls suggest the priest may sound more convincing than truthful, and the room feels poised between blessing, curse, and summoning depending on what is disturbed first.
+You could question the priest, inspect the doctrine or symbols, interrupt or complete the ritual, light or overturn the braziers, move through Cover, or close in and attack.
+
+What do you do?
+
+VI — The Lovers / The Twin Tombs / The Bound Pair
+
+The Twin Tombs mirror each other too closely to be safe. Two sarcophagi face one another across a chamber divided by symmetry, and every mark of disturbance on one side seems answered by something slightly worse on the other.
+The Bound Pair are felt before they are fully seen: one presence pleading, the other bristling, each reacting to how the other is treated. They are Neutral, but only so long as you do not choose too quickly.
+The room offers paired objects, mirrored paths, and actions that look fair only until their echo lands elsewhere. Opening one tomb, favoring one spirit, or speaking to one side too long could tilt the whole encounter. Yet the same symmetry suggests that fairness, balanced action, or a true attempt at reunion might calm what violence would only split further.
+You could inspect both tombs, address the spirits evenly, open one sarcophagus, test the mirrored mechanics, attempt a reconciliatory rite, separate them by force, or close in and attack.
+
+What do you do?
+
+VII — The Chariot / The Arena / Iron Knight
+
+The Arena leaves little room for ambiguity. Sand, iron rails, clear lanes, and a central line where challenge becomes law. Once the gate closes, excuses will not matter much.
+An Iron Knight waits in the center lane with the patience of something that does not mind beginning again. It is Hostile.
+The floor shows old gouges where charges landed, the side walls hide mechanisms that may alter the field, and the lane structure makes footing, timing, and obstacles more important than clever words. This is a room for clean victories, but that does not mean only straightforward ones: tripping hazards, arena devices, broken momentum, and formal challenge conditions may matter as much as raw strength.
+You could inspect the arena mechanisms, bait a charge, block or break the lane, use the room’s hazards, stand and meet the challenge directly, or close in and attack.
+
+What do you do?
+
+VIII — Strength / The Beast Pit / The Beast Tamer
+
+The Beast Pit smells of wet fur, old blood, and iron rubbed smooth by strain. Chains run from ceiling rings to a cage or pen at the room’s heart, and whatever lives there has tested every link.
+A Beast Tamer stays near the control points, measuring you through the beast’s tension rather than his own courage. He is Wary.
+Feeding posts, chain locks, training tools, and signs of ritual discipline suggest the encounter is really about the relationship before it is about the man. The beast may be calmed, baited, enraged, or freed at the wrong moment; the tamer may be stronger while close to it and weaker if separated. Food, chain work, timing, and room position all look like leverage here.
+You could inspect the chains and cage, bait or calm the beast, separate handler from animal, offer food, cut restraints at the right moment, move through Cover, or close in and attack.
+
+What do you do?
+
+IX — The Hermit / The Forgotten Cell / The Ancient Sage
+
+The Forgotten Cell is smaller than the rooms before it, and quieter. Dust lies thick except where a single path between niche, mat, and sealed text has been worn clean over many years.
+An Ancient Sage sits within the room rather than ruling it, already aware of your presence but making no effort to control it. He is Neutral.
+You see old texts, a prayer niche, a sealed compartment, and the signs of someone who values patience more than urgency. Nothing here promises immediate reward, but several things feel important enough that handling them roughly would cost more than time. The room itself asks to be slowed down, listened to, and questioned cleanly.
+You could ask careful questions, inspect the texts and seals, wait and listen, test the Sage’s patience, attempt theft, leave respectfully, or close in and attack.
+
+What do you do?
+
+X — Wheel of Fortune / The Gambling Den / The Fate Spinner
+
+The Gambling Den is carved with games that were never meant to be fair. Wheels, marked tables, piles of tokens, and little signs of past desperation make the room feel entertained by greed.
+The Fate Spinner stands where every wager must pass, smiling like the house always smiles before the rules are fully explained. It is Neutral.
+Objects here are meant to be risked: tokens, inventory, position, maybe even more abstract things if the terms are poorly stated. Some devices could be sabotaged, some odds may be made explicit, and some dangers vanish entirely if no one agrees to play. But once a wager is touched without precision, the room starts deciding with you.
+You could define a wager clearly, inspect the tables and mechanisms, refuse the game, sabotage the devices, test the Spinner’s terms, risk something small first, or close in and attack.
+
+What do you do?
+
+XI — Justice / The Court of Scales / The Iron Judge
+
+The Court of Scales is built to make movement feel like testimony. Every step sounds deliberate, and the exits sit beyond lines that feel less like stonework than procedure.
+An Iron Judge stands between you and passage, silent until enough has been seen or said to weigh. It is Neutral, but not undecided.
+The scales, records, desks, and court machinery suggest that prior actions matter here in ways other rooms may only imply. Some truths can be confessed, some debts repaid, some evidence examined, and some sentences perhaps redirected if the mechanism itself is flawed. Charm feels useless here, but confession, contradiction, restitution, or breaking the machinery might all alter the judgment.
+You could inspect the scales and records, confess or deny, make restitution, present evidence, interfere with the court machinery, move carefully through Cover, or close in and attack.
+
+What do you do?
+
+XII — The Hanged Man / The Gallows Room / The Suspended Soul
+
+The Gallows Room tilts the wrong way no matter where you stand. Doors feel higher than they are, objects pull strangely in the hand, and the room’s center hangs around a point that is not quite its middle.
+A Suspended Soul turns slowly above the crossroads point, aware from all directions and oddly calm about it. It is Neutral.
+Ropes, reversed marks, displaced objects, and altered gravity cues suggest that straightforward assumptions will betray you before any hostile act does. The hanging figure may be freed, ignored, questioned, or angered, but every one of those feels like it would change the room’s logic rather than merely its mood. Mercy here likely has a cost, but impatience may have one too.
+You could inspect the rope and room geometry, ask for insight, cut the Soul down, test how movement is reversed, ignore it and move on, or close in and attack.
+
+What do you do?
+
+XIII — Death / The Crypt / The Bone Reaper
+
+The Crypt is not chaotic; it is arranged. Bones lie where someone intended them to lie, graves are marked even when broken, and the silence feels more supervised than empty.
+A Bone Reaper stands among the remains like a custodian rather than a hunter, watching for disrespect more than weakness. It is Neutral.
+Open graves, stacked remains, funerary objects, and narrow paths between the dead make it clear that this room can become much worse if disturbed carelessly. Yet the same order suggests that respectful passage, measured violence, or proper rites could be recognized. The Reaper seems less interested in domination than in whether you understand where you are.
+You could inspect the graves and remains, move respectfully through the crypt, ask the Reaper a question, perform or imitate a rite, disturb the dead, take funerary loot, or close in and attack.
+
+What do you do?
+
+XIV — Temperance / The Apothecary / The Healer
+
+The Apothecary smells clean at first, then complicated. Dry herbs, alcohol, old medicines, and wet stone gather around a mixing station that still looks usable.
+A Healer works or waits near the shelves with the kind of attention that notices waste immediately. They are Neutral.
+Bottles, ingredients, water, heat, and carefully arranged formula tools make the room feel like a place where greed spoils more than theft does. One treatment may be offered freely, but not carelessly; stronger help likely comes with a social cost. The apparatus also looks fragile enough that contamination, impatience, or rough handling could turn mercy into denial.
+You could ask for healing, inspect the ingredients and formulas, trade truth for aid, mix a remedy, steal supplies, contaminate the apparatus, or close in and attack.
+
+What do you do?
+
+XV — The Devil / The Pit of Chains / The Tempter
+
+The Pit of Chains is built around a choice pretending to be a person. Hooks, manacles, black iron, and a sigil circle all say the same thing: whatever is bound here was worth binding carefully.
+The Tempter waits inside the circle, restrained but far from harmless, watching you as if arrival itself were already part of the negotiation. It is Neutral while bound.
+A winch, chain curtains, a bridge route, hidden mechanisms, and the circle itself all look usable if you understand them well enough. The room is full of leverage: terms can likely be narrowed, pressure can be applied, and precise wording matters more here than courage alone. It also feels like mocking the bound thing, freeing it recklessly, or speaking vaguely would be the fastest ways to lose control.
+You could inspect the circle and restraints, question the Tempter, tighten or loosen the winch, bargain for truth or passage, search for alternate exits, manipulate the room’s mechanisms, or close in and attack.
+
+What do you do?
+
+XVI — The Tower / The Crumbling Spire / The Colossus
+
+The Crumbling Spire is already failing before you touch anything. Stone dust falls in slow threads, cracks run through the floor like veins, and every support looks tired enough to hold a grudge.
+A Colossus stands among the break lines like the tower’s will given shape, massive enough that even stillness feels destructive. It is Hostile.
+Columns, chains, broken levels, unstable platforms, and open vertical drops make it obvious that the room is as much the enemy as the thing within it. Striking the Colossus may damage the room, and damaging the room may strike the Colossus. Patience, demolition, positioning, and controlled collapse all look more promising than standing in front of it and trading blows until the ceiling chooses a winner.
+You could inspect supports and weak points, sever chains, trigger or avoid collapse, lure it onto bad footing, move through Cover, or close in and attack.
+
+What do you do?
+
+XVII — The Star / The Observatory / The Astral Guide
+
+The Observatory feels abandoned only if you ignore the sky. Star charts still hang in careful arcs, and the darkness above the cracked lens seems too clear to belong underground.
+An Astral Guide appears where shadow is preserved, less entering the room than becoming visible within it. It is Neutral.
+Chart mechanisms, dark corners, extinguished light, marked routes, and the central lens all suggest that guidance here depends on restraint more than force. The Guide looks like the kind of presence that rewards careful questions, patience, and symbolic exchange, but may vanish if the room is flooded with light or handled crudely. Some truths seem available here only once.
+You could ask about future paths, inspect the charts and mechanisms, preserve or alter the darkness, offer a symbolic exchange, test the room’s route logic, or close in and attack.
+
+What do you do?
+
+XVIII — The Moon / The Moonlit Labyrinth / The Shapeshifter
+
+The Moonlit Labyrinth shifts when not watched directly. Corridors seem to lean away when your eyes leave them, and distances feel slightly dishonest.
+A figure in Cover wears a familiar face, but its shadow does not match. It is Wary, and it has not committed to one shape yet.
+In the dim light of the labyrinth you see a dropped lantern, scratch-marked paths, moving junctions, and deep shadow pooled in the corners. One route of scratches looks deliberate, as though something real passes that way often; the figure’s body changes with the light, but the shadow seems slower to obey. The room feels built for testing identity, exposing false routes, and rewarding careful observation over reflex.
+You could test its identity, use light to expose it, follow the scratch marks, watch how the corridors shift, move carefully through Shadow or Cover, or close in and attack.
+
+What do you do?
+
+XIX — The Sun / The Sunlit Court / The Radiant Sentinel
+
+The Sunlit Court is too bright to lie in comfortably. Light falls hard across the stone, revealing old writing, hidden joins, and mechanisms that darkness would have kept to itself.
+A Radiant Sentinel stands in the central light with the poise of something that expects correct conduct before it expects violence. It is Neutral.
+In the full glare you can see inscriptions, revealed devices, bright lanes for ranged force, and thinner edges of shadow where vision becomes less certain. The room seems responsive to etiquette, posture, symbols, and intent in ways that make stealth or rudeness feel heavier than usual. At the same time, light can be reflected, interrupted, or used to reveal more than the Sentinel intends.
+You could address the Sentinel properly, inspect the inscriptions and mechanisms, test what the light reveals, use shadows or reflections, move through Cover, or close in and attack.
+
+What do you do?
+
+XX — Judgement / The Resurrection Hall / The Herald
+
+The Resurrection Hall remembers too much. Bone heaps lie in patterns that suggest prior waves, prior failures, prior calls answered badly.
+A Herald stands at the central call point like a conductor before silence breaks into movement. It is Hostile, or very close to it.
+Ossuaries, piles of remains, ritual focal points, and channels across the floor make it clear that the dead are not just scenery here. Fire, consecration, denial of corpses, or striking the command focus may matter more than cutting down the same risen servants again and again. The room also feels like it may respond differently depending on what the party is trying to achieve.
+You could inspect the command focus, burn or deny remains, confront the Herald, prepare for waves, alter the battlefield before the dead rise, move through Cover, or close in and attack.
+
+What do you do?
+
+XXI — The World / The Final Chamber / The Dungeon Itself
+
+The Final Chamber feels finished in a way nothing else did. The stone is whole, the geometry deliberate, and every sound seems chosen before it is made.
+The Dungeon Itself is here, though not as a body in the ordinary sense. It is aware everywhere within the chamber and does not really have a readable stance; it evaluates.
+The floor, walls, voice points, exits, and even the room’s laws feel negotiable only at a scale larger than combat. This is a place for precise questions, accepted debts, offerings, and dangerous demands. Prior bargains, truths, broken patterns, and fulfilled obligations all feel close at hand here, as though the room has been keeping score the whole time.
+You could ask one direct question, inspect the chamber’s logic, answer or resist a demand, offer an item or oath, test the room’s laws, invoke earlier bargains, or attempt force and see what reality thinks of it.
+
+What do you do?
+
+
+ARCANA GAME — LORE PRIMER
+Version: Setting Fluff Primer / Draft 1
+This is the lore primer that reflects what the entities and npcs in the dungeon knows of the diegesis. They would usually know bits of all of that and, depending of their alignment if any would believe they are right. 
+OVERVIEW
+
+The dungeon is not merely a ruin, fortress, prison, temple, or underworld. It is all of these at once because it is older than any single purpose now attributed to it. Those who dwell within it know this much: the place responds to blood, iron, memory, symbols, names, bargains, and acts of will. It shifts, but not randomly. It remembers. It tests. It repeats.
+
+No inhabitant possesses the full truth.
+
+The people, beasts, revenants, merchants, cultists, knights, magicians, and strays of the dungeon all act from partial understanding. They know taboos, rituals, enemy factions, old stories, practical truths, and inherited doctrines. They know where iron helps, where light lies, where names should not be spoken, which doors answer blood, and which chambers should never be entered twice. But no one can stand at the center of the dungeon and explain the whole of it without contradiction.
+
+This is by design.
+
+The dungeon is a place where truths overlap rather than replace one another. Old explanations are not fully false. They are incomplete. Each faction preserves part of a greater origin, and each insists that its fragment is the true one.
+
+THE FOUR ORIGINS OF THE DUNGEON
+
+All four of the following claims are preserved in doctrine, rumor, ritual text, and oral history. All four are true, though no faction admits this cleanly.
+
+I. THE DUNGEON AS PRISON
+
+Some say the dungeon was first raised to confine an Outer Principle: a vast and terrible intelligence, not fully god, not fully demon, but something that could not be allowed to enter the waking world unbound. In this telling, the halls, locks, iron nails, warding circles, and execution chambers are not architecture but restraints. The dungeon was built to hold, mute, and diminish what answered from beyond.
+
+Those who keep to this version believe every breach, mutation, possession, false face, and speaking shadow is evidence that the prison is weakening.
+
+II. THE DUNGEON AS SUMMONING ENGINE
+
+Others say the dungeon was never meant to contain anything. It was built to complete a calling. Each chamber is part of a ritual machine. Each threshold is a step in a greater invocation. Blood offerings, star calculations, names, flame, sacrament, and sacrifice were meant to open a passage between this world and another. The work was interrupted, damaged, or betrayed before completion.
+
+Those who keep to this version believe the dungeon is not failing. It is still trying to finish what it was made to do.
+
+III. THE DUNGEON AS GOD-BODY
+
+There are those who whisper that the dungeon is not built at all, at least not in the usual sense. They say it is the skin, nerve, gut, and dreaming thought of something unborn or dismembered. Its halls are organs. Its chambers are functions. Its traps are reflexes. Its shifting passages are not mechanical changes, but living rearrangements. In this telling, the dungeon does not contain a divine presence. It is one.
+
+Those who keep to this version treat the place as a living sacrament. To enter it is to enter a body larger than reason.
+
+IV. THE DUNGEON AS JUDGMENT MACHINE
+
+A final doctrine claims the dungeon was made to sort, test, and transform souls, wills, vows, and archetypes. It is a machine of ordeal. Those who pass through it are not there by accident. They are measured, classified, and confronted with symbols they cannot evade. The changing rooms, mirrored roles, repeated trials, and strangely fitting encounters are all part of this process. The dungeon does not merely kill intruders. It places them.
+
+Those who keep to this version believe the dungeon is a court, forge, and revelation all at once.
+
+THE HIDDEN SYNTHESIS
+
+The full truth, known only through implication and contradiction, is that the dungeon is all four things.
+
+It was created by the convergence of four traditions who sought to bind, call, embody, and judge powers beyond the human world. Their aims were not identical, but for a brief and catastrophic period they worked together. Iron bound what blood invited. Fire revealed what gold stabilized. Judgment framed what sacrifice opened.
+
+The result was not a clean success or a clean failure.
+
+Something answered.
+Something was bound.
+Something remained unfinished.
+Something became alive.
+
+Since then, the dungeon has endured as prison, gate, body, and engine of judgment at the same time.
+
+Every faction descends, directly or indirectly, from one of those founding currents.
+
+THE FOUR GREAT FACTIONS
+
+The factions do not speak in the language of tarot, though scholars and occultists would recognize the echoes. Their symbols, rites, and values reflect deeper archetypal currents without naming them plainly.
+
+I. THE RED COMMUNION
+
+Core concerns:
+blood, emotion, sacrifice, ecstasy, longing, devotion, union, the body as sacrament
+
+The Red Communion believes separation is the first wound. To them, the dungeon is a living vessel of reunion: a heart, a chalice, a body that can receive and transform those who surrender themselves correctly. They practice blood rites, shared vows, ecstatic prayer, ceremonial consumption, and acts of loving violence mistaken by outsiders for madness.
+
+They seek consummation rather than control. They believe the dungeon must be fed, joined, and completed through devotion, offering, and sacred intimacy with what lies beneath.
+
+They despise sterile containment and iron excess, which they see as tools of fear and mutilation. They can ally with shapeshifters, flesh-borne entities, and certain prophets, though such alliances are unstable.
+
+Their enemies:
+The Order of Nails above all.
+The Black Ledger when it treats sacred remains as trade goods.
+The Lantern Covenant when it invokes without reverence.
+
+Typical members:
+cult priests, blood saints, masked celebrants, ecstatic martyrs, veiled attendants, flesh-bound seers
+
+How they speak:
+The halls know your pulse.
+Iron makes all things lonely.
+Blood remembers the door.
+Do not strike yet. The place is listening.
+
+II. THE ORDER OF NAILS
+
+Core concerns:
+iron, law, rank, categorization, binding, punishment, witness, order, sealed thresholds
+
+The Order of Nails believes the dungeon must be regulated, classified, and contained. To them, the place is dangerous not because it is evil, but because what exceeds proper station threatens the world above. Every chamber can be named. Every entity can be bound, judged, executed, or sealed. Every breach has a procedure.
+
+Their doctrine preserves the prison origin most clearly. They see themselves as custodians of old boundaries and heirs to the first wardens. If they had their way, the dungeon would be fixed in stillness, its passages nailed shut and its outer correspondences severed forever.
+
+They value iron as the great material of resistance: that which anchors, pins, limits, and wounds what should not pass freely.
+
+Their enemies:
+The Red Communion as corrupters.
+The Lantern Covenant as reckless meddlers.
+The Borrowed and all shape-thieves as unlawful manifestations.
+The Black Ledger whenever commerce undermines interdiction.
+
+Typical members:
+iron knights, jailers, confessors, inquisitors, oathbound guards, chain-bearers, executioners
+
+How they speak:
+This chamber is under interdiction.
+State your name and burden.
+Improper manifestation. Bind it.
+By iron and witness, this threshold is closed.
+
+III. THE BLACK LEDGER
+
+Core concerns:
+trade, salvage, debt, gold, weight, possession, carrion economy, utility, survival
+
+The Black Ledger treats the dungeon as resource, route, archive, and market. They are not unbelievers. They simply believe that every miracle, relic, corpse, map, oath, and curse has weight and therefore price. They keep caravans, hidden taverns, exchange chambers, bone stores, safe routes, false maps, debt tablets, and long memories.
+
+They do not seek to solve the dungeon. They seek to survive it profitably and indefinitely.
+
+The Black Ledger’s greatest strength is pragmatism. They trade with faction soldiers, starving pilgrims, cult priests, hedge magicians, deserters, and grave-things alike. Their merchants may be genuine traders, retired adventurers, smugglers, scavengers, or innkeepers sheltering the desperate under old truce-signs.
+
+Their enemies:
+Any zealot who would destroy the market.
+Thieves who steal outside recognized debt.
+The Order of Nails when it tries to ban trade.
+The Red Communion when it consumes what could be sold.
+The Lantern Covenant when it destabilizes routes with experiments.
+
+Typical members:
+merchants, quartermasters, tavern keepers, relic appraisers, bone dealers, caravan guards, smugglers, scavenger lords
+
+How they speak:
+Miracles are dear this season.
+I buy teeth, maps, and unopened seals.
+The place shifts, yes, but debts do not.
+You can keep the curse or sell it.
+
+IV. THE LANTERN COVENANT
+
+Core concerns:
+revelation, will, flame, invocation, dangerous knowledge, stars, transformation, inquiry
+
+The Lantern Covenant believes the dungeon is an unfinished operation and that ignorance is more dangerous than contact. They study signs, timings, old diagrams, celestial correspondences, formulae of opening, and forgotten Keys. They are seekers, ritual engineers, and scholars whose work often borders on heresy.
+
+They preserve the summoning-engine origin best, though their more radical members also believe the dungeon is a thinking body learning how to complete itself. They seek not surrender, nor sealing, nor simple profit, but understanding joined to controlled activation.
+
+Some genuinely wish to save the world through knowledge. Others only want to be present when the last veil opens.
+
+Their enemies:
+The Order of Nails, which suppresses knowledge.
+The Red Communion, which replaces method with surrender.
+The Black Ledger, which reduces mystery to commodity.
+Their own radicals, who would rather finish the rite than understand it.
+
+Typical members:
+magicians, lamp-bearers, star readers, ritual mathematicians, invokers, archive thieves, masked lecturers
+
+How they speak:
+That seal is operative, not decorative.
+Stand back. The chamber is in correspondence.
+This alignment should not be possible.
+If it opens, do not answer what speaks first.
+
+THE COURTS AND KINDS OF THINGS
+
+Not every being in the dungeon belongs to a faction. Many are older than current doctrines, born of failed rites, partial incursions, or long exposure to the place. Scholars, madmen, and hunters sometimes classify them into courts or kinds.
+
+THE BORROWED
+False faces, mimics, doubles, shape-thieves, reflection-born things, familiar forms with wrong shadows
+
+THE BOUND
+Oath revenants, nailed dead, iron saints, chained guardians, sentence-bearers, wardens who remained at their post too long
+
+THE HOLLOWED
+Bodies emptied by ritual and filled by something else, obedient vessels, living reliquaries, beautifully ruined men and women
+
+THE BESTIAL
+Predators, scavengers, vermin kings, dungeon-adapted beasts, growths of hunger and instinct warped by the deeper laws of the place
+
+THE WITNESSED
+Things created or altered because they were named, observed, remembered, prayed to, feared, or reenacted too often
+
+These courts overlap with factional allegiance. A cult priest may also be Hollowed. An iron knight may become one of the Bound. A merchant may traffic with the Borrowed. A beast may serve no doctrine at all.
+
+IRON
+
+Iron is more than a material in this setting. It is one of the deepest laws still functioning reliably.
+
+Known or widely believed properties of iron:
+- it resists transformation
+- it anchors thresholds
+- it pins names and forms in place
+- it harms what is not fully incarnate
+- it interrupts certain rites
+- it stabilizes chambers briefly against shifting
+- it limits visions, dreams, possession, and communion
+
+Because of this, iron is feared, revered, hoarded, forged into law, worn as ward, and cursed by those who serve more fluid powers. Raw iron, forged iron, sacred iron, rusted iron, and blooded iron may not behave the same way. Entire doctrines have been built on these differences.
+
+This is one reason the Order of Nails is powerful. It is also why many others hate them.
+
+THE KEYS
+
+Throughout the dungeon’s history, rites of opening have survived in fragments under the name of Keys. A Key is not necessarily a physical object. It may be:
+- a spoken formula
+- a sequence of offerings
+- an alignment of stars or rooms
+- an arrangement of blood and metal
+- a set of names spoken in correct order
+- a condition fulfilled rather than an item held
+
+Examples preserved in text and rumor:
+The Key Beneath Iron
+The Hollow Key
+The Ninth Key
+The Key of Ash
+The Pluto Key
+
+The Pluto Key in particular is blamed in some accounts for manifestations of doubles, skin-thieves, reflected men, and entities that borrow familiar shapes. Some say it requires planetary alignment. Others say the stars only matter because men need clocks for things they do not truly understand.
+
+MERCHANTS, TAVERNS, AND SHOPS
+
+Trade exists in the dungeon because survival demands exchange and because old truces, debts, and marks of passage still hold some power.
+
+Shops may take the form of:
+- a lone adventurer selling relics and old supplies
+- a sanctioned Black Ledger station
+- a hidden tavern where violence is temporarily checked
+- a bone market
+- a rest chamber protected by debt-signs
+- a scavenger camp built around an old ritual fire
+
+Gold matters, but not always as coin. Value may be measured in metal, blood, relics, maps, names, teeth, safe passage, service, or information.
+
+Violence in such places is possible, but rarely inconsequential. Some merchants are protected by factional debt. Some by old ward-signs. Some by hired killers. Some by the dungeon itself, which appears to dislike the breaking of certain marked exchanges.
+
+WHY PEOPLE ARE HERE
+
+Most entrants cannot answer this cleanly.
+
+They say they came for treasure, escape, pilgrimage, sentence, revenge, hunger, debt, knowledge, glory, or a missing loved one. Some were sent by a faction. Some were born inside. Some do not remember entering at all.
+
+The deeper truth is that the dungeon receives those who fit its workings.
+
+Not chosen as heroes.
+Not always damned.
+But resonant.
+
+The player and many other figures in the game should feel this pressure: they are not random intruders wandering a place. They are being placed into relation with it.
+
+WHAT THE INHABITANTS KNOW
+
+The average inhabitant may know some of the following:
+- which faction controls or prowls certain routes
+- what iron does to spirits and false bodies
+- that some rooms respond to symbolic actions
+- that names can matter dangerously
+- that some merchants are under truce
+- that the dungeon shifts more at certain times or after certain acts
+- that not every human-looking figure is human
+- that some rituals work even when no one understands why
+- that the factions all lie, but not entirely
+
+What they do not know:
+- the full original purpose of the dungeon
+- whether the central intelligence beneath it is prisoner, god, machine, or all three
+- whether the dungeon is trying to awaken, complete a rite, digest intruders, or judge them
+- whether escape is always possible in the same sense people imagine it
+
+TONE GUIDE
+
+The lore should be understood by characters in fragments, not explained by omniscient narration in clean modern terms. Most people in the dungeon know procedures better than theory. They know what can be done, what must not be done, and what happened to the last fool who ignored those rules.
+
+This setting should feel:
+- occult but grounded in repeated practice
+- symbolic but physically dangerous
+- theological without requiring formal religion
+- mysterious without being arbitrary
+- intelligible in local pieces, never fully in one glance
+
+USING THIS IN PLAY
+
+At room and encounter level, the lore should appear through:
+- faction language
+- room dressing
+- enemy behavior
+- trade customs
+- ritual remnants
+- taboos
+- contradictions between what different NPCs claim
+
+No single encounter needs to explain the setting. It is enough that every encounter clearly belongs to it.
+
+FINAL PRINCIPLE
+
+The dungeon is not a backdrop for the game.
+
+It is the game’s oldest character.
+
+Everyone inside it knows that, even if they would never use those exact words.

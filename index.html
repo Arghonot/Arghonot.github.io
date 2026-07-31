@@ -1,237 +1,1331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Loïck Rivemale — Portfolio 98</title>
-<link rel="stylesheet" href="styles/win98.css" />
-<link rel="stylesheet" href="styles/desktop.css" />
-<link rel="stylesheet" href="styles/landing.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Loïck Rivemale — Unity XR &amp; Rendering Engineer</title>
+<meta name="description" content="Portfolio of Loïck Rivemale, Unity XR and rendering engineer with 8+ years building VR/AR applications, GPU rendering systems, custom shaders and worldspace VR UI toolkits for Retinize, Airbus Defence &amp; Space and freelance clients.">
+<meta name="author" content="Loïck Rivemale">
+<link rel="canonical" href="https://loick.rivemale.space/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Loïck Rivemale">
+<meta property="og:title" content="Loïck Rivemale — Unity XR &amp; Rendering Engineer">
+<meta property="og:description" content="8+ years building VR/AR applications, GPU rendering systems, custom shaders and worldspace VR UI toolkits. Portfolio served as a Windows 98 desktop.">
+<meta property="og:url" content="https://loick.rivemale.space/">
+<meta property="og:image" content="https://loick.rivemale.space/assets/og-cover.png">
+<meta property="og:image:alt" content="Windows 98 style desktop portfolio of Loïck Rivemale">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Loïck Rivemale — Unity XR &amp; Rendering Engineer">
+<meta name="twitter:description" content="8+ years building VR/AR applications, GPU rendering systems, custom shaders and worldspace VR UI toolkits.">
+<meta name="twitter:image" content="https://loick.rivemale.space/assets/og-cover.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#008080">
+<link rel="stylesheet" href="styles/win98.css">
+<link rel="license" href="legal.html">
+<link rel="alternate" type="text/html" href="cv.html" title="CV — text version">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://loick.rivemale.space/#website","url":"https://loick.rivemale.space/","name":"Loïck Rivemale — Portfolio","inLanguage":"en","mainEntity":{"@type":"Person","@id":"https://loick.rivemale.space/#person","name":"Loïck Rivemale","jobTitle":"Unity XR & Rendering Engineer","url":"https://loick.rivemale.space/","email":"mailto:lo.rivemale@gmail.com","sameAs":["https://github.com/Arghonot","https://www.linkedin.com/in/loick-rivemale-080b9789","https://www.instagram.com/argrafix"],"mainEntityOfPage":{"@type":"ProfilePage","@id":"https://loick.rivemale.space/cv.html"}}}</script>
 <style>
-  html, body { margin: 0; background: #0c0c0c; }
-  * { box-sizing: border-box; }
-  body { overflow-x: hidden; font-family: var(--w98-font); color: var(--w98-text); }
-  /* the flow scrolls in normal document flow */
-  .d98-root { position: relative; }
-
-  /* draggable affordance */
-  .w98-titlebar { cursor: move; }
-  .w98-tb-btn { cursor: pointer; }
-
-  /* ---------- cascading Start menu (site architecture) ---------- */
-  .fsm .fsm-list { width: 196px; padding: 2px; position: relative; }
-  .fsm-item-wrap { position: relative; }
-  .fsm-item { display: flex; align-items: center; gap: 9px; padding: 6px 8px; font-size: 13px; cursor: default; }
-  .fsm-item .ico { width: 24px; height: 24px; image-rendering: pixelated; flex: 0 0 auto; }
-  .fsm-item .lbl { flex: 1 1 auto; }
-  .fsm-item:hover, .fsm-item.is-open { background: #000080; color: #fff; }
-  .fsm-item.has-sub::after { content: "\25B8"; margin-left: auto; font-size: 11px; }
-  /* tiny engraved separator under each menu item — kept subtle (single soft line) */
-  .fsm-list > .fsm-item-wrap:not(:last-child) { border-bottom: 1px solid #e2ded6; box-shadow: none; }
-  .fsm-sub .fsm-subitem:not(:last-child) { border-bottom: 1px solid #e2ded6; box-shadow: none; }
-  /* breathing room between the last desk item and the Shut Down button */
-  .fsm .d98-sm-divider { margin: 10px 2px 4px; }
-
-  /* welcome "scroll down" wordart — fades in once the melt animation begins */
-  .wm-scrolldown { position: absolute; left: 0; right: 0; bottom: 50px; z-index: 6;
-    display: flex; flex-direction: column; align-items: center; gap: 6px;
-    pointer-events: none; animation: wmFadeIn .7s ease both; }
-  @keyframes wmFadeIn { from { opacity: 0; } to { opacity: 1; } }
-  .wm-scrolltext { display: inline-block; transform-origin: center; animation: wmRock 2.6s ease-in-out infinite; }
-  @keyframes wmRock { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
-  .wm-chevron { color: #eafcff; font-size: 26px; line-height: 1; text-shadow: 0 2px 3px rgba(0,0,0,.55); }
-  .fsm-sub {
-    position: absolute; left: 100%; bottom: -3px; z-index: 1200;
-    min-width: 208px; background: var(--w98-face);
-    box-shadow: inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf, 2px 2px 8px rgba(0,0,0,.35);
-    padding: 3px;
+  :root{
+    --w98-face:#c0c0c0;
+    --tb-h:50px;
+    /* virtual viewport: equals the real one at scale 1, and the scaled desk
+       stage's own box once fit-to-viewport kicks in (see fitDesks) */
+    --vpw:100vw;
+    --vph:calc(100vh - var(--tb-h));
   }
-  .fsm-subitem { display: flex; align-items: center; gap: 9px; padding: 5px 8px; font-size: 12.5px; cursor: default; white-space: nowrap; }
-  .fsm-subitem .ico { width: 20px; height: 20px; image-rendering: pixelated; flex: 0 0 auto; }
-  .fsm-subitem:hover { background: #000080; color: #fff; }
-
-  /* ---------- welcome window (from the approved mock) ---------- */
-  .lv2-welcome { width: 560px; max-width: calc(100vw - 32px); position: relative; }
-  .lv2-hero { position: relative; padding: 18px 24px 22px; overflow: hidden; }
-  .lv2-flag {
-    position: absolute; top: 26px; right: -14px; width: 480px; height: 282px;
-    background: url("uploads/flag-wave.png") center / contain no-repeat;
-    opacity: .95; pointer-events: none;
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;height:100%;overflow:hidden;}
+  body{
+    font-family:'Tahoma','MS Sans Serif','Segoe UI',sans-serif;
+    font-size:12px;-webkit-font-smoothing:none;
+    background:#000;color:#000;
+    -webkit-user-select:none;user-select:none;
   }
-  .lv2-hero > *:not(.lv2-flag) { position: relative; z-index: 1; }
-  .lv2-eyebrow {
-    font-family: "Courier New", monospace; font-size: 13px; letter-spacing: 2px;
-    color: #878787; margin-bottom: 10px; white-space: nowrap;
+  /* the desktop shell itself stays unselectable (icons, taskbar, drag), but text
+     inside window content is selectable/copyable */
+  .w98-window{-webkit-user-select:text;user-select:text;}
+  .w98-window .w98-titlebar,.w98-window .w98-menubar,.w98-window .w98-statusbar,
+  .w98-window button,.w98-window .vp-node,.w98-window .vp-leaf,.w98-window .ts-item{
+    -webkit-user-select:none;user-select:none;
   }
-  .lv2-name { margin: 0 0 16px; line-height: .98; font-family: Arial, "Helvetica Neue", sans-serif; }
-  .lv2-name .first { display: block; font-size: 62px; font-weight: 900; letter-spacing: -1.5px; color: #0a0a0a; }
-  .lv2-name .last  { display: block; font-size: 62px; font-weight: 900; letter-spacing: -1px; color: #0a0a0a; padding-right: 8px; }
-  .lv2-name .role  { display: block; margin-top: 4px; font-size: 46px; font-weight: 900; font-style: normal; text-transform: uppercase; letter-spacing: -1px; color: #1717c4; }
-  .lv2-tag { margin: 0 0 20px; font-size: 18px; line-height: 1.42; color: #1d1d1d; max-width: 470px; text-wrap: pretty; }
-  .lv2-cta { display: flex; gap: 12px; align-items: stretch; }
-  .lv2-cta .w98-btn { text-decoration: none; display: inline-flex; align-items: center; justify-content: center; color: var(--w98-text); cursor: pointer; }
-  .lv2-btn-main { padding: 9px 26px; font-size: 16px; font-weight: 700; }
-  .lv2-btn-resume { padding: 9px 18px; font-size: 14px; }
+  .w98-window ::selection{background:var(--w98-navy);color:#fff;}
+  a{color:#00309a;}
+  a:hover{color:#0a4fd6;}
 
-  /* ---------- Tech Stack window (reused from Tech Stack.html) ---------- */
-  .ts-win { width: min(1180px, 100%); height: min(944px, 100%); display: flex; flex-direction: column; padding: 3px; }
-  .ts-body { flex: 1 1 auto; min-height: 0; margin: 0 1px; display: flex; background: #fff; overflow: hidden; }
-  .ts-web { flex: 0 0 210px; min-width: 0; display: flex; flex-direction: column; overflow: hidden;
-    background: #fff url("uploads/TechStackCloudBackground.png") top center / cover no-repeat; }
-  .ts-sky { height: 96px; position: relative; overflow: hidden; background: transparent; }
-  .ts-sky::before { content: none; }
-  .ts-drive { position: absolute; top: 8px; left: 11px; z-index: 2; image-rendering: pixelated; filter: drop-shadow(1px 1px 0 rgba(0,0,0,.28)); }
-  .ts-wordart { margin: -20px 0 0 13px; position: relative; z-index: 3;
-    font-family: Tahoma, "Segoe UI", sans-serif; font-weight: 700; font-style: normal; font-size: 26px; line-height: .94; letter-spacing: 0;
-    color: #0a0a0a; }
-  .ts-rule { height: 2px; margin: 9px 13px 0; background: linear-gradient(90deg, #e23b2e 0%, #e23b2e 22%, #f3c521 28%, #f3c521 48%, #2faf4e 54%, #2faf4e 74%, #1c63d6 80%, rgba(28,99,214,0) 100%); }
-  .ts-desc { padding: 11px 13px 6px; font-size: 11.5px; color: var(--w98-text); }
-  .ts-desc-lede { font-size: 12px; line-height: 1.45; margin-bottom: 9px; }
-  .ts-desc-meta { font-size: 11px; color: var(--w98-text-dim); line-height: 1.5; text-wrap: pretty; }
-  .ts-desc-name { font-weight: 700; font-size: 14px; line-height: 1.15; margin-bottom: 3px; }
-  .ts-desc-cat { font-size: 11px; color: var(--w98-text-dim); }
-  .ts-desc-sub { margin-top: 7px; font-family: "Courier New", monospace; font-size: 10.5px; color: #303030; }
-  .ts-desc-tier { display: flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 11px; }
-  .ts-desc-tier i { width: 9px; height: 9px; flex: 0 0 auto; }
-  .ts-desc-tier.is-p i { background: var(--w98-navy); }
-  .ts-desc-tier.is-p { color: var(--w98-navy); font-weight: 700; }
-  .ts-desc-tier.is-f i { box-shadow: inset 0 0 0 1px #9a9a9a; }
-  .ts-desc-tier.is-f { color: var(--w98-text-dim); }
-  .ts-weblegend { margin-top: auto; padding: 9px 13px; display: flex; gap: 14px; font-size: 10px; color: var(--w98-text-dim); font-family: "Courier New", monospace; border-top: 1px solid #e6e6e6; }
-  .ts-weblegend span { display: inline-flex; align-items: center; }
-  .ts-weblegend i { width: 8px; height: 8px; margin-right: 5px; display: inline-block; }
-  .ts-weblegend i.p { background: var(--w98-navy); }
-  .ts-weblegend i.f { box-shadow: inset 0 0 0 1px #9a9a9a; }
-  .ts-filewrap { flex: 1 1 auto; min-width: 0; display: flex; }
-  .ts-files { flex: 1 1 auto; min-width: 0; background: #fff; overflow-y: auto; padding: 4px 8px 16px; }
-  .ts-cat { margin-top: 13px; }
-  .ts-cat:first-child { margin-top: 6px; }
-  .ts-cat-head { display: flex; align-items: center; gap: 8px; padding: 0 5px 6px; }
-  .ts-cat-head .t { font-size: 11px; font-weight: 700; color: #0c3590; white-space: nowrap; }
-  .ts-cat-head .ln { flex: 1 1 auto; height: 0; border-top: 1px solid #cfcfcf; }
-  .ts-cat-head .ct { font-family: "Courier New", monospace; font-size: 10px; color: var(--w98-text-dim); }
-  .ts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(156px, 1fr)); gap: 6px 4px; }
-  .ts-item { display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 8px 3px 7px; cursor: pointer; text-align: center; user-select: none; }
-  .ts-item .ic { image-rendering: pixelated; }
-  .ts-item.is-working .ic { opacity: .62; }
-  .ts-item .lbl { font-size: 12px; line-height: 1.15; padding: 1px 3px; max-width: 144px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-  .ts-item:hover .lbl { text-decoration: underline; }
-  .ts-item.is-sel .ic { filter: brightness(.55) saturate(1.3); }
-  .ts-item.is-sel .lbl { background: var(--w98-hi); color: #fff; text-decoration: none; outline: 1px dotted #fff; outline-offset: -2px; }
+  /* ---------- desktop shell: fills viewport, never scrolls ---------- */
+  #desktop{position:fixed;inset:0;overflow:hidden;}
 
-  /* ---------- video player (My Videos) — reused from Videos.html ---------- */
-  .vp-win { width: 940px; height: 680px; display: flex; flex-direction: column; padding: 3px; }
-  .vp-body { flex: 1 1 auto; min-height: 0; display: flex; gap: 4px; margin: 0 1px 4px; }
-  .vp-tree { width: 236px; flex: 0 0 auto; background: #fff; overflow-y: auto; padding: 5px 3px; font-size: 12px; }
-  .vp-root { display: flex; align-items: center; gap: 6px; padding: 2px 5px; font-weight: 700; }
-  .vp-node { display: flex; align-items: center; gap: 6px; padding: 2px 5px 2px 16px; cursor: pointer; white-space: nowrap; user-select: none; }
-  .vp-node .lbl { font-weight: 700; }
-  .vp-node .cnt { margin-left: auto; font-family: "Courier New", monospace; font-size: 10px; color: var(--w98-text-dim); }
-  .vp-pm { width: 13px; height: 13px; flex: 0 0 auto; display: grid; place-items: center; background: #fff; border: 1px solid #808080; font-family: "Courier New", monospace; font-size: 11px; line-height: 1; color: #1d1d1d; }
-  .vp-leaves { margin-left: 22px; border-left: 1px dotted #9a9a9a; padding-left: 4px; }
-  .vp-leaf { display: flex; align-items: center; gap: 6px; padding: 2px 5px; cursor: pointer; white-space: nowrap; user-select: none; color: var(--w98-text); }
-  .vp-leaf .lbl { overflow: hidden; text-overflow: ellipsis; }
-  .vp-leaf .dur { margin-left: auto; font-family: "Courier New", monospace; font-size: 10px; color: var(--w98-text-dim); }
-  .vp-leaf.is-sel { background: #000080; color: #fff; }
-  .vp-leaf.is-sel .dur { color: #cfe8ff; }
-  .vp-leaf:not(.is-sel):hover { background: #d6e4f5; }
-  .vp-stagewrap { flex: 1 1 auto; min-width: 0; background: #000; display: grid; place-items: center; padding: 8px; position: relative; overflow: hidden; }
-  .vp-frame { position: relative; height: 100%; aspect-ratio: 9 / 16; max-width: 100%; background: #000; overflow: hidden; outline: 1px solid #2c2c2c; }
-  .vp-canvas { position: absolute; inset: 0; }
-  .vp-cap-top { position: absolute; top: 8px; left: 8px; right: 8px; z-index: 3; font-family: "Courier New", monospace; font-size: 11px; letter-spacing: .5px; color: #e8f4ff; text-transform: uppercase; text-shadow: 0 1px 2px #000; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .vp-ep { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -60%); z-index: 2; font-family: "Arial Black", Impact, sans-serif; font-weight: 900; font-size: 44px; letter-spacing: 1px; text-shadow: 0 2px 0 rgba(0,0,0,.55); white-space: nowrap; }
-  .vp-drop { position: absolute; left: 10px; right: 10px; bottom: 12px; z-index: 3; font-family: "Courier New", monospace; font-size: 10px; line-height: 1.5; color: #b9c6cc; text-align: center; letter-spacing: .4px; }
-  .vp-paused { position: absolute; inset: 0; z-index: 4; display: grid; place-items: center; }
-  .vp-paused > span { transform: scale(2.4); filter: drop-shadow(0 2px 4px rgba(0,0,0,.7)); opacity: .9; }
-  .vp-scan { position: absolute; inset: 0; z-index: 5; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0 1px, transparent 1px 3px); }
+  /* ---------- desks: full-bleed color layers, only the active one shows ---------- */
+  .desk{position:absolute;left:0;right:0;top:0;bottom:var(--tb-h);display:none;}
+  .desk.is-active{display:block;}
+  .desk[data-desk="welcome"]{background:#000000;}
+  .desk[data-desk="professional"]{background:#3f8f8a;}
+  .desk[data-desk="personal"]{background:radial-gradient(ellipse at center, rgba(0,0,0,0) 52%, rgba(0,0,0,0.24) 100%), rgb(13,107,64);}
+  .desk[data-desk="about"]{background:#7c98d6;}
 
-  /* ================= MOBILE / SMALL-TABLET LAYOUT ================= */
-  .m98f { position: relative; width: 100%; }
-  .m98-screen { position: relative; width: 100%; min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; }
-  .m98-inner { flex: 1 1 auto; display: flex; flex-direction: column; gap: 12px; padding: 12px 12px 46px; }
-  .m98f .m98-screen:first-of-type .m98-inner { justify-content: center; }
+  /* ---------- taskbar ---------- */
+  .d98-taskbar{
+    position:absolute;left:0;right:0;bottom:0;height:var(--tb-h);
+    background:var(--w98-face);
+    box-shadow:inset 0 2px 0 #fff, inset 0 4px 0 #dfdfdf;
+    border-top:2px solid #808080;
+    display:flex;align-items:center;gap:10px;
+    padding:4px 6px;z-index:1000;
+  }
+  .d98-start{
+    display:flex;align-items:center;gap:10px;flex:0 0 auto;
+    height:40px;padding:0 16px 0 10px;font-weight:700;font-size:24px;
+    background:var(--w98-face);
+    box-shadow:inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
+    cursor:default;
+  }
+  .d98-start.is-open{
+    box-shadow:inset 1px 1px 0 #0a0a0a, inset -1px -1px 0 #fff, inset 2px 2px 0 #808080, inset -2px -2px 0 #dfdfdf;
+  }
+  .d98-start-logo{width:32px;height:30px;display:grid;grid-template-columns:1fr 1fr;gap:2px;transform:skewX(-8deg);flex:0 0 auto;}
+  .d98-start-logo span{display:block;}
+  .d98-sep{width:4px;height:44px;box-shadow:-2px 0 0 #808080, 2px 0 0 #fff;margin:0 4px;flex:0 0 auto;}
 
-  /* shortcut dock at the top of each desk */
-  .m98-dock { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px 4px; padding: 4px 2px 2px; }
-  .m98-dockbtn { all: unset; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; -webkit-tap-highlight-color: transparent; }
-  .m98-dockimg { position: relative; width: 46px; height: 46px; display: grid; place-items: center; }
-  .m98-dockimg > img:not(.m98-dockarrow) { width: 42px; height: 42px; image-rendering: pixelated; filter: drop-shadow(1px 1px 0 rgba(0,0,0,.45)); }
-  .m98-dockarrow { position: absolute; left: -1px; bottom: -1px; width: 14px; height: 14px; image-rendering: pixelated; }
-  .m98-docklbl { font-size: 11px; color: #fff; text-shadow: 1px 1px 0 rgba(0,0,0,.7); line-height: 1.15; padding: 0 4px; max-width: 84px; }
-  .m98-dockbtn.is-on .m98-docklbl { background: #000080; outline: 1px dotted #cdd8ff; outline-offset: -1px; }
+  .d98-tasks{flex:1 1 auto;display:flex;align-items:center;gap:6px;min-width:0;overflow:hidden;}
+  .d98-taskbtn{
+    display:flex;align-items:center;justify-content:flex-start;gap:12px;
+    height:40px;flex:1 1 0;min-width:0;max-width:290px;padding:0 16px;
+    font-size:22px;cursor:default;
+    background:var(--w98-face);
+    box-shadow:inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
+  }
+  .d98-taskbtn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .d98-taskbtn.is-active{
+    font-weight:700;
+    background:repeating-conic-gradient(#bdbdbd 0% 25%, #c9c9c9 0% 50%) 0 0 / 2px 2px;
+    box-shadow:inset 1px 1px 0 #0a0a0a, inset -1px -1px 0 #fff, inset 2px 2px 0 #808080, inset -2px -2px 0 #dfdfdf;
+  }
+  .d98-taskbtn .ico{flex:0 0 auto;width:28px;height:28px;image-rendering:pixelated;}
 
-  /* dither dissolve strip between desks */
-  .m98-dither { display: block; width: 100%; height: 132px; image-rendering: pixelated; }
+  .d98-tray{
+    display:flex;align-items:center;gap:14px;flex:0 0 auto;
+    height:40px;padding:0 16px;
+    box-shadow:inset -2px -2px 0 #fff, inset 2px 2px 0 #808080;
+  }
+  .d98-tray .spk{width:32px;height:32px;image-rendering:pixelated;}
+  .d98-clock{font-size:22px;white-space:nowrap;}
 
-  /* window wrapper — neutralise fixed desktop widths/heights */
-  .m98-winwrap { width: 100%; }
-  .mscope .w98-window { width: 100% !important; max-width: 100% !important; height: auto !important; max-height: none !important; }
-  .m98f .lv2-welcome { width: 100% !important; }
-  .m98f .lv2-name .first, .m98f .lv2-name .last { font-size: clamp(38px, 13vw, 62px); }
-  .m98f .lv2-name .role { font-size: clamp(24px, 8vw, 38px); }
+  /* ---------- start menu ---------- */
+  .d98-startmenu{
+    position:absolute;bottom:var(--tb-h);left:2px;z-index:1100;
+    display:flex;
+    background:var(--w98-face);
+    box-shadow:inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf, 2px 2px 8px rgba(0,0,0,.3);
+    padding:3px;
+  }
+  .d98-startmenu[hidden]{display:none;}
+  .d98-sm-side{
+    width:44px;align-self:stretch;
+    background:linear-gradient(#1b3a8c, #04114a);
+    display:flex;align-items:flex-end;justify-content:center;padding-bottom:14px;
+  }
+  .d98-sm-side b{writing-mode:vertical-rl;transform:rotate(180deg);color:#c8d2f0;font-size:28px;letter-spacing:2px;font-weight:300;}
+  .d98-sm-side b i{color:#fff;font-style:normal;font-weight:300;}
+  .d98-sm-list{width:340px;padding:4px;}
+  .d98-sm-item{
+    display:flex;align-items:center;gap:18px;
+    padding:9px 14px;cursor:default;color:#000;font-size:22px;
+  }
+  .d98-sm-item img{width:44px;height:44px;image-rendering:pixelated;flex:0 0 auto;}
+  .d98-sm-item:hover{background:#0a2a8c;color:#fff;}
+  .d98-sm-divider{height:0;margin:6px 3px;border-top:1px solid #808080;box-shadow:0 1px 0 #fff;}
 
-  /* Tech Stack — stack web-view banner over the icon grid */
-  .mscope .ts-body { flex-direction: column !important; }
-  .mscope .ts-web { flex: 0 0 auto !important; border-right: none !important; border-bottom: 1px solid #b8b8b8; }
-  .mscope .ts-files { max-height: 340px; }
+  /* ---------- cascading two-level start menu (site architecture) ---------- */
+  .fsm-list{width:340px;padding:4px;position:relative;}
+  .fsm-item-wrap{position:relative;}
+  .fsm-item{display:flex;align-items:center;gap:16px;padding:9px 14px;font-size:22px;cursor:default;color:#000;}
+  .fsm-item img{width:44px;height:44px;image-rendering:pixelated;flex:0 0 auto;}
+  .fsm-item .lbl{flex:1 1 auto;}
+  .fsm-item:hover{background:#0a2a8c;color:#fff;}
+  .fsm-item.has-sub::after{content:"\25B8";margin-left:auto;font-size:18px;}
+  .fsm-list>.fsm-item-wrap:not(:last-child){border-bottom:1px solid #e2ded6;}
+  .fsm-sub{display:none;position:absolute;left:100%;bottom:-3px;z-index:1200;min-width:320px;background:var(--w98-face);box-shadow:inset 1px 1px 0 #fff, inset -1px -1px 0 #808080, 2px 2px 8px rgba(0,0,0,.4);padding:4px;}
+  .fsm-item-wrap:hover>.fsm-sub{display:block;}
+  .fsm-subitem{display:flex;align-items:center;gap:16px;padding:8px 14px;font-size:20px;cursor:default;white-space:nowrap;color:#000;}
+  .fsm-subitem img{width:36px;height:36px;image-rendering:pixelated;flex:0 0 auto;}
+  .fsm-subitem:hover{background:#0a2a8c;color:#fff;}
+  .fsm-sub .fsm-subitem:not(:last-child){border-bottom:1px solid #e2ded6;}
+  .fsm .d98-sm-divider{margin:15px 3px 6px;}
 
-  /* Videos — tree over the vertical stage */
-  .mscope .vp-body { flex-direction: column !important; }
-  .mscope .vp-tree { width: auto !important; max-height: 168px; }
-  .mscope .vp-stagewrap { height: auto !important; padding: 8px; }
-  .mscope .vp-frame { height: 56vh !important; width: auto !important; aspect-ratio: 9 / 16; max-width: 100%; }
+  /* ---------- phone: icon-only nav buttons; Start keeps its label ---------- */
+  /* medium & down: icon-only buttons; text only at big size */
+  @media (max-width:1024px){
+    .d98-tasks .d98-taskbtn{gap:0;flex:0 0 auto;min-width:0;max-width:none;padding:0 12px;justify-content:center;}
+    .d98-tasks .d98-taskbtn span{display:none;}
+  }
+  @media (max-width:640px){
+    .d98-tray{display:none;}
+  }
+  /* ---------- welcome desk: melt/video background + centered window ---------- */
+  .welcome-bg{position:absolute;inset:0;z-index:0;}
+  .welcome-stage{position:absolute;inset:0;z-index:2;}
 
-  /* professional-experience detail: smaller modal over the darkened timeline */
-  .m98-modal-backdrop { position: fixed; inset: 0; z-index: 9000; background: rgba(0,0,28,.55);
-    display: flex; align-items: flex-start; justify-content: center; padding: 44px 14px 62px; overflow-y: auto; }
-  .m98-modal { width: 100%; max-width: 520px; }
+  /* welcome window (from the approved mock) */
+  .lv2-welcome{width:560px;position:relative;display:flex;flex-direction:column;}
+  .lv2-hero{position:relative;padding:18px 24px 22px;overflow:hidden;flex:1 1 auto;display:flex;flex-direction:column;}
+  .lv2-name{margin:0 0 16px;line-height:.98;font-family:Arial,"Helvetica Neue",sans-serif;flex:1 1 auto;display:flex;flex-direction:column;justify-content:space-between;}
+  .lv2-name .first{display:block;font-size:62px;font-weight:600;letter-spacing:-1.5px;color:#0a0a0a;}
+  .lv2-name .last{display:block;font-size:62px;font-weight:600;letter-spacing:-1px;color:#0a0a0a;padding-right:8px;}
+  .lv2-name .role{display:block;margin-top:4px;font-size:46px;font-weight:900;font-style:normal;text-transform:uppercase;letter-spacing:-1px;color:#1717c4;}
+  .lv2-tag{margin:0 0 20px;font-size:18px;line-height:1.42;color:#1d1d1d;max-width:470px;text-wrap:pretty;}
+  .lv2-tag-ps{margin:0 0 8px;font-size:18px;line-height:1.42;color:#1d1d1d;max-width:470px;text-wrap:pretty;}
+  .lv2-cta{display:flex;gap:12px;align-items:stretch;flex:0 0 auto;}
+  .lv2-cta .w98-btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center;color:var(--w98-text);cursor:pointer;flex:1 1 0;}
+  .lv2-btn-main{padding:9px 26px;font-size:16px;font-weight:700;}
+  .lv2-btn-resume{padding:9px 18px;font-size:14px;}
+  .lv2-cta .lv2-btn-main:active{padding:10px 25px 8px 27px;}
+  .lv2-cta .lv2-btn-resume:active{padding:10px 17px 8px 19px;}
 
-  /* taskbar: Start + four desks + clock, no window buttons */
-  .m98-dock-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9500; }
-  .m98-tasks { display: flex; gap: 3px; flex: 1 1 auto; min-width: 0; overflow: hidden; }
-  .m98-taskbtn { flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 5px; justify-content: center; }
-  .m98-tasklbl { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; }
-  @media (max-width: 420px) { .m98-tasklbl { display: none; } .m98-taskbtn { gap: 0; } }
+  /* floating "click me" — spectrum WordArt at the window's bottom-left, above the taskbar */
+  .wm-hint{position:absolute;left:20px;bottom:16px;z-index:5;
+    display:flex;flex-direction:row;align-items:center;gap:12px;pointer-events:none;animation:wmFadeIn 1s ease .6s both;}
+  .wm-hint .wm-arrow{color:#eafcff;font-size:30px;line-height:1;text-shadow:0 2px 3px rgba(0,0,0,.55);}
+  .wa-rock{display:inline-block;transform-origin:center;animation:wmRock 2.6s ease-in-out infinite;}
+  .wa-spectrum{position:relative;display:inline-block;transform:skewX(-8deg);}
+  .wa-spectrum .wa-back,.wa-spectrum .wa-front{display:block;margin:0;font-family:"Arial Black","Franklin Gothic Heavy",Impact,sans-serif;font-weight:900;font-style:italic;font-size:40px;line-height:.98;white-space:nowrap;padding-bottom:.12em;}
+  .wa-spectrum .wa-back{color:#000;-webkit-text-stroke:2px #1a1a1a;text-shadow:3px 3px 0 #9a9a9a;}
+  .wa-spectrum .wa-front{position:absolute;inset:0;color:transparent;background:linear-gradient(90deg,#15c0d6,#2a6fdb,#6b3fd0,#b53fb0);-webkit-background-clip:text;background-clip:text;}
+  @keyframes wmFadeIn{from{opacity:0}to{opacity:1}}
+  @keyframes wmRock{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+  @media (max-width:640px){
+    .wm-hint .wm-arrow{font-size:24px;}
+  }
+
+  /* ---------- about me desk: cloud wallpaper + window centered ---------- */
+  .about-bg{position:absolute;inset:0;z-index:0;overflow:hidden;}
+  .about-bg canvas{width:100%;height:100%;}
+  .about-stage{position:absolute;inset:0;z-index:2;}
+  .professional-stage{position:absolute;inset:0;z-index:2;}
+  .personal-stage{position:absolute;inset:0;z-index:2;}
+  /* fit-to-viewport: the stage is given a VIRTUAL pixel size and scaled back down
+     so the fixed-size window composition never runs off a small screen. */
+  .desk-stage{transform-origin:0 0;}
+  /* inside a scaled stage, position:fixed resolves against the stage box (which
+     already ends at the taskbar), so the modal must not subtract --tb-h again */
+  #desktop[data-fit] .exp-modal-backdrop{bottom:0;}
+
+  /* ---------- video player (My Videos) — ported verbatim from index_old,
+     exempt from the responsive clamp/stack laws applied elsewhere ---------- */
+  .vp-win{width:940px;height:680px;display:flex;flex-direction:column;padding:3px;}
+  .vp-body{flex:1 1 auto;min-height:0;display:flex;gap:4px;margin:0 1px 4px;}
+  .vp-tree{width:236px;flex:0 0 auto;background:#fff;overflow-y:auto;padding:5px 3px;font-size:16px;}
+  .vp-root{display:flex;align-items:center;gap:6px;padding:2px 5px;font-weight:700;}
+  .vp-node{display:flex;align-items:center;gap:6px;padding:2px 5px 2px 16px;cursor:pointer;white-space:nowrap;user-select:none;}
+  .vp-node .lbl{font-weight:700;}
+  .vp-node .cnt{margin-left:auto;font-family:"Courier New",monospace;font-size:14px;color:var(--w98-text-dim);}
+  .vp-pm{width:13px;height:13px;flex:0 0 auto;display:grid;place-items:center;background:#fff;border:1px solid #808080;font-family:"Courier New",monospace;font-size:11px;line-height:1;color:#1d1d1d;}
+  .vp-leaves{margin-left:22px;border-left:1px dotted #9a9a9a;padding-left:4px;}
+  .vp-leaf{display:flex;align-items:center;gap:6px;padding:2px 5px;cursor:pointer;white-space:nowrap;user-select:none;color:var(--w98-text);}
+  .vp-leaf .lbl{overflow:hidden;text-overflow:ellipsis;}
+  .vp-leaf .dur{margin-left:auto;font-family:"Courier New",monospace;font-size:14px;color:var(--w98-text-dim);}
+  .vp-leaf.is-sel{background:#000080;color:#fff;}
+  .vp-leaf.is-sel .dur{color:#cfe8ff;}
+  .vp-leaf:not(.is-sel):hover{background:#d6e4f5;}
+  .vp-stagewrap{flex:1 1 auto;min-width:0;background:#000;display:grid;place-items:center;padding:8px;position:relative;overflow:hidden;}
+  .vp-frame{position:relative;height:100%;aspect-ratio:9 / 16;max-width:100%;background:#000;overflow:hidden;outline:1px solid #2c2c2c;}
+  .vp-canvas{position:absolute;inset:0;}
+  .vp-cap-top{position:absolute;top:8px;left:8px;right:8px;z-index:3;font-family:"Courier New",monospace;font-size:11px;letter-spacing:.5px;color:#e8f4ff;text-transform:uppercase;text-shadow:0 1px 2px #000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .vp-ep{position:absolute;top:50%;left:50%;transform:translate(-50%, -60%);z-index:2;font-family:"Arial Black",Impact,sans-serif;font-weight:900;font-size:44px;letter-spacing:1px;text-shadow:0 2px 0 rgba(0,0,0,.55);white-space:nowrap;}
+  .vp-drop{position:absolute;left:10px;right:10px;bottom:12px;z-index:3;font-family:"Courier New",monospace;font-size:10px;line-height:1.5;color:#b9c6cc;text-align:center;letter-spacing:.4px;}
+  .vp-paused{position:absolute;inset:0;z-index:4;display:grid;place-items:center;}
+  .vp-paused > span{transform:scale(2.4);filter:drop-shadow(0 2px 4px rgba(0,0,0,.7));opacity:.9;}
+  .vp-scan{position:absolute;inset:0;z-index:5;pointer-events:none;background:repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0 1px, transparent 1px 3px);}
+  .desk-stage .w98-window.vp-win{width:940px !important;height:680px !important;max-width:940px !important;max-height:680px !important;}
+  /* transport row (self-contained; the old .lp-wmp-* rules live in landing.css which this page does not load) */
+  .vp-transport{display:flex;align-items:center;gap:8px;padding:6px 8px;margin:0 1px 3px;background:var(--w98-face);}
+  .vp-tbtn{width:30px;height:24px;flex:0 0 auto;display:grid;place-items:center;cursor:pointer;background:var(--w98-face);border:0;padding:0;box-shadow:inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;}
+  .vp-tbtn:active{box-shadow:inset 1px 1px 0 #0a0a0a, inset -1px -1px 0 #fff, inset 2px 2px 0 #808080, inset -2px -2px 0 #dfdfdf;}
+  .vp-seek{flex:1 1 auto;min-width:60px;height:12px;position:relative;background:#a0a0a0;}
+  .vp-seek .fill{position:absolute;left:0;top:0;bottom:0;background:#000080;}
+  .vp-seek .knob{position:absolute;top:-3px;width:9px;height:18px;background:var(--w98-face);box-shadow:inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;}
+  .vp-time{font-family:"Courier New",monospace;font-size:12px;white-space:nowrap;flex:0 0 auto;}
+  /* stacked: header > video > transport > clip list */
+  @media (max-width:760px){
+    .vp-win, .desk-stage .w98-window.vp-win{width:min(96vw,560px) !important;height:auto !important;max-width:96vw !important;max-height:none !important;}
+    .vp-body{display:contents;}
+    .vp-win > .w98-titlebar{order:0;}
+    .vp-win > .w98-menubar{order:1;}
+    .vp-win .vp-stagewrap{order:2;margin:0 1px 4px;height:min(56vh,400px);flex:0 0 auto;}
+    .vp-win .vp-transport{order:3;}
+    .vp-win .vp-tree{order:4;width:auto;flex:1 1 auto;max-height:200px;margin:0 1px 4px;padding:9px 5px 9px 3px;}
+    /* rows sat flush against the sunken border and bled past it on small screens */
+    .vp-win .vp-tree .vp-root,.vp-win .vp-tree .vp-node,.vp-win .vp-tree .vp-leaf{overflow:hidden;}
+    .vp-win .vp-tree .lbl{min-width:0;}
+    .vp-win > .w98-statusbar{order:5;}
+    .vp-win .w98-status-cell.grow{min-width:0;}
+  }
+
+  /* ---------- Tech Stack window (ported from index_old) ---------- */
+  .ts-win{width:min(1180px,100%);height:min(944px,100%);display:flex;flex-direction:column;padding:3px;}
+  .ts-win .w98-menubar{position:relative;z-index:3;box-shadow:0 2px 3px rgba(0,0,0,.28);}
+  .ts-body{flex:1 1 auto;min-height:0;margin:0 1px;display:flex;background:#fff;overflow:hidden;}
+  .ts-web{flex:0 0 210px;min-width:0;display:flex;flex-direction:column;overflow:hidden;background:#fff url("assets/ui/tech-stack-bg.png") top center / cover no-repeat;}
+  .ts-sky{height:96px;position:relative;overflow:hidden;background:transparent;}
+  .ts-drive{position:absolute;top:8px;left:11px;z-index:2;image-rendering:pixelated;filter:drop-shadow(1px 1px 0 rgba(0,0,0,.28));}
+  .ts-wordart{margin:-20px 0 0 13px;position:relative;z-index:3;font-family:Tahoma,"Segoe UI",sans-serif;font-weight:700;font-style:normal;font-size:35px;line-height:.94;letter-spacing:0;color:#0a0a0a;}
+  .ts-rule{width:183px;height:3px;margin:9px 13px 0;background:linear-gradient(90deg, #e23b2e 0%, #e23b2e 22%, #f3c521 28%, #f3c521 48%, #2faf4e 54%, #2faf4e 74%, #1c63d6 80%, rgba(28,99,214,0) 100%);}
+  .ts-desc{padding:11px 13px 6px;font-size:15.5px;color:var(--w98-text);}
+  .ts-desc-lede{font-size:16px;line-height:1.45;margin-bottom:9px;}
+  .ts-desc-meta{font-size:15px;color:var(--w98-text-dim);line-height:1.5;text-wrap:pretty;}
+  .ts-desc-name{font-weight:700;font-size:18px;line-height:1.15;margin-bottom:3px;}
+  .ts-desc-cat{font-size:15px;color:var(--w98-text-dim);}
+  .ts-desc-sub{margin-top:7px;font-family:"Courier New",monospace;font-size:14.5px;color:#303030;}
+  .ts-desc-tier{display:flex;align-items:center;gap:6px;margin-top:10px;font-size:15px;}
+  .ts-desc-tier i{width:9px;height:9px;flex:0 0 auto;}
+  .ts-desc-tier.is-p i{background:var(--w98-navy,#00007b);}
+  .ts-desc-tier.is-p{color:var(--w98-navy,#00007b);font-weight:700;}
+  .ts-desc-tier.is-f i{box-shadow:inset 0 0 0 1px #9a9a9a;}
+  .ts-desc-tier.is-f{color:var(--w98-text-dim);}
+  .ts-weblegend{margin-top:auto;padding:9px 13px;display:flex;gap:14px;font-size:14px;color:var(--w98-text-dim);font-family:"Courier New",monospace;border-top:1px solid #e6e6e6;}
+  .ts-weblegend span{display:inline-flex;align-items:center;}
+  .ts-weblegend i{width:8px;height:8px;margin-right:5px;display:inline-block;}
+  .ts-weblegend i.p{background:var(--w98-navy,#00007b);}
+  .ts-weblegend i.f{box-shadow:inset 0 0 0 1px #9a9a9a;}
+  .ts-filewrap{flex:1 1 auto;min-width:0;display:flex;}
+  .ts-files{flex:1 1 auto;min-width:0;background:#fff;overflow-y:auto;padding:4px 8px 16px;}
+  .ts-cat{margin-top:13px;}
+  .ts-cat:first-child{margin-top:6px;}
+  .ts-cat-head{display:flex;align-items:center;gap:8px;padding:0 5px 6px;}
+  .ts-cat-head .t{font-size:15px;font-weight:700;color:#0c3590;white-space:nowrap;}
+  .ts-cat-head .ln{flex:1 1 auto;height:0;border-top:1px solid #cfcfcf;}
+  .ts-cat-head .ct{font-family:"Courier New",monospace;font-size:14px;color:var(--w98-text-dim);}
+  .ts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(156px,1fr));gap:6px 4px;}
+  .ts-item{display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 3px 7px;cursor:pointer;text-align:center;user-select:none;}
+  .ts-item .ic{image-rendering:pixelated;}
+  .ts-item.is-working .ic{opacity:.62;}
+  .ts-item .lbl{font-size:16px;line-height:1.15;padding:1px 3px;max-width:144px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .ts-item:hover .lbl{text-decoration:underline;}
+  .ts-item.is-sel .ic{filter:brightness(.55) saturate(1.3);}
+  .ts-item.is-sel .lbl{background:var(--w98-hi,#000080);color:#fff;text-decoration:none;outline:1px dotted #fff;outline-offset:-2px;}
+  @media (max-width:760px){
+    .ts-body{flex-direction:column !important;}
+    .ts-web{flex:0 0 auto !important;border-right:none !important;border-bottom:1px solid #b8b8b8;}
+    .ts-files{max-height:340px;}
+  }
+  .about-win{width:1000px;max-width:calc(var(--vpw) - 24px);display:none;}
+  .about-win.is-open{display:block;}
+
+  .win-icons{position:absolute;left:18px;top:18px;z-index:1;display:flex;flex-direction:column;flex-wrap:wrap;align-content:flex-start;gap:22px 28px;max-height:calc(100% - 36px);}
+  .win-icon{width:168px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;user-select:none;}
+  .win-icon-img{position:relative;width:80px;height:80px;}
+  .win-icon-img .win-icon-main{width:80px;height:80px;image-rendering:pixelated;display:block;}
+  .win-icon-img .win-icon-arrow{position:absolute;left:-4px;bottom:-4px;width:20px;height:20px;image-rendering:pixelated;}
+  .win-icon .win-icon-lbl{color:#fff;font-size:13px;text-align:center;line-height:1.25;text-shadow:1px 1px 2px rgba(0,0,0,.6);padding:1px 5px;}
+  .win-icon.is-open .win-icon-lbl{background:#000080;text-shadow:none;outline:1px dotted #fff;outline-offset:-2px;}
+
+  .ct-chan{display:flex;align-items:center;gap:10px;padding:9px 4px;text-decoration:none;color:#1d1d1d;border-bottom:1px dotted #b0b0b0;}
+  .ct-chan:last-child{border-bottom:none;}
+  .ct-chan:hover{background:#000080;color:#fff;}
+  .ct-chan:hover .ct-lbl,.ct-chan:hover .ct-handle,.ct-chan:hover .ct-go{color:#fff;}
+  .ct-lbl{font-weight:700;font-size:15px;flex:0 0 auto;}
+  .ct-handle{flex:1 1 auto;min-width:0;font-family:"Courier New",monospace;font-size:13px;color:#4a4a4a;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .ct-go{flex:0 0 auto;font-size:14px;color:#1d1d1d;}
+  .contact-win-inner,.w98-window:has(.ct-layout){width:1000px !important;max-width:calc(var(--vpw) - 24px);}
+  @media (max-width:760px){
+    /* stacked contact: title → blurb → résumé button → "Find me on" list.
+       ct-main becomes a column flex so the button can be ordered last inside it,
+       and the !importants beat the component's inline sizes. */
+    .ct-layout{flex-direction:column;gap:14px !important;padding:12px 12px 14px !important;}
+    .ct-main{order:1;display:flex;flex-direction:column;width:100%;}
+    .ct-heading{order:1;font-size:26px !important;}
+    .ct-blurb{order:2;}
+    .ct-main p{order:3;margin-top:14px !important;font-size:15px !important;}
+    .ct-resume-btn{order:4;width:100% !important;max-width:none !important;margin-top:18px !important;}
+    .ct-side{order:2;flex:1 1 auto !important;max-width:none;width:100%;}
+    .ct-chan{gap:6px;}
+    .ct-chan .ct-handle{font-size:12px !important;}
+  }
+  .about-body{
+    width:100%;max-width:985px;
+    display:grid;gap:14px;padding:14px;
+    grid-template-columns:minmax(220px,340px) minmax(0,1fr);
+    grid-template-rows:auto auto auto;
+    grid-template-areas:"portrait wordart" "portrait bio" "tech tech";
+    background:var(--w98-face);
+  }
+  .ab-portrait{grid-area:portrait;position:relative;
+    box-shadow:inset -1px -1px 0 #fff, inset 1px 1px 0 #808080, inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #0a0a0a;}
+  .ab-portrait image-slot{--placeholder-color:#7a7a7a;image-rendering:pixelated;}
+  .ab-exp{position:absolute;left:16px;bottom:16px;background:linear-gradient(#1b46c8,#0a1f7a);
+    color:#fff;padding:12px 22px;text-align:center;font-family:Arial,sans-serif;
+    box-shadow:inset -1px -1px 0 #04104f, inset 1px 1px 0 #6f8bf0, 2px 2px 4px rgba(0,0,0,.4);}
+  .ab-exp b{display:block;font-size:34px;font-weight:900;line-height:1;}
+  .ab-exp span{display:block;font-size:12px;letter-spacing:2px;margin-top:3px;}
+
+  .ab-wordart{grid-area:wordart;align-self:start;}
+  .ab-wa{position:relative;display:inline-block;transform:skewX(-8deg);max-width:100%;}
+  .ab-wa .b,.ab-wa .f{display:block;margin:0;font-family:"Arial Black","Franklin Gothic Heavy",Impact,sans-serif;
+    font-weight:900;font-style:italic;font-size:38px;line-height:1.02;white-space:nowrap;padding-bottom:.06em;}
+  .ab-wa .b{color:#000;-webkit-text-stroke:2px #1a1a1a;text-shadow:3px 3px 0 #9a9a9a;}
+  .ab-wa .f{position:absolute;inset:0;color:transparent;
+    background:linear-gradient(90deg,#15c0d6,#2a6fdb,#6b3fd0,#b53fb0);-webkit-background-clip:text;background-clip:text;}
+
+  .ab-bio{grid-area:bio;align-self:start;color:#1d1d1d;font-size:18px;line-height:1.45;text-wrap:pretty;}
+  .ab-bio p{margin:0 0 14px;}
+  .ab-bio p:last-child{margin-bottom:0;}
+
+  .ab-tech{grid-area:tech;align-self:start;border:1px solid #808080;box-shadow:0 1px 0 #fff;padding:6px 14px 14px;margin:0;}
+  .ab-tech legend{padding:0 6px;font-size:16px;color:#1d1d1d;}
+  .ab-tech ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;
+    font-family:"Courier New",monospace;font-size:17px;color:#1d1d1d;}
+  .ab-tech li{display:flex;align-items:center;gap:10px;}
+  .ab-tech li::before{content:"";width:11px;height:11px;background:#1717c4;flex:0 0 auto;}
+
+  .ab-links{display:none;}
+
+  .desk-stage .w98-window{position:absolute;z-index:2;}
+  .desk-stage .w98-titlebar{cursor:move;touch-action:none;}
+  /* responsive-only: per-project detail panel becomes a modal pinned over the
+     viewport (not the flow) so the desk-stage behind it keeps scrolling —
+     you can still scroll up/down to see Read Me / Tech Stack / Education. */
+  .exp-modal-backdrop{position:fixed;left:0;right:0;top:0;bottom:var(--tb-h);z-index:5000;background:rgba(0,0,28,.55);display:flex;align-items:flex-start;justify-content:center;padding:20px 12px;overflow-y:auto;overscroll-behavior:contain;}
+  /* narrow: the detail panel hugs its content and the BACKDROP scrolls instead,
+     so the panel never grows an inner scrollbar */
+  @media (max-width:760px){
+    .exp-modal-backdrop > div{flex:0 0 auto;width:100%;max-width:calc(100vw - 24px);}
+    .exp-modal-backdrop .w98-window{max-height:none !important;height:auto !important;width:100% !important;}
+    .exp-modal-backdrop .w98-scroll{overflow-y:visible !important;max-height:none !important;flex:0 0 auto !important;}
+  }
+  @media (max-width:760px){
+    .about-win{width:calc(100vw - 24px);}
+    .about-body{
+      width:100%;
+      grid-template-columns:1fr;
+      grid-template-rows:auto auto auto auto;
+      grid-template-areas:"wordart" "portrait" "bio" "tech";
+    }
+    .ab-portrait{aspect-ratio:4/3;}
+    .ab-bio{font-size:14px;line-height:1.35;}
+    .ab-tech{padding:4px 10px 8px;}
+    .ab-tech legend{font-size:13px;}
+    .ab-tech ul{font-size:12px;gap:4px 12px;}
+  }
+
+  /* ---------- per-desk scroll: mobile stacks windows in flow; the desk
+     itself scrolls only if its own content overflows ---------- */
+  @media (max-width:760px){
+    /* relative (not static): the stage must keep a z-index so the absolutely
+       positioned wallpaper canvas behind it (z-index:0) does not paint over the
+       now-static, in-flow windows */
+    .desk-stage{position:relative !important;z-index:2;height:100%;overflow-y:auto;overflow-x:hidden;
+      display:flex;flex-direction:column;align-items:center;gap:16px;padding:16px 12px 24px;}
+    .desk-stage .w98-window{position:static !important;left:auto !important;top:auto !important;flex:0 0 auto;width:calc(100vw - 24px) !important;max-width:calc(100vw - 24px) !important;}
+    .win-icons{order:-1;position:static;z-index:auto;display:grid;grid-template-columns:repeat(2,1fr);gap:18px 12px;width:100%;max-width:340px;justify-items:center;}
+    .win-icon{width:100%;}
+    /* welcome desk holds a single window: centre it in the viewport instead of top-aligning */
+    .welcome-stage{justify-content:center;min-height:100%;}
+    /* name reads as one line, and the role scales with the window so it never wraps */
+    .lv2-welcome{height:auto !important;}
+    .lv2-name{flex-direction:row;flex-wrap:wrap;align-items:baseline;column-gap:.28em;row-gap:0;justify-content:flex-start;}
+    .lv2-name .first,.lv2-name .last{display:inline;font-size:clamp(30px,8.6vw,52px);letter-spacing:-1px;padding-right:0;}
+    .lv2-name .role{flex:0 0 100%;margin-top:6px;font-size:clamp(24px,6.6vw,42px) !important;white-space:nowrap;letter-spacing:-.5px;}
+  }
 </style>
 </head>
 <body>
-<div id="root"></div>
+<noscript><div style="max-width:640px;margin:0 auto;padding:28px;background:#fff;font-family:Tahoma,sans-serif;font-size:14px;line-height:1.6;-webkit-user-select:text;user-select:text;">
+<h1 style="font-size:19px;margin:0 0 4px;">Loïck Rivemale — Unity XR &amp; Rendering Engineer</h1>
+<p style="margin:0 0 16px;color:#555;">8+ years building VR/AR applications, GPU rendering systems, custom shaders and worldspace VR UI toolkits.</p>
+<p style="margin:0;">This portfolio is an interactive Windows 98 desktop and needs JavaScript. The full CV is available as a plain text page: <a href="cv.html"><strong>read the complete CV</strong></a> &middot; <a href="files/resume-loick-rivemale.pdf">download the resume (PDF)</a> &middot; <a href="legal.html">legal information</a></p>
+</div></noscript>
+<div id="desktop">
+  <div class="desk is-active" data-desk="welcome">
+    <div class="welcome-bg" id="welcomeBg"></div>
+    <div class="welcome-stage desk-stage">
+      <div class="w98 w98-window lv2-welcome" style="width:519px;height:489px;box-shadow:inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #dfdfdf, inset -2px -2px 0 #808080, inset 2px 2px 0 #fff, 5px 8px 22px rgba(0,0,0,.45)">
+        <div class="w98-titlebar">
+          <img src="assets/icons/welcome-door.png" alt="" class="w98-titlebar-icon">
+          <span class="w98-titlebar-text">Welcome</span>
+          <div class="w98-titlebar-btns">
+            <button class="w98-tb-btn" aria-label="minimize"><span class="w98-tb-glyph"><svg width="10" height="10" viewBox="0 0 8 8"><rect x="1" y="6" width="6" height="2" fill="#000"></rect></svg></span></button>
+            <button class="w98-tb-btn" aria-label="maximize"><span class="w98-tb-glyph"><svg width="10" height="10" viewBox="0 0 8 8"><rect x="0.5" y="0.5" width="7" height="7" fill="none" stroke="#000"></rect><rect x="0.5" y="0.5" width="7" height="2" fill="#000"></rect></svg></span></button>
+            <button class="w98-tb-btn" aria-label="close"><span class="w98-tb-glyph"><svg width="10" height="10" viewBox="0 0 8 8"><path d="M1 1 L7 7 M7 1 L1 7" stroke="#000" stroke-width="1.3"></path></svg></span></button>
+          </div>
+        </div>
+        <div class="lv2-hero">
+          <h1 class="lv2-name" style="margin-top:16px;margin-bottom:26px">
+            <span class="first" style="font-weight:500">Lo&iuml;ck</span>
+            <span class="last" style="font-weight:500">Rivemale</span>
+            <span class="role" style="font-size:58px">XR Engineer</span>
+          </h1>
+          <p class="lv2-tag">Welcome to my portfolio!<br>It is a collection of stuff I made for work and fun.<br>Hope you enjoy the experience.</p>
+          <p class="lv2-tag-ps" style="font-size:16px;margin-bottom:14px;color:#3C3C3C;font-style:italic">PS: Clappy doesn't bite.</p>
+          <div class="lv2-cta">
+            <button class="w98-btn is-default lv2-btn-main" data-goto="professional">View my work</button>
+            <a class="w98-btn lv2-btn-resume" href="files/resume-loick-rivemale.pdf" target="_blank" rel="noreferrer">Resume&nbsp;&#8599;</a>
+          </div>
+        </div>
+        <div class="w98-statusbar" style="margin:0 3px 3px">
+          <span class="w98-status-cell grow">Ready</span>
+          <span class="w98-status-cell">8+ yrs exp.</span>
+          <span class="w98-status-cell">Unity</span>
+        </div>
+      </div>
+    </div>
+    <div class="wm-hint">
+      <span class="wm-arrow">&#9660;</span>
+      <span class="wa-rock"><span class="wa-spectrum"><span class="wa-back">Click me</span><span class="wa-front">Click me</span></span></span>
+      <span class="wm-arrow">&#9660;</span>
+    </div>
+  </div>
+  <div class="desk" data-desk="professional">
+    <div class="professional-stage desk-stage">
+      <div id="readmeWinMount"></div>
+      <div id="experienceMount"></div>
+      <div id="techstackWinMount"></div>
+      <div id="educationWinMount"></div>
+      <div class="win-icons">
+        <div class="win-icon is-open" id="iconReadme">
+          <span class="win-icon-img"><img class="win-icon-main" src="assets/icons/readme.png" alt=""><img class="win-icon-arrow" src="assets/icons/shortcut-arrow.png" alt=""></span>
+          <span class="win-icon-lbl">Read Me</span>
+        </div>
+        <div class="win-icon" id="iconExperience">
+          <span class="win-icon-img"><img class="win-icon-main" src="assets/icons/briefcase.png" alt=""><img class="win-icon-arrow" src="assets/icons/shortcut-arrow.png" alt=""></span>
+          <span class="win-icon-lbl">Professional Experience</span>
+        </div>
+        <div class="win-icon is-open" id="iconTechstack">
+          <span class="win-icon-img"><img class="win-icon-main" src="assets/icons/toolbox.png" alt=""><img class="win-icon-arrow" src="assets/icons/shortcut-arrow.png" alt=""></span>
+          <span class="win-icon-lbl">Tech Stack</span>
+        </div>
+        <div class="win-icon is-open" id="iconEducation">
+          <span class="win-icon-img"><img class="win-icon-main" src="assets/icons/studies-desk.png" alt=""><img class="win-icon-arrow" src="assets/icons/shortcut-arrow.png" alt=""></span>
+          <span class="win-icon-lbl">Education</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="desk" data-desk="personal">
+    <div class="personal-stage desk-stage">
+      <div id="artWinMount"></div>
+      <div id="terrainWinMount"></div>
+      <div id="xnoiseWinMount"></div>
+      <div id="sieurflammeWinMount"></div>
+      <div id="titleWinMount"></div>
+      <div id="enableWinMount"></div>
+      <div id="chromeWinMount"></div>
+      <div id="arcanaWinMount"></div>
+      <!-- Video Player — disabled for launch, keep the code:
+      <div id="videoplayerWinMount"></div>
+      -->
+      <div class="win-icons">
+        <div class="win-icon" id="iconArt">
+          <span class="win-icon-img"><img class="win-icon-main" src="assets/icons/art.png" alt=""><img class="win-icon-arrow" src="assets/icons/shortcut-arrow.png" alt=""></span>
+          <span class="win-icon-lbl">Artistic projects</span>
+        </div>
+        <div class="win-icon" id="iconTerrain">
+          <span class="win-icon-img"><img class="win-icon-main" src="assets/icons/terrain.png" alt=""><img class="win-icon-arrow" src="assets/icons/shortcut-arrow.png" alt=""></span>
+          <span class="win-icon-lbl">Terrain Creation</span>
+        </div>
+        <div class="win-icon" id="iconXnoise">
+          <span class="win-icon-img"><img class="win-icon-main" src="assets/icons/xnoise.png" alt=""><img class="win-icon-arrow" src="assets/icons/shortcut-arrow.png" alt=""></span>
+          <span class="win-icon-lbl">Xnoise</span>
+        </div>
+        <div class="win-icon" id="iconSieurflamme">
+          <span class="win-icon-img"><img class="win-icon-main" src="assets/icons/sieur-flamme.png" alt=""><img class="win-icon-arrow" src="assets/icons/shortcut-arrow.png" alt=""></span>
+          <span class="win-icon-lbl">Sieur Flamme</span>
+        </div>
+        <div class="win-icon" id="iconTitle">
+          <span class="win-icon-img"><img class="win-icon-main" src="assets/icons/title.png" alt=""><img class="win-icon-arrow" src="assets/icons/shortcut-arrow.png" alt=""></span>
+          <span class="win-icon-lbl">Title</span>
+        </div>
+        <div class="win-icon" id="iconEnable">
+          <span class="win-icon-img"><img class="win-icon-main" src="assets/icons/enable.png" alt=""><img class="win-icon-arrow" src="assets/icons/shortcut-arrow.png" alt=""></span>
+          <span class="win-icon-lbl">Enable</span>
+        </div>
+        <div class="win-icon" id="iconChrome">
+          <span class="win-icon-img"><img class="win-icon-main" src="assets/icons/chrome.png" alt=""><img class="win-icon-arrow" src="assets/icons/shortcut-arrow.png" alt=""></span>
+          <span class="win-icon-lbl">Chrome</span>
+        </div>
+        <div class="win-icon" id="iconArcana">
+          <span class="win-icon-img"><img class="win-icon-main" src="assets/icons/arcana.png" alt=""><img class="win-icon-arrow" src="assets/icons/shortcut-arrow.png" alt=""></span>
+          <span class="win-icon-lbl">ARCANA</span>
+        </div>
+        <!-- Video Player — disabled for launch, keep the code:
+        <div class="win-icon" id="iconVideoplayer">
+          <span class="win-icon-img"><img class="win-icon-main" src="assets/icons/video-player.png" alt=""><img class="win-icon-arrow" src="assets/icons/shortcut-arrow.png" alt=""></span>
+          <span class="win-icon-lbl">Video Player</span>
+        </div>
+        -->
+      </div>
+    </div>
+  </div>
+  <div class="desk" data-desk="about">
+    <div class="about-bg" id="aboutBg"></div>
+    <div class="about-stage desk-stage">
+      <div class="w98 w98-window about-win is-open" id="aboutWin" style="box-shadow:inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #dfdfdf, inset -2px -2px 0 #808080, inset 2px 2px 0 #fff, 5px 8px 22px rgba(0,0,0,.45)">
+        <div class="w98-titlebar">
+          <img src="assets/icons/information.png" alt="" class="w98-titlebar-icon">
+          <span class="w98-titlebar-text">About Me</span>
+          <div class="w98-titlebar-btns">
+            <button class="w98-tb-btn" aria-label="minimize"><span class="w98-tb-glyph"><svg width="10" height="10" viewBox="0 0 8 8"><rect x="1" y="6" width="6" height="2" fill="#000"></rect></svg></span></button>
+            <button class="w98-tb-btn" aria-label="maximize"><span class="w98-tb-glyph"><svg width="10" height="10" viewBox="0 0 8 8"><rect x="0.5" y="0.5" width="7" height="7" fill="none" stroke="#000"></rect><rect x="0.5" y="0.5" width="7" height="2" fill="#000"></rect></svg></span></button>
+            <button class="w98-tb-btn" aria-label="close" id="aboutClose"><span class="w98-tb-glyph"><svg width="10" height="10" viewBox="0 0 8 8"><path d="M1 1 L7 7 M7 1 L1 7" stroke="#000" stroke-width="1.3"></path></svg></span></button>
+          </div>
+        </div>
+        <div class="about-body">
+          <div class="ab-portrait">
+            <image-slot id="aboutPortrait" shape="rect" fit="contain" src="assets/icons/me.png" placeholder="[ DROP PORTRAIT ]"></image-slot>
+            <div class="ab-exp"><b>8+</b><span>YEARS EXP.</span></div>
+          </div>
+          <div class="ab-wordart">
+            <span class="ab-wa"><span class="b">Engineering meets</span><span class="f">Engineering meets</span></span>
+            <span class="ab-wa"><span class="b">creative exploration</span><span class="f">creative exploration</span></span>
+          </div>
+          <div class="ab-bio">
+            <p>I'm a Unity developer blending solid engineering with creative exploration. Over the years I've shipped aerospace simulation tools, VR filmmaking software, and personal projects that push the boundaries of real-time graphics.</p>
+            <p>I build tools, craft shaders, and design 3D environments that inspire developers and artists alike &mdash; always experimenting, always shipping.</p>
+          </div>
+          <fieldset class="ab-tech">
+            <legend>Tech stack</legend>
+            <ul>
+              <li>C# / ShaderLab</li>
+              <li>3D / Blender</li>
+              <li>Unity / VR / XR</li>
+              <li>Real-time rendering</li>
+              <li>Shader Graph</li>
+              <li>REST / TCP / UDP</li>
+            </ul>
+          </fieldset>
+        </div>
+      </div>
+      <div id="contactWinMount"></div>
+      <div id="legalWinMount"></div>
+      <div class="win-icons">
+        <div class="win-icon is-open" id="iconAbout">
+          <span class="win-icon-img"><img class="win-icon-main" src="assets/icons/information.png" alt=""><img class="win-icon-arrow" src="assets/icons/shortcut-arrow.png" alt=""></span>
+          <span class="win-icon-lbl">About Me</span>
+        </div>
+        <div class="win-icon is-open" id="iconContact">
+          <span class="win-icon-img"><img class="win-icon-main" src="assets/icons/email.png" alt=""><img class="win-icon-arrow" src="assets/icons/shortcut-arrow.png" alt=""></span>
+          <span class="win-icon-lbl">Contact</span>
+        </div>
+        <div class="win-icon is-open" id="iconLegal">
+          <span class="win-icon-img"><img class="win-icon-main" src="assets/icons/legal.png" alt=""><img class="win-icon-arrow" src="assets/icons/shortcut-arrow.png" alt=""></span>
+          <span class="win-icon-lbl">Legal Information</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<template id="__bundler_thumbnail">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-    <rect width="100" height="100" fill="#16808f" />
-    <rect x="26" y="30" width="48" height="34" fill="#c0c0c0" stroke="#0b1418" stroke-width="2" />
-    <rect x="26" y="30" width="48" height="8" fill="#00007b" />
-    <rect x="20" y="74" width="60" height="8" fill="#c0c0c0" stroke="#0b1418" stroke-width="1.5" />
-  </svg>
-</template>
+  <div class="d98-startmenu fsm" id="startMenu" hidden>
+    <div class="d98-sm-side"><b>LoickRivemale<i>95</i></b></div>
+    <div class="fsm-list" id="startList"></div>
+  </div>
 
+  <div class="d98-taskbar">
+    <div class="d98-start" id="startBtn">
+      <span class="d98-start-logo"><span style="background:#d83b3b"></span><span style="background:#2f9b46"></span><span style="background:#1083d4"></span><span style="background:#e8b84a"></span></span>
+      Start
+    </div>
+    <span class="d98-sep"></span>
+    <div class="d98-tasks" id="taskList"></div>
+    <div class="d98-tray">
+      <img class="spk" src="assets/icons/enable.png" alt="volume">
+      <span class="d98-clock" id="clock">11:53 PM</span>
+    </div>
+  </div>
+</div>
+<!-- outside #desktop: position:fixed makes #desktop a stacking context, which would
+     trap the saver's z-index below body-portalled chrome (Clappy). -->
+<div id="screensaverMount"></div>
+
+<script>
+  var DESKS=[
+    {id:'welcome',      name:'Welcome',      img:'assets/icons/welcome-door.png'},
+    {id:'professional', name:'Professional', img:'assets/icons/work.png'},
+    {id:'personal',     name:'Personal',     img:'assets/icons/side-projects.png'},
+    {id:'about',        name:'About Me',     img:'assets/icons/information.png'}
+  ];
+
+  var current='welcome';
+  var taskList=document.getElementById('taskList');
+  var startList=document.getElementById('startList');
+  var startBtn=document.getElementById('startBtn');
+  var startMenu=document.getElementById('startMenu');
+
+  function select(id){
+    var changed = current!==id;
+    current=id;
+    document.querySelectorAll('.desk').forEach(function(d){d.classList.toggle('is-active',d.dataset.desk===id);});
+    document.querySelectorAll('.d98-taskbtn').forEach(function(b){b.classList.toggle('is-active',b.dataset.desk===id);});
+    /* fired AFTER the display toggle so listeners measure a laid-out desk, not a hidden one */
+    if(changed) window.dispatchEvent(new CustomEvent('desk:change',{detail:id}));
+    closeStart();
+    requestAnimationFrame(function(){
+      var activeDesk=document.querySelector('.desk[data-desk="'+id+'"]');
+      if(!activeDesk || !window.__deskWinRegistry) return;
+      window.__deskWinRegistry.forEach(function(entry){
+        if(activeDesk.contains(entry.win)) entry.center();
+      });
+    });
+  }
+
+  DESKS.forEach(function(d){
+    var b=document.createElement('div');
+    b.className='d98-taskbtn'+(d.id===current?' is-active':'');
+    b.dataset.desk=d.id;
+    b.innerHTML='<img class="ico" src="'+d.img+'" alt=""><span>'+d.name+'</span>';
+    b.addEventListener('click',function(){select(d.id);});
+    taskList.appendChild(b);
+  });
+
+  function openIcon(iconId){
+    var icon=document.getElementById(iconId);
+    if(icon && !icon.classList.contains('is-open')) icon.click();
+  }
+
+  var MENU=[
+    {id:'welcome', label:'Welcome', img:'assets/icons/welcome-door.png'},
+    {id:'professional', label:'Professional', img:'assets/icons/work.png', children:[
+      {label:'Read Me', img:'assets/icons/readme.png', icon:'iconReadme'},
+      {label:'Professional Experience', img:'assets/icons/briefcase.png', icon:'iconExperience'},
+      {label:'Tech Stack', img:'assets/icons/toolbox.png', icon:'iconTechstack'},
+      {label:'Education', img:'assets/icons/studies-desk.png', icon:'iconEducation'}
+    ]},
+    {id:'personal', label:'Personal', img:'assets/icons/side-projects.png', children:[
+      {label:'Artistic projects', img:'assets/icons/art.png', icon:'iconArt'},
+      {label:'Terrain Creation', img:'assets/icons/terrain.png', icon:'iconTerrain'},
+      {label:'Xnoise', img:'assets/icons/xnoise.png', icon:'iconXnoise'},
+      {label:'Sieur Flamme', img:'assets/icons/sieur-flamme.png', icon:'iconSieurflamme'},
+      {label:'Title', img:'assets/icons/title.png', icon:'iconTitle'},
+      {label:'Enable', img:'assets/icons/enable.png', icon:'iconEnable'},
+      {label:'Chrome', img:'assets/icons/chrome.png', icon:'iconChrome'},
+      {label:'ARCANA', img:'assets/icons/arcana.png', icon:'iconArcana'}
+      /* Video Player — disabled for launch, keep the code:
+      ,{label:'Video Player', img:'assets/icons/video-player.png', icon:'iconVideoplayer'}
+      */
+    ]},
+    {id:'about', label:'About Me', img:'assets/icons/information.png', children:[
+      {label:'About Me', img:'assets/icons/information.png', icon:'iconAbout'},
+      {label:'Contact', img:'assets/icons/email.png', icon:'iconContact'},
+      {label:'Legal Information', img:'assets/icons/legal.png', icon:'iconLegal'}
+    ]}
+  ];
+
+  MENU.forEach(function(d){
+    var hasSub=d.children && d.children.length;
+    var wrap=document.createElement('div');
+    wrap.className='fsm-item-wrap';
+    var it=document.createElement('div');
+    it.className='fsm-item'+(hasSub?' has-sub':'');
+    it.innerHTML='<img src="'+d.img+'" alt=""><span class="lbl">'+d.label+'</span>';
+    it.addEventListener('click',function(){select(d.id);});
+    wrap.appendChild(it);
+    if(hasSub){
+      var sub=document.createElement('div');
+      sub.className='fsm-sub';
+      d.children.forEach(function(c){
+        var ci=document.createElement('div');
+        ci.className='fsm-subitem';
+        ci.innerHTML='<img src="'+c.img+'" alt=""><span class="lbl">'+c.label+'</span>';
+        ci.addEventListener('click',function(e){
+          e.stopPropagation();
+          select(d.id);
+          if(c.icon) openIcon(c.icon);
+        });
+        sub.appendChild(ci);
+      });
+      wrap.appendChild(sub);
+    }
+    startList.appendChild(wrap);
+  });
+
+  var smDivider=document.createElement('div');
+  smDivider.className='d98-sm-divider';
+  startList.appendChild(smDivider);
+  var shutdownWrap=document.createElement('div');
+  shutdownWrap.className='fsm-item-wrap';
+  var shutdownItem=document.createElement('div');
+  shutdownItem.className='fsm-item';
+  shutdownItem.innerHTML='<img src="assets/icons/shutdown.png" alt=""><span class="lbl">Shut Down\u2026</span>';
+  shutdownItem.addEventListener('click',function(){
+    closeStart();
+    if(window.__launchScreensaver) window.__launchScreensaver();
+  });
+  shutdownWrap.appendChild(shutdownItem);
+  startList.appendChild(shutdownWrap);
+
+  document.querySelectorAll('[data-goto]').forEach(function(el){
+    el.addEventListener('click',function(){select(el.getAttribute('data-goto'));});
+  });
+
+  function openStart(){startMenu.hidden=false;startBtn.classList.add('is-open');}
+  function closeStart(){startMenu.hidden=true;startBtn.classList.remove('is-open');}
+  startBtn.addEventListener('click',function(e){e.stopPropagation();if(startMenu.hidden)openStart();else closeStart();});
+  document.addEventListener('mousedown',function(e){if(!startMenu.hidden&&!startMenu.contains(e.target)&&e.target!==startBtn)closeStart();});
+  startMenu.addEventListener('mousedown',function(e){e.stopPropagation();});
+
+  function tick(){
+    var d=new Date(),h=d.getHours(),m=d.getMinutes(),ap=h>=12?'PM':'AM';
+    h=h%12;if(h===0)h=12;
+    document.getElementById('clock').textContent=h+':'+(m<10?'0'+m:m)+' '+ap;
+  }
+  tick();setInterval(tick,10000);
+
+  /* global focus stacking: whichever window was opened or dragged most recently renders on top; icons always sit behind all windows */
+  window.__topZ = window.__topZ || 9;
+  window.bringToFront = function(win){
+    if(!win) return;
+    window.__topZ += 1;
+    win.style.zIndex = window.__topZ;
+  };
+  document.addEventListener('pointerdown',function(e){
+    var win=e.target.closest('.w98-window');
+    if(win) window.bringToFront(win);
+  },true);
+
+  /* ---- fit-to-viewport ----------------------------------------------------
+     Windows are authored at fixed pixel sizes against a ~1090px-tall desk. On a
+     smaller viewport — a laptop, browser zoom, or OS display scaling above
+     100% — that composition used to run off the bottom-right with no scrollbar.
+     Instead of clipping, give each stage a virtual size of viewport/scale and
+     scale it back down, so anchor math and drag clamping still work in design
+     coordinates and only the rendered size changes.
+
+     HEIGHT drives the scale, never width: windows are tall and fixed, but they
+     already clamp their own width to --vpw, so a narrow window just makes them
+     narrower (and overlap — they are draggable) instead of shrinking the whole
+     desk to an unreadable size. Below MIN_S we stop scaling and let windows
+     clamp to --vph and scroll internally, which beats microscopic text. */
+  var FIT_H=1090, MIN_S=0.55;
+  var fitMQ=window.matchMedia('(max-width:760px)');
+  window.__deskScale=1;
+  function fitDesks(){
+    var stages=document.querySelectorAll('.desk-stage');
+    var root=document.getElementById('desktop');
+    if(fitMQ.matches){
+      window.__deskScale=1;
+      if(root) root.removeAttribute('data-fit');
+      document.documentElement.style.removeProperty('--vpw');
+      document.documentElement.style.removeProperty('--vph');
+      document.documentElement.style.removeProperty('--desk-scale');
+      stages.forEach(function(st){ st.style.width=''; st.style.height=''; st.style.transform=''; });
+      return;
+    }
+    var tb=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tb-h'))||50;
+    var availW=document.documentElement.clientWidth;
+    var availH=document.documentElement.clientHeight-tb;
+    if(availW<=0||availH<=0) return;
+    var s=Math.max(MIN_S, Math.min(1, availH/FIT_H));
+    window.__deskScale=s;
+    var vw=Math.round(availW/s), vh=Math.round(availH/s);
+    /* windows clamp themselves against --vpw/--vph rather than 100vw/100vh, so
+       they size to the virtual stage instead of shrinking a second time */
+    document.documentElement.style.setProperty('--vpw', vw+'px');
+    document.documentElement.style.setProperty('--vph', vh+'px');
+    /* body-portalled desktop chrome (Clappy) reads this to match the desk scale */
+    document.documentElement.style.setProperty('--desk-scale', s);
+    stages.forEach(function(st){
+      st.style.width=vw+'px'; st.style.height=vh+'px';
+      st.style.transform = s<1 ? 'scale('+s+')' : '';
+    });
+    if(root){ if(s<1) root.setAttribute('data-fit',''); else root.removeAttribute('data-fit'); }
+  }
+  window.fitDesks=fitDesks;
+  fitDesks();
+  window.addEventListener('resize',function(){
+    fitDesks();
+    requestAnimationFrame(function(){
+      (window.__deskWinRegistry||[]).forEach(function(e){ e.center(); });
+    });
+  });
+
+  /* draggable windows, clamped to their desk stage (screen minus taskbar) */
+  window.__deskWinRegistry = window.__deskWinRegistry || [];
+  function makeDraggable(win, stage, anchor, posKey){
+    anchor=anchor||'center';
+    var dragged=false;
+    var POS_STORE='w98:winpos:';
+    function savePos(){
+      if(!posKey) return;
+      try{ localStorage.setItem(POS_STORE+posKey, (parseFloat(win.style.left)||0)+','+(parseFloat(win.style.top)||0)); }catch(e){}
+    }
+    /* a window with a remembered position opens exactly where the user left it
+       (clamped to the current desk, so a smaller viewport can't hide it) */
+    function hasSavedPos(){
+      if(!posKey) return false;
+      try{ return !!localStorage.getItem(POS_STORE+posKey); }catch(e){ return false; }
+    }
+    function restorePos(){
+      if(!posKey||!stage.clientWidth||!stage.clientHeight) return false;
+      var raw=null;
+      try{ raw=localStorage.getItem(POS_STORE+posKey); }catch(e){}
+      if(!raw) return false;
+      var parts=String(raw).split(','), l=parseFloat(parts[0]), t=parseFloat(parts[1]);
+      if(!isFinite(l)||!isFinite(t)) return false;
+      var p=clampPos(l,t);
+      win.style.left=p[0]+'px'; win.style.top=p[1]+'px';
+      return true;
+    }
+    function clampPos(l,t){
+      var maxL=Math.max(0,stage.clientWidth-win.offsetWidth);
+      var maxT=Math.max(0,stage.clientHeight-win.offsetHeight);
+      return [Math.min(Math.max(0,l),maxL), Math.min(Math.max(0,t),maxT)];
+    }
+    function center(){
+      if(!stage.clientWidth||!stage.clientHeight) return;
+      var m=24, w=win.offsetWidth, h=win.offsetHeight, l, t;
+      if(anchor && typeof anchor==='object'){
+        var freeW=Math.max(0,stage.clientWidth-w), freeH=Math.max(0,stage.clientHeight-h);
+        l=freeW*anchor.fx; t=freeH*anchor.fy;
+      }
+      else if(anchor==='top-left'){ l=m; t=m; }
+      else if(anchor==='top-right'){ l=stage.clientWidth-w-m; t=m; }
+      else if(anchor==='bottom-center'){ l=(stage.clientWidth-w)/2; t=stage.clientHeight-h-m; }
+      else { l=(stage.clientWidth-w)/2; t=(stage.clientHeight-h)/2; }
+      var p=clampPos(l,t);
+      win.style.left=p[0]+'px'; win.style.top=p[1]+'px';
+    }
+    /* mounting while the desk is hidden means the stage has no size yet, so the
+       restore can't run — flag it anyway so nothing re-centers over it, and let
+       the registry pass retry once the desk is visible */
+    if(hasSavedPos()) dragged=true;
+    if(!restorePos()) center();
+    window.__deskWinRegistry.push({win:win, center:function(){ if(restorePos()) return; if(!dragged) center(); }});
+    window.addEventListener('resize',function(){
+      var p=clampPos(parseFloat(win.style.left)||0, parseFloat(win.style.top)||0);
+      win.style.left=p[0]+'px'; win.style.top=p[1]+'px';
+    });
+    var tb=win.querySelector('.w98-titlebar');
+    if(!tb) return {center:center};
+    var dragging=false, sx=0, sy=0, ol=0, ot=0;
+    tb.addEventListener('pointerdown',function(e){
+      if(e.target.closest('.w98-tb-btn')) return;
+      window.bringToFront(win);
+      if(getComputedStyle(win).position!=='absolute') return;
+      dragging=true; dragged=true; sx=e.clientX; sy=e.clientY;
+      ol=parseFloat(win.style.left)||0; ot=parseFloat(win.style.top)||0;
+      tb.setPointerCapture(e.pointerId);
+    });
+    tb.addEventListener('pointermove',function(e){
+      if(!dragging) return;
+      var s=window.__deskScale||1;
+      var p=clampPos(ol+(e.clientX-sx)/s, ot+(e.clientY-sy)/s);
+      win.style.left=p[0]+'px'; win.style.top=p[1]+'px';
+    });
+    tb.addEventListener('pointerup',function(){if(dragging){dragging=false;savePos();}});
+    tb.addEventListener('pointercancel',function(){if(dragging){dragging=false;savePos();}});
+    return {center:center};
+  }
+  window.makeDraggable = makeDraggable;
+  document.querySelectorAll('.desk-stage').forEach(function(stage){
+    stage.querySelectorAll('.w98-window').forEach(function(win){
+      var anchor='center';
+      if(stage.classList.contains('welcome-stage')) anchor='center';
+      else if(win.classList.contains('about-win')) anchor={fx:0.4478,fy:0.2012};
+      var ctrl=makeDraggable(win, stage, anchor);
+      win.__dragCtrl=ctrl;
+    });
+  });
+
+  (function(){
+    var aboutWin=document.getElementById('aboutWin');
+    var iconAbout=document.getElementById('iconAbout');
+    var aboutClose=document.getElementById('aboutClose');
+    if(!aboutWin||!iconAbout) return;
+    function setOpen(v){
+      aboutWin.classList.toggle('is-open',v);
+      iconAbout.classList.toggle('is-open',v);
+    }
+    iconAbout.addEventListener('click',function(){
+      var next=!aboutWin.classList.contains('is-open');
+      setOpen(next);
+      if(next) window.bringToFront(aboutWin);
+    });
+    if(aboutClose) aboutClose.addEventListener('click',function(){ setOpen(false); });
+    window.bringToFront(aboutWin);
+  })();
+</script>
+
+<script src="app/image-slot.js"></script>
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-
-<script type="text/babel" src="pixel-icons.jsx"></script>
-<script type="text/babel" src="cloud-shader.jsx"></script>
-<script type="text/babel" src="welcome-melt.jsx"></script>
-<script type="text/babel" src="pipes-saver.jsx"></script>
-<script type="text/babel" src="desktop-icons.jsx"></script>
-<script type="text/babel" src="landing-shared.jsx"></script>
-<script type="text/babel" src="animotive.jsx"></script>
-<script type="text/babel" src="animotive-about.jsx"></script>
-<script type="text/babel" src="animotive-wordart.jsx"></script>
-<script type="text/babel" src="animotive-about-layouts.jsx"></script>
-<script type="text/babel" src="animotive-contact.jsx"></script>
-<script type="text/babel" src="project-image-approaches.jsx"></script>
-<script type="text/babel" src="final-windows.jsx"></script>
-<script type="text/babel" src="work-final.jsx"></script>
-<script type="text/babel" src="tech-stack-view.jsx"></script>
-<script type="text/babel" src="videos-player.jsx"></script>
-<script type="text/babel" src="clappy-assistant.jsx"></script>
-<script type="text/babel" src="final-mobile.jsx"></script>
-<script type="text/babel" src="final-flow.jsx"></script>
-
+<script type="text/babel" src="app/welcome-melt.jsx"></script>
+<script type="text/babel" src="app/pixel-icons.jsx"></script>
+<script type="text/babel" src="app/cloud-shader.jsx"></script>
+<script type="text/babel" src="app/word-art.jsx"></script>
+<script type="text/babel" src="app/contact-window.jsx"></script>
+<script type="text/babel" src="app/legal-window.jsx"></script>
+<script type="text/babel" src="app/readme-window.jsx"></script>
+<script type="text/babel" src="app/tech-stack.jsx"></script>
+<script type="text/babel" src="app/education-window.jsx"></script>
+<script type="text/babel" src="app/experience-window.jsx"></script>
+<script type="text/babel" src="app/project-window.jsx"></script>
+<!-- Video Player — disabled for launch, keep the code:
+<script type="text/babel" src="app/videos-player.jsx"></script>
+-->
+<script type="text/babel" src="app/pipes-saver.jsx"></script>
+<script type="text/babel" src="app/clappy-assistant.jsx"></script>
+<script>
+/* Warm every image the panels reference so a window never opens with blank icons.
+   Sources are discovered from the panel scripts themselves (already in cache from the
+   <script src> loads), so the list can never go stale. */
+(function(){
+  var seen={};
+  function warm(u){
+    if(!u||seen[u])return; seen[u]=1;
+    /* gallery photos (project shots) are big and only ever seen inside an opened
+       project window \u2014 they load lazily on demand instead of on desk load */
+    if(/uploads\/(art|terrain|xnoise)-/.test(u)) return;
+    /* a detached `new Image()` can be collected before the request fires (Gecko), so the
+       reference lives in the DOM: a retained <link rel=preload> node issues and keeps it */
+    var l=document.createElement('link');
+    l.rel='preload'; l.as='image'; l.href=u;
+    document.head.appendChild(l);
+  }
+  function scan(text){ var re=/(?:uploads|assets)\/[A-Za-z0-9_.\-]+\.(?:png|jpe?g|gif|webp|svg)/g,m; while((m=re.exec(text))) warm(m[0]); }
+  function run(){
+    scan(document.body.innerHTML);   /* body only: <head> meta URLs are not loadable assets */
+    var srcs=[].map.call(document.querySelectorAll('script[type="text/babel"][src]'),function(s){return s.getAttribute('src');});
+    srcs.forEach(function(src){ fetch(src).then(function(r){return r.ok?r.text():'';}).then(scan).catch(function(){}); });
+  }
+  if('requestIdleCallback' in window) requestIdleCallback(run,{timeout:1500}); else setTimeout(run,600);
+})();
+</script>
 <script type="text/babel">
-  ReactDOM.createRoot(document.getElementById('root')).render(<FinalFlow />);
+  if(window.WelcomeMelt){ReactDOM.createRoot(document.getElementById('welcomeBg')).render(<window.WelcomeMelt />);}
+  if(window.CloudShaderBG){ReactDOM.createRoot(document.getElementById('aboutBg')).render(<window.CloudShaderBG style={{width:'100%',height:'100%'}} />);}
+  if(window.PipesScreensaver){ReactDOM.createRoot(document.getElementById('screensaverMount')).render(<window.PipesScreensaver />);}
+
+  /* single-window-open enforcement per desk. Flip a flag to false to go back to
+     independent multi-window behaviour without touching any mount code below. */
+  var DESK_EXCLUSIVE = { professional: true, personal: true };
+  window.__singleOpenGroups = {};
+  function requestSingleOpen(group, key, closeSelf){
+    if(!group || !DESK_EXCLUSIVE[group]) return;
+    var g = window.__singleOpenGroups[group] || (window.__singleOpenGroups[group] = {});
+    Object.keys(g).forEach(function(k){ if(k!==key && g[k]) g[k](); });
+    g[key]=closeSelf;
+  }
+  function releaseSingleOpen(group, key){
+    var g = window.__singleOpenGroups[group];
+    if(g && g[key]) delete g[key];
+  }
+
+  function makeToggleMount(mountId, iconId, Comp, offset, defaultOpen, group){
+    var mountEl=document.getElementById(mountId);
+    if(!mountEl || !Comp) return;
+    function Mount(){
+      const [open,setOpen]=React.useState(!!defaultOpen);
+      const ref=React.useRef(null);
+      React.useEffect(()=>{
+        var icon=document.getElementById(iconId);
+        if(icon) icon.classList.toggle('is-open', open);
+        if(!open || !ref.current) return;
+        const stage=ref.current.closest('.desk-stage');
+        const win=ref.current.querySelector('.w98-window');
+        window.bringToFront(win);
+        if(!stage||!win||!window.makeDraggable) return;
+        window.makeDraggable(win, stage, offset);
+      },[open]);
+      React.useEffect(()=>{
+        if(open) requestSingleOpen(group, mountId, ()=>setOpen(false));
+        else releaseSingleOpen(group, mountId);
+      },[open]);
+      React.useEffect(()=>{
+        var icon=document.getElementById(iconId);
+        if(icon) icon.addEventListener('click',()=>setOpen((o)=>!o));
+      },[]);
+      return open ? <div ref={ref}><Comp onClose={()=>setOpen(false)} /></div> : null;
+    }
+    ReactDOM.createRoot(mountEl).render(<Mount />);
+  }
+  makeToggleMount('contactWinMount','iconContact', window.ContactWindow, {fx:0.4102,fy:0.8429}, true);
+  makeToggleMount('legalWinMount','iconLegal', window.LegalWindow, 'top-right', false);
+  makeToggleMount('techstackWinMount','iconTechstack', window.TechStackWindow, {fx:0.4696,fy:0.3911}, false, 'professional');
+
+  if(window.EducationTimeline){
+    var eduMountEl=document.getElementById('educationWinMount');
+    var eduStackMQ=window.matchMedia('(max-width:760px)');
+    function EduMount(){
+      const [open,setOpen]=React.useState(false);
+      const [stack,setStack]=React.useState(eduStackMQ.matches);
+      const ref=React.useRef(null);
+      React.useEffect(()=>{
+        var icon=document.getElementById('iconEducation');
+        if(icon) icon.classList.toggle('is-open', open);
+        if(!open || !ref.current) return;
+        const win=ref.current.querySelector('.w98-window');
+        window.bringToFront(win);
+        if(stack) return;
+        const stage=ref.current.closest('.desk-stage');
+        if(!stage||!win||!window.makeDraggable) return;
+        window.makeDraggable(win, stage, {fx:0.4169,fy:0.4158});
+      },[open,stack]);
+      React.useEffect(()=>{
+        if(open) requestSingleOpen('professional','educationWinMount', ()=>setOpen(false));
+        else releaseSingleOpen('professional','educationWinMount');
+      },[open]);
+      React.useEffect(()=>{
+        var icon=document.getElementById('iconEducation');
+        if(icon) icon.addEventListener('click',()=>setOpen((o)=>!o));
+        var onChange=function(e){ setStack(e.matches); };
+        eduStackMQ.addEventListener('change', onChange);
+        return ()=>eduStackMQ.removeEventListener('change', onChange);
+      },[]);
+      return open ? <div ref={ref}><window.EducationTimeline stack={stack} onClose={()=>setOpen(false)} /></div> : null;
+    }
+    ReactDOM.createRoot(eduMountEl).render(<EduMount />);
+  }
+
+  if(window.WorkTimeline && window.WorkDetailPanel){
+    var expMountEl=document.getElementById('experienceMount');
+    var expStackMQ=window.matchMedia('(max-width:760px)');
+    function ExpMount(){
+      const [open,setOpen]=React.useState(false);
+      const [selected,setSelected]=React.useState(null);
+      const [stack,setStack]=React.useState(expStackMQ.matches);
+      const [clappyPick,setClappyPick]=React.useState(null);
+      const [clappyDelayed,setClappyDelayed]=React.useState(false);
+      const [clappyClosed,setClappyClosed]=React.useState(()=>!!window.__clappyDismissed);
+      const tlRef=React.useRef(null);
+      const detRef=React.useRef(null);
+      /* Closing Clappy dismisses the CURRENT appearance, not the session: the
+         next project pick may summon him again. While he is already on screen,
+         picking another project must not restart him (see the delay effect). */
+      const dismissClappy=()=>{ setClappyClosed(true); setClappyDelayed(false); };
+      React.useEffect(()=>{
+        if(clappyPick) setClappyClosed(false);
+      },[clappyPick]);
+      React.useEffect(()=>{
+        var onDesk=function(){ setClappyPick(null); setClappyDelayed(false); };
+        window.addEventListener('desk:change', onDesk);
+        return ()=>window.removeEventListener('desk:change', onDesk);
+      },[]);
+      React.useEffect(()=>{
+        if(!clappyPick){ setClappyDelayed(false); return; }
+        if(clappyDelayed) return; /* already showing — leave him where he is */
+        var t=setTimeout(()=>setClappyDelayed(true), 2000);
+        return ()=>clearTimeout(t);
+      },[clappyPick,clappyDelayed]);
+      React.useEffect(()=>{
+        var icon=document.getElementById('iconExperience');
+        if(icon) icon.classList.toggle('is-open', open);
+      },[open]);
+      React.useEffect(()=>{
+        if(open) requestSingleOpen('professional','experienceMount', ()=>{setOpen(false);setSelected(null);});
+        else releaseSingleOpen('professional','experienceMount');
+      },[open]);
+      React.useEffect(()=>{
+        var icon=document.getElementById('iconExperience');
+        if(!icon) return;
+        icon.addEventListener('click',function(){
+          setOpen(function(o){
+            var next=!o;
+            if(next) setSelected(function(s){ return s || window.WORK_ITEMS[0].id; });
+            return next;
+          });
+        });
+        var onChange=function(e){ setStack(e.matches); };
+        expStackMQ.addEventListener('change', onChange);
+        return ()=>expStackMQ.removeEventListener('change', onChange);
+      },[]);
+      React.useEffect(()=>{
+        if(!open || !tlRef.current) return;
+        var stage=tlRef.current.closest('.desk-stage');
+        var win=tlRef.current.querySelector('.w98-window');
+        if(win) window.bringToFront(win);
+        if(stack||!stage||!win||!window.makeDraggable) return;
+        window.makeDraggable(win, stage, {fx:0.2400,fy:0.3882}, 'work-timeline');
+      },[open,stack]);
+      React.useEffect(()=>{
+        if(!selected || !detRef.current || stack) return;
+        var stage=detRef.current.closest('.desk-stage');
+        var win=detRef.current.querySelector('.w98-window');
+        if(win) window.bringToFront(win);
+        if(!stage||!win||!window.makeDraggable) return;
+        window.makeDraggable(win, stage, {fx:0.7898,fy:0.3434}, 'work-detail');
+      },[selected,stack]);
+      return (
+        <React.Fragment>
+          {open && <div ref={tlRef}><window.WorkTimeline selected={selected} stack={stack} onOpen={(id)=>{setSelected(id);setClappyPick(id);}} onClose={()=>{setOpen(false);setSelected(null);}} /></div>}
+          {open && selected && !stack && <div ref={detRef}><window.WorkDetailPanel id={selected} onClose={()=>setSelected(null)} /></div>}
+          {open && selected && stack && (
+            <div className="exp-modal-backdrop" onClick={()=>setSelected(null)}>
+              <div onClick={(e)=>e.stopPropagation()}><window.WorkDetailPanel id={selected} stack onClose={()=>setSelected(null)} /></div>
+            </div>
+          )}
+          {open && clappyPick && clappyDelayed && !clappyClosed && window.ClappyAssistant && (
+            <window.ClappyAssistant onClose={dismissClappy} deskEl={document.querySelector('.professional-stage')} scale={1} />
+          )}
+        </React.Fragment>
+      );
+    }
+    ReactDOM.createRoot(expMountEl).render(<ExpMount />);
+  }
+
+  function makeProjectMount(mountId, iconId, proj, group, defaultOpen){
+    var mountEl=document.getElementById(mountId);
+    if(!mountEl || !window.ProjectWindow || !proj) return;
+    var stackMQ=window.matchMedia('(max-width:760px)');
+    function Mount(){
+      const [open,setOpen]=React.useState(!!defaultOpen);
+      const [stack,setStack]=React.useState(stackMQ.matches);
+      const [zoom,setZoom]=React.useState(null);
+      const ref=React.useRef(null);
+      React.useEffect(()=>{
+        var icon=document.getElementById(iconId);
+        if(icon) icon.classList.toggle('is-open', open);
+      },[open]);
+      React.useEffect(()=>{
+        if(open) requestSingleOpen(group, mountId, ()=>setOpen(false));
+        else releaseSingleOpen(group, mountId);
+      },[open]);
+      React.useEffect(()=>{
+        var icon=document.getElementById(iconId);
+        if(!icon) return;
+        icon.addEventListener('click',function(){ setOpen(function(o){ return !o; }); });
+        var onChange=function(e){ setStack(e.matches); };
+        stackMQ.addEventListener('change', onChange);
+        return ()=>stackMQ.removeEventListener('change', onChange);
+      },[]);
+      React.useEffect(()=>{
+        if(!open || !ref.current) return;
+        var win=ref.current.querySelector('.w98-window');
+        if(win) window.bringToFront(win);
+        if(stack) return;
+        var stage=ref.current.closest('.desk-stage');
+        if(!stage||!win||!window.makeDraggable) return;
+        window.makeDraggable(win, stage, 'center', mountId);
+      },[open,stack]);
+      return open ? (
+        <div ref={ref}>
+          <window.ProjectWindow proj={proj} stack={stack} onClose={()=>setOpen(false)} onZoom={(shots,i)=>setZoom({shots,index:i})} />
+          {zoom && <window.ProjLightbox shots={zoom.shots} index={zoom.index} previewAspect={proj.previewAspect} setIndex={(i)=>setZoom(function(z){ return {...z, index:i}; })} onClose={()=>setZoom(null)} />}
+        </div>
+      ) : null;
+    }
+    ReactDOM.createRoot(mountEl).render(<Mount />);
+  }
+
+  function makeReelMount(mountId, iconId, proj, group){
+    var mountEl=document.getElementById(mountId);
+    if(!mountEl || !window.ProjectReelWindow || !proj) return;
+    var stackMQ=window.matchMedia('(max-width:760px)');
+    function Mount(){
+      const [open,setOpen]=React.useState(false);
+      const [stack,setStack]=React.useState(stackMQ.matches);
+      const [zoom,setZoom]=React.useState(null);
+      const ref=React.useRef(null);
+      React.useEffect(()=>{
+        var icon=document.getElementById(iconId);
+        if(icon) icon.classList.toggle('is-open', open);
+      },[open]);
+      React.useEffect(()=>{
+        if(open) requestSingleOpen(group, mountId, ()=>setOpen(false));
+        else releaseSingleOpen(group, mountId);
+      },[open]);
+      React.useEffect(()=>{
+        var icon=document.getElementById(iconId);
+        if(!icon) return;
+        icon.addEventListener('click',function(){ setOpen(function(o){ return !o; }); });
+        var onChange=function(e){ setStack(e.matches); };
+        stackMQ.addEventListener('change', onChange);
+        return ()=>stackMQ.removeEventListener('change', onChange);
+      },[]);
+      React.useEffect(()=>{
+        if(!open || !ref.current) return;
+        var win=ref.current.querySelector('.w98-window');
+        if(win) window.bringToFront(win);
+        if(stack) return;
+        var stage=ref.current.closest('.desk-stage');
+        if(!stage||!win||!window.makeDraggable) return;
+        window.makeDraggable(win, stage, 'center', mountId);
+      },[open,stack]);
+      return open ? (
+        <div ref={ref}>
+          <window.ProjectReelWindow proj={proj} stack={stack} onClose={()=>setOpen(false)} onZoom={(shots,i)=>setZoom({shots,index:i})} />
+          {zoom && <window.ProjLightbox shots={zoom.shots} index={zoom.index} previewAspect={proj.previewAspect} setIndex={(i)=>setZoom(function(z){ return {...z, index:i}; })} onClose={()=>setZoom(null)} />}
+        </div>
+      ) : null;
+    }
+    ReactDOM.createRoot(mountEl).render(<Mount />);
+  }
+
+  function makeVideoPlayerMount(mountId, iconId, group){
+    var mountEl=document.getElementById(mountId);
+    if(!mountEl || !window.VideosPlayer) return;
+    function Mount(){
+      const [open,setOpen]=React.useState(false);
+      const ref=React.useRef(null);
+      React.useEffect(()=>{
+        var icon=document.getElementById(iconId);
+        if(icon) icon.classList.toggle('is-open', open);
+      },[open]);
+      React.useEffect(()=>{
+        if(open) requestSingleOpen(group, mountId, ()=>setOpen(false));
+        else releaseSingleOpen(group, mountId);
+      },[open]);
+      React.useEffect(()=>{
+        var icon=document.getElementById(iconId);
+        if(!icon) return;
+        icon.addEventListener('click',function(){ setOpen(function(o){ return !o; }); });
+      },[]);
+      React.useEffect(()=>{
+        if(!open || !ref.current) return;
+        var win=ref.current.querySelector('.w98-window');
+        if(win) window.bringToFront(win);
+        var stage=ref.current.closest('.desk-stage');
+        if(!stage||!win||!window.makeDraggable) return;
+        window.makeDraggable(win, stage, 'center', mountId);
+      },[open]);
+      return open ? <div ref={ref}><window.VideosPlayer onClose={()=>setOpen(false)} /></div> : null;
+    }
+    ReactDOM.createRoot(mountEl).render(<Mount />);
+  }
+
+  makeProjectMount('artWinMount','iconArt', window.ART_PROJECT, 'personal', true);
+  makeProjectMount('terrainWinMount','iconTerrain', window.TERRAIN_PROJECT, 'personal');
+  makeProjectMount('xnoiseWinMount','iconXnoise', window.XNOISE_PROJECT, 'personal');
+  makeProjectMount('titleWinMount','iconTitle', window.TITLE_PROJECT, 'personal');
+  makeProjectMount('enableWinMount','iconEnable', window.ENABLE_PROJECT, 'personal');
+  makeProjectMount('chromeWinMount','iconChrome', window.CHROME_PROJECT, 'personal');
+  makeProjectMount('arcanaWinMount','iconArcana', window.ARCANA_PROJECT, 'personal');
+  makeReelMount('sieurflammeWinMount','iconSieurflamme', window.SIEURFLAMME_PROJECT, 'personal');
+  /* Video Player — disabled for launch, keep the code (makeVideoPlayerMount above stays):
+  makeVideoPlayerMount('videoplayerWinMount','iconVideoplayer', 'personal');
+  */
+
+  if(window.ReadmeWindow){
+    var readmeMountEl=document.getElementById('readmeWinMount');
+    var stackMQ=window.matchMedia('(max-width:760px)');
+    function ReadmeMount(){
+      const [open,setOpen]=React.useState(true);
+      const [stack,setStack]=React.useState(stackMQ.matches);
+      const ref=React.useRef(null);
+      React.useEffect(()=>{
+        var icon=document.getElementById('iconReadme');
+        if(icon) icon.classList.toggle('is-open', open);
+        if(!open || !ref.current) return;
+        const win=ref.current.querySelector('.w98-window');
+        window.bringToFront(win);
+        if(stack) return;
+        const stage=ref.current.closest('.desk-stage');
+        if(!stage||!win||!window.makeDraggable) return;
+        window.makeDraggable(win, stage, 'center');
+      },[open,stack]);
+      React.useEffect(()=>{
+        if(open) requestSingleOpen('professional','readmeWinMount', ()=>setOpen(false));
+        else releaseSingleOpen('professional','readmeWinMount');
+      },[open]);
+      React.useEffect(()=>{
+        var icon=document.getElementById('iconReadme');
+        if(icon) icon.addEventListener('click',()=>setOpen((o)=>!o));
+        var onChange=function(e){ setStack(e.matches); };
+        stackMQ.addEventListener('change', onChange);
+        return ()=>stackMQ.removeEventListener('change', onChange);
+      },[]);
+      return open ? <div ref={ref}><window.ReadmeWindow stack={stack} onClose={()=>setOpen(false)} /></div> : null;
+    }
+    ReactDOM.createRoot(readmeMountEl).render(<ReadmeMount />);
+  }
 </script>
 </body>
 </html>
