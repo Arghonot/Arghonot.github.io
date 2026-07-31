@@ -2,25 +2,25 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Loïck Rivemale — Unity XR &amp; Rendering Engineer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Loïck Rivemale</title>
 <meta name="description" content="Portfolio of Loïck Rivemale, Unity XR and rendering engineer with 8+ years building VR/AR applications, GPU rendering systems, custom shaders and worldspace VR UI toolkits for Retinize, Airbus Defence &amp; Space and freelance clients.">
 <meta name="author" content="Loïck Rivemale">
 <link rel="canonical" href="https://loick.rivemale.space/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Loïck Rivemale">
-<meta property="og:title" content="Loïck Rivemale — Unity XR &amp; Rendering Engineer">
+<meta property="og:title" content="Loïck Rivemale">
 <meta property="og:description" content="8+ years building VR/AR applications, GPU rendering systems, custom shaders and worldspace VR UI toolkits. Portfolio served as a Windows 98 desktop.">
 <meta property="og:url" content="https://loick.rivemale.space/">
 <meta property="og:image" content="https://loick.rivemale.space/assets/og-cover.png">
 <meta property="og:image:alt" content="Windows 98 style desktop portfolio of Loïck Rivemale">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Loïck Rivemale — Unity XR &amp; Rendering Engineer">
+<meta name="twitter:title" content="Loïck Rivemale">
 <meta name="twitter:description" content="8+ years building VR/AR applications, GPU rendering systems, custom shaders and worldspace VR UI toolkits.">
 <meta name="twitter:image" content="https://loick.rivemale.space/assets/og-cover.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#008080">
+<meta name="theme-color" content="#c0c0c0">
 <link rel="stylesheet" href="styles/win98.css">
 <link rel="license" href="legal.html">
 <link rel="alternate" type="text/html" href="cv.html" title="CV — text version">
@@ -28,7 +28,8 @@
 <style>
   :root{
     --w98-face:#c0c0c0;
-    --tb-h:50px;
+    /* the bar owns the Android nav-bar strip too, so the grey runs to the screen edge */
+    --tb-h:calc(50px + env(safe-area-inset-bottom, 0px));
     /* virtual viewport: equals the real one at scale 1, and the scaled desk
        stage's own box once fit-to-viewport kicks in (see fitDesks) */
     --vpw:100vw;
@@ -72,7 +73,7 @@
     box-shadow:inset 0 2px 0 #fff, inset 0 4px 0 #dfdfdf;
     border-top:2px solid #808080;
     display:flex;align-items:center;gap:10px;
-    padding:4px 6px;z-index:1000;
+    padding:4px 6px calc(4px + env(safe-area-inset-bottom, 0px));z-index:1000;
   }
   .d98-start{
     display:flex;align-items:center;gap:10px;flex:0 0 auto;
@@ -189,7 +190,7 @@
   .wm-hint .wm-arrow{color:#eafcff;font-size:30px;line-height:1;text-shadow:0 2px 3px rgba(0,0,0,.55);}
   .wa-rock{display:inline-block;transform-origin:center;animation:wmRock 2.6s ease-in-out infinite;}
   .wa-spectrum{position:relative;display:inline-block;transform:skewX(-8deg);}
-  .wa-spectrum .wa-back,.wa-spectrum .wa-front{display:block;margin:0;font-family:"Arial Black","Franklin Gothic Heavy",Impact,sans-serif;font-weight:900;font-style:italic;font-size:40px;line-height:.98;white-space:nowrap;padding-bottom:.12em;}
+  .wa-spectrum .wa-back,.wa-spectrum .wa-front{display:block;margin:0;font-family:"Arial Black","Franklin Gothic Heavy",Impact,sans-serif;font-weight:900;font-style:italic;font-size:40px;line-height:.98;white-space:nowrap;padding:0 .18em .12em .06em;}
   .wa-spectrum .wa-back{color:#000;-webkit-text-stroke:2px #1a1a1a;text-shadow:3px 3px 0 #9a9a9a;}
   .wa-spectrum .wa-front{position:absolute;inset:0;color:transparent;background:linear-gradient(90deg,#15c0d6,#2a6fdb,#6b3fd0,#b53fb0);-webkit-background-clip:text;background-clip:text;}
   @keyframes wmFadeIn{from{opacity:0}to{opacity:1}}
@@ -314,6 +315,13 @@
     /* start button: icon only */
     .d98-start-lbl{display:none;}
     .d98-start{padding:0 10px;gap:0;}
+    /* the four desk buttons split the bar evenly (the 1024px block above already
+       drops their labels; only the flex/padding needs overriding, and it needs the
+       same two-class specificity to win) */
+    .d98-taskbar{gap:6px;}
+    .d98-tasks{gap:4px;overflow:visible;}
+    .d98-tasks .d98-taskbtn{flex:1 1 0;padding:0 4px;}
+    .d98-taskbtn .ico{width:26px;height:26px;}
     /* start menu: desk switching only — no room for the per-window submenus */
     .fsm-list{width:min(340px,calc(100vw - 24px));}
     .fsm-sub{display:none !important;}
@@ -326,6 +334,8 @@
     .ts-files{max-height:none !important;overflow:visible !important;flex:0 0 auto !important;}
     .ts-grid{grid-template-columns:1fr 1fr !important;}
     .ts-item .lbl{overflow-wrap:anywhere;}
+    /* technologies lists drop to one column — two columns of long names overflow */
+    .proj-tech-grid{grid-template-columns:1fr !important;}
     /* project windows: download button sits under the title, above the description */
     .proj-head{flex-direction:column !important;align-items:stretch !important;gap:10px !important;}
     .proj-head-actions{width:100%;flex-wrap:wrap;}
@@ -384,7 +394,7 @@
   .ab-wordart{grid-area:wordart;align-self:start;}
   .ab-wa{position:relative;display:inline-block;transform:skewX(-8deg);max-width:100%;}
   .ab-wa .b,.ab-wa .f{display:block;margin:0;font-family:"Arial Black","Franklin Gothic Heavy",Impact,sans-serif;
-    font-weight:900;font-style:italic;font-size:38px;line-height:1.02;white-space:nowrap;padding-bottom:.06em;}
+    font-weight:900;font-style:italic;font-size:38px;line-height:1.02;white-space:nowrap;padding:0 .18em .06em .06em;}
   .ab-wa .b{color:#000;-webkit-text-stroke:2px #1a1a1a;text-shadow:3px 3px 0 #9a9a9a;}
   .ab-wa .f{position:absolute;inset:0;color:transparent;
     background:linear-gradient(90deg,#15c0d6,#2a6fdb,#6b3fd0,#b53fb0);-webkit-background-clip:text;background-clip:text;}

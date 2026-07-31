@@ -52,10 +52,12 @@ function WordArt({ lines = SLOGAN, variant = 'sky', size }) {
     fontWeight: 900,
     fontSize: size || v.size,
     lineHeight: 0.98,
-    /* descenders (g, y, p) sit below the line box; pad the box so the
-       clipped gradient fill reaches them instead of revealing the black
-       back layer underneath. */
+    /* descenders (g, y, p) sit below the line box, and the italic/skewed final
+       glyph leans past its advance width; pad the box on both axes so the clipped
+       gradient fill reaches them instead of revealing the black back layer. */
     paddingBottom: '0.2em',
+    paddingRight: '0.18em',
+    paddingLeft: '0.06em',
     letterSpacing: v.tracking || '0',
     fontStyle: v.italic ? 'italic' : 'normal',
     textTransform: v.upper ? 'uppercase' : 'none',

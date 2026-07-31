@@ -197,7 +197,7 @@ function ProjectWindow({ proj, onClose, onZoom, stack }) {
       <div className="w98-group" style={{ marginTop: 28 }}>
         <span className="w98-group-title">Technologies</span>
         <div className="w98-field" style={{ padding: '2px 12px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: 26 }}>
+          <div className="proj-tech-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: 26 }}>
             {proj.tech.map((t, i) => (
               <div key={t} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 2px', fontSize: 17,
                 borderBottom: i < noBorderFrom ? '1px dotted #c4c4c4' : 'none' }}>
@@ -577,7 +577,7 @@ function ProjectReelWindow({ proj, onClose, stack, onZoom }) {
           <div className="w98-group" style={{ marginTop: 24 }}>
             <span className="w98-group-title">Technologies</span>
             <div className="w98-field" style={{ padding: '2px 12px' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: 26 }}>
+              <div className="proj-tech-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: 26 }}>
                 {proj.tech.map((t, i) => {
                   const n = proj.tech.length;
                   const noBorderFrom = n - (n % 2 === 0 ? 2 : 1);
