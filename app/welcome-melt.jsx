@@ -40,7 +40,7 @@ const WM_FRAG = `
 
 function WelcomeMelt({
   width = 1920, height = 1080,
-  src = 'https://loick.rivemale.space/videos/Landing.mp4',
+  src = 'assets/videos/Landing.mp4',
   delay = 2.0, duration = 3.6, scale = 1, onDone,
 }) {
   const canvasRef = React.useRef(null);

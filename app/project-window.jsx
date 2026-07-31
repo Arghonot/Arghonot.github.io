@@ -146,12 +146,12 @@ function ProjectWindow({ proj, onClose, onZoom, stack }) {
             : <ProjShot hue={proj.hero.hue} label={proj.hero.label} file={proj.hero.file} dims={proj.hero.dims} src={proj.hero.src} fit={proj.hero.fit} big />}
         </div>
       </div>
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, marginTop: 12 }}>
+      <div className="proj-head" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, marginTop: 12 }}>
         <div style={{ minWidth: 0 }}>
           <h1 style={{ margin: 0, fontSize: 35, fontWeight: 700, letterSpacing: '-.3px' }}>{proj.label}</h1>
           <div style={{ fontSize: 16, color: 'var(--w98-text-dim)', marginTop: 2 }}>{proj.kind}</div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 7, flex: '0 0 auto' }}>
+        <div className="proj-head-actions" style={{ display: 'flex', alignItems: 'center', gap: 7, flex: '0 0 auto' }}>
           {proj.links.map((l) => <ProjLinkBtn key={l} label={l} />)}
           {proj.download && (
             <button type="button" className="d98-taskbtn proj-dl-btn" style={{ flex: '0 0 auto', cursor: 'pointer', height: 48, padding: '0 14px', background: 'linear-gradient(90deg, #1b3a8c, #1083d4)', color: '#fff' }}
@@ -300,7 +300,7 @@ const TERRAIN_PROJECT = {
     'I create procedural landscapes using Gaea and World Machine, mainly for visual experiments, rendering tests, and video work.',
     'These terrains are used as a base for environment studies, look-development, and technical/artistic experiments in Unity, where I explore lighting, shaders, composition, and large-scale landscape rendering.',
   ],
-  tech: ['Gaea1', 'Gaea2', 'WorldMachine', 'Unity', 'Rendering', 'EnvironmentArt'],
+  tech: ['Gaea1', 'Gaea2', 'WorldMachine', 'Unity', 'Rendering'],
   shots: [
     { n: '01', label: 'FOREST LAKES', file: 'forest_lakes.jpg', dims: '1500\u00d71036', hue: 130, src: 'assets/projects/terrain/forest-lakes.jpg' },
     { n: '02', label: 'VALLEY RIDGES', file: 'valley_ridges.jpg', dims: '1500\u00d7909', hue: 96, src: 'assets/projects/terrain/valley-ridges.jpg' },
@@ -403,7 +403,7 @@ const SIEURFLAMME_PROJECT = {
   img: 'assets/icons/sieur-flamme.png', label: 'Sieur Flamme', win: 'D:\\SieurFlamme', kind: 'Animated series', links: ['Instagram'],
   meta: 'Story-driven video series \u00b7 Instagram',
   reelCaption: 'teaser', reelTag1: 'VIDEO', reelTag2: 'series',
-  reelVideo: 'https://loick.rivemale.space/videos/EP1Website.mp4', reelRatio: '9 / 16', reelW: 1000, previewAspect: '4 / 5',
+  reelVideo: 'assets/videos/EP1Website.mp4', reelRatio: '9 / 16', reelW: 1000, previewAspect: '4 / 5',
   cursor: { frames: ['assets/ui/sf-cursor-0.png', 'assets/ui/sf-cursor-1.png', 'assets/ui/sf-cursor-2.png', 'assets/ui/sf-cursor-3.png'], hx: 0, hy: 6, ms: 100, desk: 'personal' },
   desc: [
     'Sieur Flamme is an animated series built around a custom rendering system I created to emulate the look of retro games such as Another World, mixed with dungeon synth and dark fantasy aesthetics.',

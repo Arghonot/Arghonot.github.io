@@ -25,7 +25,7 @@ function BulletRule() {
   );
 }
 
-function ReelVideo({ src = 'https://loick.rivemale.space/videos/freelance.mp4', label = 'EXPERIENCE \u2014 REEL', hint = 'DROP 20s REEL / CLIP', stack }) {
+function ReelVideo({ src = 'assets/videos/freelance.mp4', label = 'EXPERIENCE \u2014 REEL', hint = 'DROP 20s REEL / CLIP', stack }) {
   const [ok, setOk] = React.useState(true);
   const [pct, setPct] = React.useState(0);
   const ref = React.useRef(null);
@@ -67,7 +67,7 @@ function ReadmeWindow({ onClose, stack }) {
   const NOTE_MENUS = ['File', 'Edit', 'Format', 'View', 'Help'];
   const wordart = (
     <div style={{ padding: stack ? '4px 4px 10px' : '16px 10px 14px' }}>
-      <window.WordArt variant="spectrum" lines={['My experience']} size={stack ? 40 : 56} />
+      <window.WordArt variant="spectrum" lines={['My experience']} size={stack ? 'clamp(22px,8.6vw,40px)' : 56} />
     </div>
   );
   const specs = (

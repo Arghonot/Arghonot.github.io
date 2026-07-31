@@ -65,7 +65,7 @@ function OwnerChip({ on, owner }) {
   );
 }
 
-function EduRow({ p, selected, hov, onSel, onHov, nodeRef }) {
+function EduRow({ p, selected, hov, onSel, onHov, nodeRef, stack }) {
   const on = selected;
   const child = p.depth === 1;
   const own = eduOwnerOf(p);
@@ -87,22 +87,22 @@ function EduRow({ p, selected, hov, onSel, onHov, nodeRef }) {
         border: on ? '1px solid #00004d' : (child ? '1px solid ' + own.cardBorder : '1px solid transparent'),
         background: on ? 'var(--w98-navy)' : (hov ? '#eef2f7' : (child ? own.cardBg : 'transparent')),
         color: on ? '#fff' : 'var(--w98-text)' }}>
-        <span className="w98-sunken" style={{ display: 'block', flex: '0 0 auto', padding: 2, background: '#000', width: child ? 58 : 112 }}>
+        {!stack && <span className="w98-sunken" style={{ display: 'block', flex: '0 0 auto', padding: 2, background: '#000', width: child ? 58 : 112 }}>
           <EduShot p={p} style={{ aspectRatio: '16 / 9', height: 'auto' }}>
             <span style={{ position: 'absolute', inset: 0, display: 'grid', placeItems: 'center' }}>
               <window.PixelIcon icon={p.icon} size={child ? 17 : 28} style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,.6))' }} />
             </span>
           </EduShot>
-        </span>
+        </span>}
         <span style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: child ? 2 : 4, justifyContent: 'center' }}>
           <span style={{ display: 'flex', alignItems: 'center', gap: child ? 7 : 9, flexWrap: 'wrap' }}>
             {p.owner && <span style={{ width: child ? 7 : 8, height: child ? 7 : 8, background: on ? '#fff' : oc, flex: '0 0 auto' }} />}
             <span style={{ fontSize: child ? 17 : 22, fontWeight: 700, lineHeight: 1.08 }}>{p.name}</span>
             {child && <OwnerChip on={on} owner={own} />}
           </span>
-          {!child && <span style={{ fontSize: 16, lineHeight: 1.4, opacity: on ? .96 : .82, textWrap: 'pretty',
+          {!child && !stack && <span style={{ fontSize: 16, lineHeight: 1.4, opacity: on ? .96 : .82, textWrap: 'pretty',
             display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{p.desc}</span>}
-          {eduNoteLines(p).length > 0 && (
+          {!stack && eduNoteLines(p).length > 0 && (
             <span style={{ display: 'flex', flexDirection: 'column', gap: 1, marginTop: child ? 3 : 2 }}>
               {eduNoteLines(p).map((ln, i) => (
                 <span key={i} style={{ fontSize: child ? 14 : 15, lineHeight: 1.35, textWrap: 'pretty',
@@ -111,7 +111,7 @@ function EduRow({ p, selected, hov, onSel, onHov, nodeRef }) {
             </span>
           )}
         </span>
-        {!child && <span style={{ flex: '0 0 auto', alignSelf: 'center', width: 52, textAlign: 'right', fontSize: 16, fontFamily: '"Courier New", monospace', fontWeight: 700, opacity: on ? 1 : .8 }}>{p.dur}</span>}
+        {!child && !stack && <span style={{ flex: '0 0 auto', alignSelf: 'center', width: 52, textAlign: 'right', fontSize: 16, fontFamily: '"Courier New", monospace', fontWeight: 700, opacity: on ? 1 : .8 }}>{p.dur}</span>}
       </span>
     </button>
   );
@@ -162,7 +162,7 @@ function EducationTimeline({ onClose, stack }) {
         </svg>
         <div style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
           {EDU_ITEMS.map((p) => (
-            <EduRow key={p.id} p={p} selected={sel === p.id} hov={hov === p.id}
+            <EduRow key={p.id} p={p} stack={stack} selected={sel === p.id} hov={hov === p.id}
               onSel={setSel} onHov={setHov} nodeRef={(el) => { nodeRefs.current[p.id] = el; }} />
           ))}
         </div>

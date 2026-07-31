@@ -76,7 +76,8 @@ function PipesScreensaver({ idleMs = 45000 }) {
         for (let k = 0; k < 4; k++) s += a[k*4+r] * b[c2*4+k]; o[c2*4+r] = s; } return o; };
     const EYE = [0, 2.5, 15.5];
     const uVPLoc = G.getUniformLocation(PP, 'uVP');
-    G.uniform3fv(G.getUniformLocation(PP, 'uEye'), EYE);
+    const uEyeLoc = G.getUniformLocation(PP, 'uEye');
+    G.uniform3fv(uEyeLoc, EYE);
     const uRotLoc = G.getUniformLocation(PP, 'uRot');
 
     const pv = (px, py, pz, nx, ny, nz, col) => { if (vc >= MAXV) return;
@@ -114,7 +115,16 @@ function PipesScreensaver({ idleMs = 45000 }) {
         } }
     };
 
-    const GX = 11, GY = 8, GZ = 11;
+    /* The pipe volume is a stretched box, not a cube. Cell size stays 1 world unit
+       (so pipe thickness and joint size never change) while the cell COUNT follows
+       the viewport aspect — a tall phone gets a tall narrow column instead of a
+       wide box cropped at the sides. GX drives the footprint, GZ tracks GX so the
+       footprint stays square (the scene spins about Y, so an oblong footprint would
+       swing its depth into view and clip), and GY is derived from however much
+       vertical room the camera distance leaves — that is what makes the box fill
+       the screen instead of floating in dead space. */
+    const CELL_BUDGET = 92;
+    let GX = 11, GY = 8, GZ = 11;
     const DIRS = [[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]];
     const PALETTE = [[0.85,0.66,0.15],[0.78,0.78,0.80],[0.80,0.16,0.12],[0.10,0.62,0.25],[0.18,0.35,0.85],[0.08,0.62,0.62],[0.55,0.25,0.78]];
     let occ, pipes, colIdx;
@@ -155,8 +165,28 @@ function PipesScreensaver({ idleMs = 45000 }) {
       cssW = window.innerWidth; cssH = window.innerHeight;
       C.width = Math.floor(cssW * dpr); C.height = Math.floor(cssH * dpr);
       G.viewport(0, 0, C.width, C.height);
-      const VP = mul(persp(0.96, cssW / cssH, 0.5, 60), lookAt(EYE, [0, 0, 0]));
+      const aspect = cssW / cssH;
+      const FOV = 0.96, t = Math.tan(FOV / 2), MARGIN = 1.15;
+      const gx = Math.min(16, Math.max(5, Math.round(Math.sqrt(CELL_BUDGET * Math.min(Math.max(aspect, 0.35), 3.2)))));
+      const gz = Math.min(12, Math.max(6, gx));
+      /* horizontal fit uses the SWEPT radius: the scene rotates about Y, so the
+         silhouette reaches hypot(halfX, halfZ), not halfX */
+      const halfW = Math.hypot((gx - 1) / 2, (gz - 1) / 2) + R;
+      /* visible half-height needed to satisfy that horizontal fit */
+      const visH = halfW * MARGIN / aspect;
+      const dist = visH / t + (gz - 1) / 2;
+      /* fill the leftover vertical room with cells rather than empty space */
+      const gy = Math.min(22, Math.max(5, Math.round(2 * (visH / MARGIN - R)) + 1));
+      /* hysteresis: mobile browsers fire resize when the URL bar shows/hides, and a
+         one-cell flip must not wipe the maze mid-animation */
+      const changed = Math.abs(gx - GX) > 1 || Math.abs(gy - GY) > 1 || Math.abs(gz - GZ) > 1;
+      GX = gx; GY = gy; GZ = gz;
+      EYE[1] = Math.min(2.5, visH * 0.22);
+      EYE[2] = dist;
+      G.uniform3fv(uEyeLoc, EYE);
+      const VP = mul(persp(FOV, aspect, 0.5, dist * 2.6 + 40), lookAt(EYE, [0, 0, 0]));
       G.uniformMatrix4fv(uVPLoc, false, VP);
+      if (changed && occ) resetAll();
     };
 
     const tps = 14, rotSpd = 0.15;

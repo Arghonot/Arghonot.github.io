@@ -5,6 +5,11 @@ manager. React and Babel load from a CDN at runtime; everything else is local an
 referenced with **relative** paths, so the site works from any base URL — a user page, a
 project page under a subpath, or a custom domain.
 
+> **Before deploying:** `assets/videos/` must contain `Landing.mp4` (welcome-screen showreel),
+> `freelance.mp4` (Read Me reel) and `EP1Website.mp4` (Sieur Flamme teaser). They are not
+> in this archive. Each has a graceful fallback if missing, but the welcome melt reveals a
+> placeholder gradient instead of the reel.
+
 ## Layout
 
 ```
@@ -40,7 +45,9 @@ assets/
   work/               employment / timeline imagery
   projects/           per-project galleries (arcana, art, enable,
                       sieur-flamme, terrain, title, xnoise)
+  videos/             Landing.mp4, freelance.mp4, EP1Website.mp4 (supply these)
 files/                downloads (resume PDF, ARCANA rules addendum)
+
 ```
 
 ## Deploy

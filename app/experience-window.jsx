@@ -333,7 +333,7 @@ function WorkRow({ p, selected, hov, onSel, onHov, nodeRef, hideArrow, stack }) 
   const own = ownerOf(p);
   const oc = own ? own.color : null;
   const nodeColor = on ? SEL_PIN : (oc || '#c0c0c0');
-  const strip = useRowStrip(!child, stack, p.photo);
+  const strip = useRowStrip(!child && !stack, stack, p.photo);
   return (
     <button onClick={() => onSel(p.id)} onMouseEnter={() => onHov(p.id)} onMouseLeave={() => onHov((h) => h === p.id ? null : h)}
       style={{ all: 'unset', cursor: 'pointer', display: 'flex', alignItems: 'stretch', width: '100%', boxSizing: 'border-box', position: 'relative' }}>

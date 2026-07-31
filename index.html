@@ -39,7 +39,7 @@
   body{
     font-family:'Tahoma','MS Sans Serif','Segoe UI',sans-serif;
     font-size:12px;-webkit-font-smoothing:none;
-    background:#000;color:#000;
+    background:#008080;color:#000;
     -webkit-user-select:none;user-select:none;
   }
   /* the desktop shell itself stays unselectable (icons, taskbar, drag), but text
@@ -59,7 +59,8 @@
   /* ---------- desks: full-bleed color layers, only the active one shows ---------- */
   .desk{position:absolute;left:0;right:0;top:0;bottom:var(--tb-h);display:none;}
   .desk.is-active{display:block;}
-  .desk[data-desk="welcome"]{background:#000000;}
+  html{background:#008080;}
+  .desk[data-desk="welcome"]{background:#008080;}
   .desk[data-desk="professional"]{background:#3f8f8a;}
   .desk[data-desk="personal"]{background:radial-gradient(ellipse at center, rgba(0,0,0,0) 52%, rgba(0,0,0,0.24) 100%), rgb(13,107,64);}
   .desk[data-desk="about"]{background:#7c98d6;}
@@ -308,6 +309,28 @@
     .ts-web{flex:0 0 auto !important;border-right:none !important;border-bottom:1px solid #b8b8b8;}
     .ts-files{max-height:340px;}
   }
+  /* ---------- narrow-mode corrections (mobile) ---------- */
+  @media (max-width:760px){
+    /* start button: icon only */
+    .d98-start-lbl{display:none;}
+    .d98-start{padding:0 10px;gap:0;}
+    /* start menu: desk switching only — no room for the per-window submenus */
+    .fsm-list{width:min(340px,calc(100vw - 24px));}
+    .fsm-sub{display:none !important;}
+    .fsm-item.has-sub::after{content:none;}
+    /* tech stack: hug content, two icon columns, no inner scroller */
+    .ts-win{height:auto !important;max-height:none !important;}
+    .ts-body{flex-direction:column !important;overflow:visible !important;}
+    .ts-web{flex:0 0 auto !important;border-right:none !important;border-bottom:1px solid #b8b8b8;}
+    .ts-filewrap{flex:0 0 auto !important;}
+    .ts-files{max-height:none !important;overflow:visible !important;flex:0 0 auto !important;}
+    .ts-grid{grid-template-columns:1fr 1fr !important;}
+    .ts-item .lbl{overflow-wrap:anywhere;}
+    /* project windows: download button sits under the title, above the description */
+    .proj-head{flex-direction:column !important;align-items:stretch !important;gap:10px !important;}
+    .proj-head-actions{width:100%;flex-wrap:wrap;}
+    .proj-dl-btn{flex:1 1 100% !important;justify-content:center;}
+  }
   .about-win{width:1000px;max-width:calc(var(--vpw) - 24px);display:none;}
   .about-win.is-open{display:block;}
 
@@ -349,7 +372,7 @@
     grid-template-areas:"portrait wordart" "portrait bio" "tech tech";
     background:var(--w98-face);
   }
-  .ab-portrait{grid-area:portrait;position:relative;
+  .ab-portrait{grid-area:portrait;position:relative;min-width:0;overflow:hidden;
     box-shadow:inset -1px -1px 0 #fff, inset 1px 1px 0 #808080, inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #0a0a0a;}
   .ab-portrait image-slot{--placeholder-color:#7a7a7a;image-rendering:pixelated;}
   .ab-exp{position:absolute;left:16px;bottom:16px;background:linear-gradient(#1b46c8,#0a1f7a);
@@ -401,10 +424,17 @@
       grid-template-areas:"wordart" "portrait" "bio" "tech";
     }
     .ab-portrait{aspect-ratio:4/3;}
+    .ab-portrait image-slot{display:block;width:100%;height:100%;}
     .ab-bio{font-size:14px;line-height:1.35;}
-    .ab-tech{padding:4px 10px 8px;}
+    .ab-tech{padding:4px 10px 8px;min-width:0;}
     .ab-tech legend{font-size:13px;}
-    .ab-tech ul{font-size:12px;gap:4px 12px;}
+    .ab-tech ul{grid-template-columns:1fr;font-size:13px;gap:5px;}
+    .ab-tech li{min-width:0;}
+    /* the slogan is one nowrap line per row: scale it to the window instead of clipping */
+    .ab-wordart{min-width:0;}
+    .ab-wa{max-width:100%;}
+    .ab-wa .b,.ab-wa .f{font-size:clamp(15px,6.1vw,38px);-webkit-text-stroke-width:1px;}
+    .ab-wa .b{text-shadow:2px 2px 0 #9a9a9a;}
   }
 
   /* ---------- per-desk scroll: mobile stacks windows in flow; the desk
@@ -416,7 +446,7 @@
     .desk-stage{position:relative !important;z-index:2;height:100%;overflow-y:auto;overflow-x:hidden;
       display:flex;flex-direction:column;align-items:center;gap:16px;padding:16px 12px 24px;}
     .desk-stage .w98-window{position:static !important;left:auto !important;top:auto !important;flex:0 0 auto;width:calc(100vw - 24px) !important;max-width:calc(100vw - 24px) !important;}
-    .win-icons{order:-1;position:static;z-index:auto;display:grid;grid-template-columns:repeat(2,1fr);gap:18px 12px;width:100%;max-width:340px;justify-items:center;}
+    .win-icons{order:-9999;position:static;z-index:auto;display:grid;grid-template-columns:repeat(2,1fr);gap:18px 12px;width:100%;max-width:340px;justify-items:center;}
     .win-icon{width:100%;}
     /* welcome desk holds a single window: centre it in the viewport instead of top-aligning */
     .welcome-stage{justify-content:center;min-height:100%;}
@@ -621,7 +651,7 @@
   <div class="d98-taskbar">
     <div class="d98-start" id="startBtn">
       <span class="d98-start-logo"><span style="background:#d83b3b"></span><span style="background:#2f9b46"></span><span style="background:#1083d4"></span><span style="background:#e8b84a"></span></span>
-      Start
+      <span class="d98-start-lbl">Start</span>
     </div>
     <span class="d98-sep"></span>
     <div class="d98-tasks" id="taskList"></div>
@@ -914,6 +944,44 @@
     return {center:center};
   }
   window.makeDraggable = makeDraggable;
+
+  /* ---- narrow mode: every window opens in the same place ------------------
+     Stacked windows live in document flow, so without this a window mounts at
+     its own fixed slot in DOM order — the last icon's window opened far below
+     the first icon's. Newly opened windows are pulled to the front of the flow
+     (just after the icon grid, which is pinned at order:-9999) and the desk
+     scrolls to them, so the landing spot is identical for every icon. */
+  var narrowMQ = window.matchMedia('(max-width:760px)');
+  var narrowOrder = 0;
+  function stageChildOf(stage, node){
+    var c = node;
+    while(c && c.parentElement && c.parentElement !== stage) c = c.parentElement;
+    return (c && c.parentElement === stage) ? c : null;
+  }
+  function snapNarrow(win){
+    if(!narrowMQ.matches) return;
+    var stage = win.closest('.desk-stage');
+    if(!stage) return;
+    var child = stageChildOf(stage, win);
+    if(!child) return;
+    narrowOrder -= 1;
+    child.style.order = narrowOrder;
+    requestAnimationFrame(function(){
+      stage.scrollTop = Math.max(0, child.offsetTop - 12);
+    });
+  }
+  document.querySelectorAll('.desk-stage').forEach(function(stage){
+    new MutationObserver(function(muts){
+      muts.forEach(function(m){
+        Array.prototype.forEach.call(m.addedNodes, function(nd){
+          if(nd.nodeType !== 1) return;
+          var win = (nd.matches && nd.matches('.w98-window')) ? nd
+            : (nd.querySelector ? nd.querySelector('.w98-window') : null);
+          if(win) snapNarrow(win);
+        });
+      });
+    }).observe(stage, { childList: true, subtree: true });
+  });
   document.querySelectorAll('.desk-stage').forEach(function(stage){
     stage.querySelectorAll('.w98-window').forEach(function(win){
       var anchor='center';
