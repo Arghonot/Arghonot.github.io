@@ -61,7 +61,7 @@
   document.head.appendChild(el);
 })();
 
-var CLAPPY_MAIL = "mailto:you@email.com?subject=It%20looks%20like%20you%20want%20to%20hire%20me&body=Hi%20there%2C%0A%0AClappy%20sent%20me.%20Let's%20talk!";
+var CLAPPY_MAIL = "mailto:lo.rivemale@gmail.com?subject=It%20looks%20like%20you%20want%20to%20hire%20somebody=Hi%20there%2C%0A%0AClappy%20sent%20me.%20Let's%20talk!";
 
 function ClappyAssistant(props) {
   var onClose = props.onClose || function () {};

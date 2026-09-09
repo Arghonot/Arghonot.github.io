@@ -123,7 +123,8 @@ function ProjLightbox({ shots, index, setIndex, onClose, previewAspect }) {
 const PROJ_LINKS = { GitHub: 'https://github.com/Arghonot', Instagram: 'https://www.instagram.com/argrafix' };
 
 function ProjLinkBtn({ label }) {
-  const href = PROJ_LINKS[label];
+  const l = typeof label === 'object' ? label.label : label;
+  const href = typeof label === 'object' ? label.href : PROJ_LINKS[l];
   const st = { display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 16, padding: '4px 10px', textDecoration: 'none', color: 'var(--w98-text)' };
   return href
     ? <a className="w98-btn" href={href} target="_blank" rel="noreferrer" style={st}>{label}&nbsp;&#8599;</a>
@@ -326,7 +327,7 @@ const TERRAIN_PROJECT = {
 };
 
 const XNOISE_PROJECT = {
-  img: 'assets/icons/xnoise.png', label: 'XNoise', win: 'D:\\Xnoise', kind: 'Personal project', links: ['GitHub', 'itch.io'],
+  img: 'assets/icons/xnoise.png', label: 'XNoise', win: 'D:\\Xnoise', kind: 'Personal project', links: [{ label: 'GitHub', href: 'https://github.com/Arghonot/XNoise' }, { label: 'itch.io', href: 'https://arghonot.itch.io/xnoise' }],
   hero: { label: 'NODAL NOISE EDITOR', file: 'xnoise_player.jpg', dims: '1700\u00d7956', hue: 232, src: 'assets/projects/xnoise/player.jpg' },
   desc: 'A nodal noise generation tool for Unity based on a port of libnoise, rewritten entirely in shaders. Supports Perlin, Billow, RidgedMultifractal, Voronoi and exports 2D, spherical, or cylindrical maps.',
   tech: ['Unity', 'C#', 'ShaderLab', 'HLSL', 'xNode', 'WebGL'],
@@ -347,7 +348,7 @@ const XNOISE_PROJECT = {
 };
 
 const ENABLE_PROJECT = {
-  img: 'assets/icons/enable.png', label: 'Enable', win: 'D:\\Enable', kind: 'Personal project', links: ['GitHub', 'itch.io'],
+  img: 'assets/icons/enable.png', label: 'Enable', win: 'D:\\Enable', kind: 'Personal project', links: [{ label: 'GitHub', href: 'https://github.com/Chefty/Enable' },  { label: 'itch.io', href: 'https://chefty.itch.io/enable' }],
   hero: { label: 'ENABLE', file: 'enable_cover.jpg', dims: '1600\u00d7900', hue: 280, src: 'assets/projects/enable/cover.jpg' },
   desc: 'A puzzle-platformer about losing and recovering your abilities. Manage movement, jumping, and directional skills in precise order to reach the portal.',
   tech: ['Unity', 'C#', 'CustomShaders', 'WebGL'],
@@ -359,7 +360,7 @@ const ENABLE_PROJECT = {
 };
 
 const TITLE_PROJECT = {
-  img: 'assets/icons/title.png', label: 'Title', win: 'D:\\Title', kind: 'Personal project', links: ['GitHub', 'itch.io'],
+  img: 'assets/icons/title.png', label: 'Title', win: 'D:\\Title', kind: 'Personal project', links: [{ label: 'GitHub', href: 'https://github.com/Chefty/GGJ-2024' }],
   hero: { label: 'TITLE SCREEN', file: 'title_screen.jpg', dims: '1600\u00d7900', hue: 6, src: 'assets/projects/title/hero.jpg' },
   desc: 'A chaotic 2-4 player local co-op game in a crowded office elevator.',
   accomplishments: [
@@ -393,7 +394,7 @@ const ARCANA_PROJECT = {
 };
 
 const CHROME_PROJECT = {
-  img: 'assets/icons/chrome.png', label: 'Chrome', win: 'D:\\Chrome', kind: 'Personal project', links: ['GitHub', 'itch.io'],
+  img: 'assets/icons/chrome.png', label: 'Chrome', win: 'D:\\Chrome', kind: 'Personal project', links: [{ label: 'GitHub', href: 'https://github.com/Chefty/Chrome' }],
   hero: { label: 'CHROME \u2014 GAMEPLAY', file: 'chrome.mp4', dims: '1920\u00d71080', hue: 210, youtube: 'KjQxsBD2ex8' },
   desc: 'A VR game where you play as a "god" restoring a planet by painting it back to life - a calm, meditative experience.',
   tech: ['Unity', 'VR', 'ShaderGraph', 'C#'],
