@@ -125,10 +125,20 @@ const PROJ_LINKS = { GitHub: 'https://github.com/Arghonot', Instagram: 'https://
 function ProjLinkBtn({ label }) {
   const l = typeof label === 'object' ? label.label : label;
   const href = typeof label === 'object' ? label.href : PROJ_LINKS[l];
-  const st = { display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 16, padding: '4px 10px', textDecoration: 'none', color: 'var(--w98-text)' };
+
+  const st = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 5,
+    fontSize: 16,
+    padding: '4px 10px',
+    textDecoration: 'none',
+    color: 'var(--w98-text)'
+  };
+
   return href
-    ? <a className="w98-btn" href={href} target="_blank" rel="noreferrer" style={st}>{label}&nbsp;&#8599;</a>
-    : <button type="button" className="w98-btn" style={st}>{label}&nbsp;&#8599;</button>;
+    ? <a className="w98-btn" href={href} target="_blank" rel="noreferrer" style={st}>{l}&nbsp;&#8599;</a>
+    : <button type="button" className="w98-btn" style={st}>{l}&nbsp;&#8599;</button>;
 }
 
 function ProjectWindow({ proj, onClose, onZoom, stack }) {
@@ -153,7 +163,12 @@ function ProjectWindow({ proj, onClose, onZoom, stack }) {
           <div style={{ fontSize: 16, color: 'var(--w98-text-dim)', marginTop: 2 }}>{proj.kind}</div>
         </div>
         <div className="proj-head-actions" style={{ display: 'flex', alignItems: 'center', gap: 7, flex: '0 0 auto' }}>
-          {proj.links.map((l) => <ProjLinkBtn key={l} label={l} />)}
+          {proj.links.map((l) =>
+            <ProjLinkBtn
+              key={typeof l === 'object' ? l.label : l}
+              label={l}
+            />
+          )}
           {proj.download && (
             <button type="button" className="d98-taskbtn proj-dl-btn" style={{ flex: '0 0 auto', cursor: 'pointer', height: 48, padding: '0 14px', background: 'linear-gradient(90deg, #1b3a8c, #1083d4)', color: '#fff' }}
               onMouseDown={(e) => e.currentTarget.classList.add('is-active')}
@@ -566,7 +581,12 @@ function ProjectReelWindow({ proj, onClose, stack, onZoom }) {
           <div style={{ fontSize: 17, color: 'var(--w98-text-dim)', marginTop: 3 }}>{proj.meta}</div>
           {proj.links && proj.links.length > 0 && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginTop: 12 }}>
-              {proj.links.map((l) => <ProjLinkBtn key={l} label={l} />)}
+              {proj.links.map((l) =>
+                <ProjLinkBtn
+                  key={typeof l === 'object' ? l.label : l}
+                  label={l}
+                />
+              )}
             </div>
           )}
           <div className="w98-group" style={{ marginTop: 22 }}>
