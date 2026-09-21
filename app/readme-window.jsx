@@ -7,8 +7,8 @@ const README_SPECS = [
   ['Role', 'Unity XR Engineer'],
   ['Focus', 'Rendering \u00b7 XR \u00b7 engineering'],
   ['Experience', 'Airbus DS \u00b7 Ret\u00ecn\u00edZE \u00b7 Freelance'],
-  ['Delivery', 'Prototype > architecture > deployment'],
-  ['Work mode', 'Good energy \u00b7 serious execution'],
+  ['Delivery', 'Prototype > architecture > deployment']
+/*  ['Work mode', 'Good energy \u00b7 serious execution'],*/
 ];
 const README_LINES = [
   'For more than eight years, I\u2019ve built VR, AR, and real-time graphics applications across aerospace, virtual production, and cultural experiences.',
@@ -88,9 +88,7 @@ function ReadmeWindow({ onClose, stack }) {
     <div className="w98-field w98-scroll" style={{ background: '#fff', padding: '12px 14px', flex: stack ? '0 0 auto' : '1 1 auto', minHeight: 0,
       overflowY: stack ? 'visible' : 'auto', fontFamily: '"Courier New", monospace', fontSize: 17, lineHeight: 1.55, color: '#1d1d1d' }}>
       <div style={{ fontWeight: 700 }}>ReadMe.Txt</div>
-      <div style={{ color: '#5a5a5a' }}>Lo&iuml;ck Rivemale &middot; portfolio 98</div>
-      <div style={{ borderTop: '1px solid #cfcfcf', margin: '8px 0' }} />
-      <p style={{ margin: '0 0 11px', fontWeight: 700 }}>Hi there!</p>
+      <div style={{ borderTop: '1px solid #cfcfcf', margin: '8px 0' }} />      <p style={{ margin: '0 0 11px', fontWeight: 700 }}>Hi there!</p>
       {README_LINES.map((l, i) => (
         <p key={i} style={{ margin: i === README_LINES.length - 1 ? 0 : '0 0 11px' }}>{l}</p>
       ))}
