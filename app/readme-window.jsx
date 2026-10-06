@@ -96,7 +96,7 @@ function ReadmeWindow({ onClose, stack }) {
     </div>
   );
   return (
-    <window.FlowWindow img="assets/icons/readme.png" title={'C:\\ReadMe.txt'} onClose={onClose} width={stack ? undefined : 1080}
+    <window.FlowWindow img="assets/icons/readme.png" title={'C:\\ReadMe.txt'} onClose={onClose} width={stack ? undefined : 972}
       style={stack ? { display: 'flex', flexDirection: 'column' } : { maxHeight: 968, maxWidth: 'calc(100vw - 24px)', display: 'flex', flexDirection: 'column' }}
       menubar={
         <div className="w98-menubar">
