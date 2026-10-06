@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Loïck Rivemale</title>
+<script>
+  /* Keep every relative asset anchored to the site root while clean SPA routes
+     are visible. This also preserves project-page deployments under a subpath. */
+  (function(){
+    var m=location.pathname.match(/\/(?:work|personal|about)(?:\/[^/]+)?\/?$/);
+    var base=m ? location.pathname.slice(0,m.index+1) : location.pathname.replace(/[^/]*$/,'');
+    window.__siteBasePath=base||'/';
+    var el=document.createElement('base');
+    el.href=window.__siteBasePath;
+    document.head.appendChild(el);
+  })();
+</script>
 <meta name="description" content="Portfolio of Loïck Rivemale, Unity XR and rendering engineer with 8+ years building VR/AR applications, GPU rendering systems, custom shaders and worldspace VR UI toolkits for Retinize, Airbus Defence &amp; Space and freelance clients.">
 <meta name="author" content="Loïck Rivemale">
 <link rel="canonical" href="https://loick.rivemale.space/">
@@ -618,8 +630,8 @@
             <span class="ab-wa"><span class="b">creative exploration</span><span class="f">creative exploration</span></span>
           </div>
           <div class="ab-bio">
-            <p>I'm a Unity developer blending solid engineering with creative exploration. Over the years I've shipped aerospace simulation tools, VR filmmaking software, and personal projects that push the boundaries of real-time graphics.</p>
-            <p>I make tools, shaders, and design 3D environments - I am always experimenting.</p>
+            <p>I am a Unity developer blending solid engineering with creative exploration. Over the years I have shipped aerospace simulation tools, VR filmmaking software, and personal projects that push the boundaries of real-time graphics.</p>
+            <p>I make tools, shaders, and design 3D environments. I am always experimenting.</p>
           </div>
           <fieldset class="ab-tech">
             <legend>Tech stack</legend>
@@ -676,6 +688,96 @@
 <div id="screensaverMount"></div>
 
 <script>
+  var ROUTE_PROJECTS=[
+    {slug:'art',icon:'iconArt'},
+    {slug:'terrain',icon:'iconTerrain'},
+    {slug:'xnoise',icon:'iconXnoise'},
+    {slug:'sieur-flamme',icon:'iconSieurflamme'},
+    {slug:'title',icon:'iconTitle'},
+    {slug:'enable',icon:'iconEnable'},
+    {slug:'chrome',icon:'iconChrome'},
+    {slug:'arcana',icon:'iconArcana'}
+  ];
+  var ROUTE_PROJECT_SLUGS=ROUTE_PROJECTS.map(function(p){return p.slug;});
+  var routeControls={};
+  var routerStarted=false;
+
+  function routeFromPath(pathname){
+    var base=window.__siteBasePath||'/';
+    var path=pathname;
+    if(path.indexOf(base)===0) path=path.slice(Math.max(0,base.length-1));
+    path='/' + path.replace(/^\/+|\/+$/g,'');
+    if(path==='/work') return {desk:'professional',project:null};
+    if(path==='/about') return {desk:'about',project:null};
+    if(path==='/personal') return {desk:'personal',project:'art'};
+    var m=path.match(/^\/personal\/([^/]+)$/);
+    if(m && ROUTE_PROJECT_SLUGS.indexOf(m[1])!==-1) return {desk:'personal',project:m[1]};
+    return {desk:'welcome',project:null};
+  }
+
+  function savedRoute(state){
+    var r=state && state.portfolioRoute;
+    if(!r || ['welcome','professional','personal','about'].indexOf(r.desk)===-1) return null;
+    if(r.project!==null && ROUTE_PROJECT_SLUGS.indexOf(r.project)===-1) return null;
+    return {desk:r.desk,project:r.project};
+  }
+
+  function routePath(route){
+    var base=window.__siteBasePath||'/';
+    var tail=route.desk==='professional' ? 'work'
+      : route.desk==='personal' ? 'personal'+(route.project?'/'+route.project:'')
+      : route.desk==='about' ? 'about' : '';
+    return base+tail;
+  }
+
+  var redirectedPath=new URLSearchParams(location.search).get('spa');
+  window.__initialRoute=savedRoute(history.state)||routeFromPath(redirectedPath||location.pathname);
+  window.__initialRouteUrl=redirectedPath
+    ? (window.__siteBasePath||'/')+redirectedPath.replace(/^\//,'')
+    : location.pathname;
+  window.__currentRoute=window.__initialRoute;
+
+  function applyRoute(route){
+    window.__currentRoute=route;
+    select(route.desk,true);
+    Object.keys(routeControls).forEach(function(key){routeControls[key](route);});
+  }
+
+  function navigateRoute(route,url,replace){
+    var state={portfolioRoute:{desk:route.desk,project:route.project}};
+    history[replace?'replaceState':'pushState'](state,'',url||routePath(route));
+    applyRoute(route);
+  }
+
+  window.__registerRouteControl=function(key,control){
+    routeControls[key]=control;
+    if(routerStarted) control(window.__currentRoute);
+    return function(){if(routeControls[key]===control) delete routeControls[key];};
+  };
+  window.__navigateProject=function(slug,open){
+    navigateRoute({desk:'personal',project:open?slug:null});
+  };
+  window.__navigateDesk=function(id){
+    var route={desk:id,project:null};
+    if(id==='personal'){
+      ROUTE_PROJECTS.some(function(p){
+        var icon=document.getElementById(p.icon);
+        if(icon&&icon.classList.contains('is-open')){route.project=p.slug;return true;}
+        return false;
+      });
+    }
+    var url=(window.__siteBasePath||'/')+(id==='professional'?'work':id==='personal'?'personal':id==='about'?'about':'');
+    navigateRoute(route,url);
+  };
+  window.__startRouter=function(){
+    if(routerStarted) return;
+    routerStarted=true;
+    navigateRoute(window.__initialRoute,window.__initialRouteUrl,true);
+    window.addEventListener('popstate',function(e){
+      applyRoute(savedRoute(e.state)||routeFromPath(location.pathname));
+    });
+  };
+
   var DESKS=[
     {id:'welcome',      name:'Welcome',      img:'assets/icons/welcome-door.png'},
     {id:'professional', name:'Professional', img:'assets/icons/work.png'},
@@ -689,7 +791,7 @@
   var startBtn=document.getElementById('startBtn');
   var startMenu=document.getElementById('startMenu');
 
-  function select(id){
+  function select(id,fromRouter){
     var changed = current!==id;
     current=id;
     document.querySelectorAll('.desk').forEach(function(d){d.classList.toggle('is-active',d.dataset.desk===id);});
@@ -704,6 +806,7 @@
         if(activeDesk.contains(entry.win)) entry.center();
       });
     });
+    if(!fromRouter && window.__navigateDesk) window.__navigateDesk(id);
   }
 
   DESKS.forEach(function(d){
@@ -715,9 +818,18 @@
     taskList.appendChild(b);
   });
 
-  function openIcon(iconId){
+  function openIcon(iconId,deskId){
     var icon=document.getElementById(iconId);
-    if(icon && !icon.classList.contains('is-open')) icon.click();
+    if(!icon) return;
+    if(deskId==='personal'){
+      var project=ROUTE_PROJECTS.find(function(p){return p.icon===iconId;});
+      if(icon.classList.contains('is-open')){
+        if(project) window.__navigateProject(project.slug,true);
+      }else icon.click();
+      return;
+    }
+    if(!icon.classList.contains('is-open')) icon.click();
+    window.__navigateDesk(deskId);
   }
 
   var MENU=[
@@ -766,8 +878,8 @@
         ci.innerHTML='<img src="'+c.img+'" alt=""><span class="lbl">'+c.label+'</span>';
         ci.addEventListener('click',function(e){
           e.stopPropagation();
-          select(d.id);
-          if(c.icon) openIcon(c.icon);
+          select(d.id,true);
+          if(c.icon) openIcon(c.icon,d.id);
         });
         sub.appendChild(ci);
       });
@@ -1239,12 +1351,13 @@
     ReactDOM.createRoot(expMountEl).render(<ExpMount />);
   }
 
-  function makeProjectMount(mountId, iconId, proj, group, defaultOpen){
+  function makeProjectMount(mountId, iconId, proj, group, defaultOpen, slug){
     var mountEl=document.getElementById(mountId);
     if(!mountEl || !window.ProjectWindow || !proj) return;
     var stackMQ=window.matchMedia('(max-width:760px)');
     function Mount(){
-      const [open,setOpen]=React.useState(!!defaultOpen);
+      const [open,setOpen]=React.useState(()=>window.__initialRoute.desk==='personal'
+        ? window.__initialRoute.project===slug : !!defaultOpen);
       const [stack,setStack]=React.useState(stackMQ.matches);
       const [zoom,setZoom]=React.useState(null);
       const ref=React.useRef(null);
@@ -1259,11 +1372,18 @@
       React.useEffect(()=>{
         var icon=document.getElementById(iconId);
         if(!icon) return;
-        icon.addEventListener('click',function(){ setOpen(function(o){ return !o; }); });
+        var onClick=function(){ window.__navigateProject(slug,!icon.classList.contains('is-open')); };
+        icon.addEventListener('click',onClick);
         var onChange=function(e){ setStack(e.matches); };
         stackMQ.addEventListener('change', onChange);
-        return ()=>stackMQ.removeEventListener('change', onChange);
+        return ()=>{icon.removeEventListener('click',onClick);stackMQ.removeEventListener('change', onChange);};
       },[]);
+      React.useEffect(()=>window.__registerRouteControl('project:'+slug,function(route){
+        if(route.desk!=='personal') return;
+        var next=route.project===slug;
+        setOpen(next);
+        if(!next) setZoom(null);
+      }),[]);
       React.useEffect(()=>{
         if(!open || !ref.current) return;
         var win=ref.current.querySelector('.w98-window');
@@ -1275,7 +1395,7 @@
       },[open,stack]);
       return open ? (
         <div ref={ref}>
-          <window.ProjectWindow proj={proj} stack={stack} onClose={()=>setOpen(false)} onZoom={(shots,i)=>setZoom({shots,index:i})} />
+          <window.ProjectWindow proj={proj} stack={stack} onClose={()=>window.__navigateProject(slug,false)} onZoom={(shots,i)=>setZoom({shots,index:i})} />
           {zoom && <window.ProjLightbox shots={zoom.shots} index={zoom.index} previewAspect={proj.previewAspect} setIndex={(i)=>setZoom(function(z){ return {...z, index:i}; })} onClose={()=>setZoom(null)} />}
         </div>
       ) : null;
@@ -1283,12 +1403,12 @@
     ReactDOM.createRoot(mountEl).render(<Mount />);
   }
 
-  function makeReelMount(mountId, iconId, proj, group){
+  function makeReelMount(mountId, iconId, proj, group, slug){
     var mountEl=document.getElementById(mountId);
     if(!mountEl || !window.ProjectReelWindow || !proj) return;
     var stackMQ=window.matchMedia('(max-width:760px)');
     function Mount(){
-      const [open,setOpen]=React.useState(false);
+      const [open,setOpen]=React.useState(()=>window.__initialRoute.desk==='personal' && window.__initialRoute.project===slug);
       const [stack,setStack]=React.useState(stackMQ.matches);
       const [zoom,setZoom]=React.useState(null);
       const ref=React.useRef(null);
@@ -1303,11 +1423,18 @@
       React.useEffect(()=>{
         var icon=document.getElementById(iconId);
         if(!icon) return;
-        icon.addEventListener('click',function(){ setOpen(function(o){ return !o; }); });
+        var onClick=function(){ window.__navigateProject(slug,!icon.classList.contains('is-open')); };
+        icon.addEventListener('click',onClick);
         var onChange=function(e){ setStack(e.matches); };
         stackMQ.addEventListener('change', onChange);
-        return ()=>stackMQ.removeEventListener('change', onChange);
+        return ()=>{icon.removeEventListener('click',onClick);stackMQ.removeEventListener('change', onChange);};
       },[]);
+      React.useEffect(()=>window.__registerRouteControl('project:'+slug,function(route){
+        if(route.desk!=='personal') return;
+        var next=route.project===slug;
+        setOpen(next);
+        if(!next) setZoom(null);
+      }),[]);
       React.useEffect(()=>{
         if(!open || !ref.current) return;
         var win=ref.current.querySelector('.w98-window');
@@ -1319,7 +1446,7 @@
       },[open,stack]);
       return open ? (
         <div ref={ref}>
-          <window.ProjectReelWindow proj={proj} stack={stack} onClose={()=>setOpen(false)} onZoom={(shots,i)=>setZoom({shots,index:i})} />
+          <window.ProjectReelWindow proj={proj} stack={stack} onClose={()=>window.__navigateProject(slug,false)} onZoom={(shots,i)=>setZoom({shots,index:i})} />
           {zoom && <window.ProjLightbox shots={zoom.shots} index={zoom.index} previewAspect={proj.previewAspect} setIndex={(i)=>setZoom(function(z){ return {...z, index:i}; })} onClose={()=>setZoom(null)} />}
         </div>
       ) : null;
@@ -1359,14 +1486,14 @@
     ReactDOM.createRoot(mountEl).render(<Mount />);
   }
 
-  makeProjectMount('artWinMount','iconArt', window.ART_PROJECT, 'personal', true);
-  makeProjectMount('terrainWinMount','iconTerrain', window.TERRAIN_PROJECT, 'personal');
-  makeProjectMount('xnoiseWinMount','iconXnoise', window.XNOISE_PROJECT, 'personal');
-  makeProjectMount('titleWinMount','iconTitle', window.TITLE_PROJECT, 'personal');
-  makeProjectMount('enableWinMount','iconEnable', window.ENABLE_PROJECT, 'personal');
-  makeProjectMount('chromeWinMount','iconChrome', window.CHROME_PROJECT, 'personal');
-  makeProjectMount('arcanaWinMount','iconArcana', window.ARCANA_PROJECT, 'personal');
-  makeReelMount('sieurflammeWinMount','iconSieurflamme', window.SIEURFLAMME_PROJECT, 'personal');
+  makeProjectMount('artWinMount','iconArt', window.ART_PROJECT, 'personal', true, 'art');
+  makeProjectMount('terrainWinMount','iconTerrain', window.TERRAIN_PROJECT, 'personal', false, 'terrain');
+  makeProjectMount('xnoiseWinMount','iconXnoise', window.XNOISE_PROJECT, 'personal', false, 'xnoise');
+  makeProjectMount('titleWinMount','iconTitle', window.TITLE_PROJECT, 'personal', false, 'title');
+  makeProjectMount('enableWinMount','iconEnable', window.ENABLE_PROJECT, 'personal', false, 'enable');
+  makeProjectMount('chromeWinMount','iconChrome', window.CHROME_PROJECT, 'personal', false, 'chrome');
+  makeProjectMount('arcanaWinMount','iconArcana', window.ARCANA_PROJECT, 'personal', false, 'arcana');
+  makeReelMount('sieurflammeWinMount','iconSieurflamme', window.SIEURFLAMME_PROJECT, 'personal', 'sieur-flamme');
   /* Video Player - disabled for launch, keep the code (makeVideoPlayerMount above stays):
   makeVideoPlayerMount('videoplayerWinMount','iconVideoplayer', 'personal');
   */
@@ -1404,6 +1531,7 @@
     }
     ReactDOM.createRoot(readmeMountEl).render(<ReadmeMount />);
   }
+  window.__startRouter();
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "fc316de988654961a5771ae67acdc9c9"}'></script><!-- End Cloudflare Web Analytics -->
 </body>

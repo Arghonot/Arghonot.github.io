@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>404 — Page not found | Loïck Rivemale</title>
 <meta name="robots" content="noindex">
+<script>
+  /* GitHub Pages has no rewrite rules. Send known SPA routes through index.html;
+     the router restores the clean path with replaceState after the app loads. */
+  (function(){
+    var m=location.pathname.match(/\/(?:work|about|personal(?:\/(?:art|terrain|xnoise|sieur-flamme|title|enable|chrome|arcana))?)\/?$/);
+    if(!m) return;
+    var base=location.pathname.slice(0,m.index+1)||'/';
+    var route=m[0].replace(/\/$/,'');
+    location.replace(base+'?spa='+encodeURIComponent(route));
+  })();
+</script>
 <link rel="stylesheet" href="styles/win98.css">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
