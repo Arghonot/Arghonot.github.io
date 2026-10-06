@@ -9,7 +9,7 @@
   /* GitHub Pages has no rewrite rules. Send known SPA routes through index.html;
      the router restores the clean path with replaceState after the app loads. */
   (function(){
-    var m=location.pathname.match(/\/(?:work|about|personal(?:\/(?:art|terrain|xnoise|sieur-flamme|title|enable|chrome|arcana))?)\/?$/);
+    var m=location.pathname.match(/\/(?:about|personal(?:\/(?:art|terrain|xnoise|sieur-flamme|title|enable|chrome|arcana))?|work(?:\/(?:read-me|tech-stack|education|professional-experience(?:\/(?:xr-freelancing|8k-4k-compression-pipeline|retinize|vr-worldspace-ui-toolkit|collider-free-raycast-system|in-house-shaders-render-features|airbus-ds|satellite-sizing-suite|solar-system-simulation|factory-layout-vr-validation-tool|visiopm))?))?)\/?$/);
     if(!m) return;
     var base=location.pathname.slice(0,m.index+1)||'/';
     var route=m[0].replace(/\/$/,'');

@@ -8,7 +8,7 @@
   /* Keep every relative asset anchored to the site root while clean SPA routes
      are visible. This also preserves project-page deployments under a subpath. */
   (function(){
-    var m=location.pathname.match(/\/(?:work|personal|about)(?:\/[^/]+)?\/?$/);
+    var m=location.pathname.match(/\/(?:work|personal|about)(?:\/[^/]+)*\/?$/);
     var base=m ? location.pathname.slice(0,m.index+1) : location.pathname.replace(/[^/]*$/,'');
     window.__siteBasePath=base||'/';
     var el=document.createElement('base');
@@ -730,6 +730,26 @@
     {slug:'arcana',icon:'iconArcana'}
   ];
   var ROUTE_PROJECT_SLUGS=ROUTE_PROJECTS.map(function(p){return p.slug;});
+  var ROUTE_WORK_SECTIONS=[
+    {slug:'read-me',icon:'iconReadme'},
+    {slug:'professional-experience',icon:'iconExperience'},
+    {slug:'tech-stack',icon:'iconTechstack'},
+    {slug:'education',icon:'iconEducation'}
+  ];
+  var ROUTE_WORK_ITEMS=[
+    {id:'freelance',slug:'xr-freelancing'},
+    {id:'compression',slug:'8k-4k-compression-pipeline'},
+    {id:'animotive',slug:'retinize'},
+    {id:'vrui',slug:'vr-worldspace-ui-toolkit'},
+    {id:'gpuray',slug:'collider-free-raycast-system'},
+    {id:'shaders',slug:'in-house-shaders-render-features'},
+    {id:'dragonfly',slug:'airbus-ds'},
+    {id:'s3',slug:'satellite-sizing-suite'},
+    {id:'spacesim',slug:'solar-system-simulation'},
+    {id:'pla',slug:'factory-layout-vr-validation-tool'},
+    {id:'autostereo',slug:'visiopm'}
+  ];
+  var ROUTE_WORK_SECTION_SLUGS=ROUTE_WORK_SECTIONS.map(function(p){return p.slug;});
   var routeControls={};
   var routerStarted=false;
 
@@ -738,24 +758,42 @@
     var path=pathname;
     if(path.indexOf(base)===0) path=path.slice(Math.max(0,base.length-1));
     path='/' + path.replace(/^\/+|\/+$/g,'');
-    if(path==='/work') return {desk:'professional',project:null};
-    if(path==='/about') return {desk:'about',project:null};
-    if(path==='/personal') return {desk:'personal',project:'art'};
+    if(path==='/work') return {desk:'professional',project:null,work:'read-me',workItem:null};
+    if(path==='/about') return {desk:'about',project:null,work:null,workItem:null};
+    if(path==='/personal') return {desk:'personal',project:'art',work:null,workItem:null};
+    var workMatch=path.match(/^\/work\/([^/]+)(?:\/([^/]+))?$/);
+    if(workMatch && ROUTE_WORK_SECTION_SLUGS.indexOf(workMatch[1])!==-1){
+      var workItem=null;
+      if(workMatch[2]){
+        if(workMatch[1]!=='professional-experience') return {desk:'welcome',project:null,work:null,workItem:null};
+        var item=ROUTE_WORK_ITEMS.find(function(p){return p.slug===workMatch[2];});
+        if(!item) return {desk:'welcome',project:null,work:null,workItem:null};
+        workItem=item.id;
+      }
+      return {desk:'professional',project:null,work:workMatch[1],workItem:workItem};
+    }
     var m=path.match(/^\/personal\/([^/]+)$/);
-    if(m && ROUTE_PROJECT_SLUGS.indexOf(m[1])!==-1) return {desk:'personal',project:m[1]};
-    return {desk:'welcome',project:null};
+    if(m && ROUTE_PROJECT_SLUGS.indexOf(m[1])!==-1) return {desk:'personal',project:m[1],work:null,workItem:null};
+    return {desk:'welcome',project:null,work:null,workItem:null};
   }
 
   function savedRoute(state){
     var r=state && state.portfolioRoute;
     if(!r || ['welcome','professional','personal','about'].indexOf(r.desk)===-1) return null;
     if(r.project!==null && ROUTE_PROJECT_SLUGS.indexOf(r.project)===-1) return null;
-    return {desk:r.desk,project:r.project};
+    var work=r.work===undefined ? (r.desk==='professional'?'read-me':null) : r.work;
+    if(work!==null && ROUTE_WORK_SECTION_SLUGS.indexOf(work)===-1) return null;
+    var workItem=r.workItem||null;
+    if(workItem!==null && !ROUTE_WORK_ITEMS.some(function(p){return p.id===workItem;})) return null;
+    return {desk:r.desk,project:r.project,work:work,workItem:workItem};
   }
 
   function routePath(route){
     var base=window.__siteBasePath||'/';
-    var tail=route.desk==='professional' ? 'work'
+    var workItem=ROUTE_WORK_ITEMS.find(function(p){return p.id===route.workItem;});
+    var workTail=route.work ? '/'+route.work : '';
+    if(route.work==='professional-experience' && workItem) workTail+='/'+workItem.slug;
+    var tail=route.desk==='professional' ? 'work'+workTail
       : route.desk==='personal' ? 'personal'+(route.project?'/'+route.project:'')
       : route.desk==='about' ? 'about' : '';
     return base+tail;
@@ -775,8 +813,10 @@
   }
 
   function navigateRoute(route,url,replace){
-    var state={portfolioRoute:{desk:route.desk,project:route.project}};
-    history[replace?'replaceState':'pushState'](state,'',url||routePath(route));
+    var state={portfolioRoute:{desk:route.desk,project:route.project,work:route.work||null,workItem:route.workItem||null}};
+    var nextUrl=url||routePath(route);
+    if(replace) history.replaceState(state,'',nextUrl);
+    else history.pushState(state,'',nextUrl);
     applyRoute(route);
   }
 
@@ -786,14 +826,31 @@
     return function(){if(routeControls[key]===control) delete routeControls[key];};
   };
   window.__navigateProject=function(slug,open){
-    navigateRoute({desk:'personal',project:open?slug:null});
+    navigateRoute({desk:'personal',project:open?slug:null,work:null,workItem:null});
+  };
+  window.__navigateWork=function(section,item,open,url){
+    navigateRoute({
+      desk:'professional',project:null,
+      work:open?section:null,
+      workItem:open&&section==='professional-experience'?(item||null):null
+    },url);
   };
   window.__navigateDesk=function(id){
-    var route={desk:id,project:null};
+    var route={desk:id,project:null,work:null,workItem:null};
     if(id==='personal'){
       ROUTE_PROJECTS.some(function(p){
         var icon=document.getElementById(p.icon);
         if(icon&&icon.classList.contains('is-open')){route.project=p.slug;return true;}
+        return false;
+      });
+    }else if(id==='professional'){
+      ROUTE_WORK_SECTIONS.some(function(p){
+        var icon=document.getElementById(p.icon);
+        if(icon&&icon.classList.contains('is-open')){
+          route.work=p.slug;
+          if(p.slug==='professional-experience' && window.__currentRoute.work===p.slug) route.workItem=window.__currentRoute.workItem;
+          return true;
+        }
         return false;
       });
     }
@@ -856,6 +913,16 @@
       var project=ROUTE_PROJECTS.find(function(p){return p.icon===iconId;});
       if(icon.classList.contains('is-open')){
         if(project) window.__navigateProject(project.slug,true);
+      }else icon.click();
+      return;
+    }
+    if(deskId==='professional'){
+      var section=ROUTE_WORK_SECTIONS.find(function(p){return p.icon===iconId;});
+      if(!section) return;
+      if(icon.classList.contains('is-open')){
+        var item=section.slug==='professional-experience' && window.__currentRoute.work===section.slug
+          ? window.__currentRoute.workItem : null;
+        window.__navigateWork(section.slug,item,true,(window.__siteBasePath||'/')+'work/'+section.slug);
       }else icon.click();
       return;
     }
@@ -1238,11 +1305,12 @@
     if(g && g[key]) delete g[key];
   }
 
-  function makeToggleMount(mountId, iconId, Comp, offset, defaultOpen, group){
+  function makeToggleMount(mountId, iconId, Comp, offset, defaultOpen, group, workSection){
     var mountEl=document.getElementById(mountId);
     if(!mountEl || !Comp) return;
     function Mount(){
-      const [open,setOpen]=React.useState(!!defaultOpen);
+      const [open,setOpen]=React.useState(()=>workSection && window.__initialRoute.desk==='professional'
+        ? window.__initialRoute.work===workSection : !!defaultOpen);
       const ref=React.useRef(null);
       React.useEffect(()=>{
         var icon=document.getElementById(iconId);
@@ -1260,21 +1328,32 @@
       },[open]);
       React.useEffect(()=>{
         var icon=document.getElementById(iconId);
-        if(icon) icon.addEventListener('click',()=>setOpen((o)=>!o));
+        var onClick=function(){
+          if(workSection) window.__navigateWork(workSection,null,!icon.classList.contains('is-open'));
+          else setOpen((o)=>!o);
+        };
+        if(icon) icon.addEventListener('click',onClick);
+        return ()=>{if(icon) icon.removeEventListener('click',onClick);};
       },[]);
-      return open ? <div ref={ref}><Comp onClose={()=>setOpen(false)} /></div> : null;
+      React.useEffect(()=>{
+        if(!workSection) return;
+        return window.__registerRouteControl('work:'+workSection,function(route){
+          if(route.desk==='professional') setOpen(route.work===workSection);
+        });
+      },[]);
+      return open ? <div ref={ref}><Comp onClose={()=>workSection?window.__navigateWork(workSection,null,false):setOpen(false)} /></div> : null;
     }
     ReactDOM.createRoot(mountEl).render(<Mount />);
   }
   makeToggleMount('contactWinMount','iconContact', window.ContactWindow, {fx:0.4102,fy:0.8429}, true);
   makeToggleMount('legalWinMount','iconLegal', window.LegalWindow, 'top-right', false);
-  makeToggleMount('techstackWinMount','iconTechstack', window.TechStackWindow, {fx:0.4696,fy:0.3911}, false, 'professional');
+  makeToggleMount('techstackWinMount','iconTechstack', window.TechStackWindow, {fx:0.4696,fy:0.3911}, false, 'professional', 'tech-stack');
 
   if(window.EducationTimeline){
     var eduMountEl=document.getElementById('educationWinMount');
     var eduStackMQ=window.matchMedia('(max-width:760px)');
     function EduMount(){
-      const [open,setOpen]=React.useState(false);
+      const [open,setOpen]=React.useState(()=>window.__initialRoute.desk==='professional' && window.__initialRoute.work==='education');
       const [stack,setStack]=React.useState(eduStackMQ.matches);
       const ref=React.useRef(null);
       React.useEffect(()=>{
@@ -1294,12 +1373,16 @@
       },[open]);
       React.useEffect(()=>{
         var icon=document.getElementById('iconEducation');
-        if(icon) icon.addEventListener('click',()=>setOpen((o)=>!o));
+        var onClick=function(){window.__navigateWork('education',null,!icon.classList.contains('is-open'));};
+        if(icon) icon.addEventListener('click',onClick);
         var onChange=function(e){ setStack(e.matches); };
         eduStackMQ.addEventListener('change', onChange);
-        return ()=>eduStackMQ.removeEventListener('change', onChange);
+        return ()=>{if(icon) icon.removeEventListener('click',onClick);eduStackMQ.removeEventListener('change', onChange);};
       },[]);
-      return open ? <div ref={ref}><window.EducationTimeline stack={stack} onClose={()=>setOpen(false)} /></div> : null;
+      React.useEffect(()=>window.__registerRouteControl('work:education',function(route){
+        if(route.desk==='professional') setOpen(route.work==='education');
+      }),[]);
+      return open ? <div ref={ref}><window.EducationTimeline stack={stack} onClose={()=>window.__navigateWork('education',null,false)} /></div> : null;
     }
     ReactDOM.createRoot(eduMountEl).render(<EduMount />);
   }
@@ -1308,8 +1391,9 @@
     var expMountEl=document.getElementById('experienceMount');
     var expStackMQ=window.matchMedia('(max-width:760px)');
     function ExpMount(){
-      const [open,setOpen]=React.useState(false);
-      const [selected,setSelected]=React.useState(null);
+      const expInitial=window.__initialRoute.desk==='professional' && window.__initialRoute.work==='professional-experience';
+      const [open,setOpen]=React.useState(expInitial);
+      const [selected,setSelected]=React.useState(expInitial?window.__initialRoute.workItem:null);
       const [stack,setStack]=React.useState(expStackMQ.matches);
       const [clappyPick,setClappyPick]=React.useState(null);
       const [clappyDelayed,setClappyDelayed]=React.useState(false);
@@ -1345,17 +1429,23 @@
       React.useEffect(()=>{
         var icon=document.getElementById('iconExperience');
         if(!icon) return;
-        icon.addEventListener('click',function(){
-          setOpen(function(o){
-            var next=!o;
-            if(next) setSelected(function(s){ return s || window.WORK_ITEMS[0].id; });
-            return next;
-          });
-        });
+        var onClick=function(){
+          var opening=!icon.classList.contains('is-open');
+          window.__navigateWork('professional-experience',opening?window.WORK_ITEMS[0].id:null,opening,
+            opening?(window.__siteBasePath||'/')+'work/professional-experience':null);
+        };
+        icon.addEventListener('click',onClick);
         var onChange=function(e){ setStack(e.matches); };
         expStackMQ.addEventListener('change', onChange);
-        return ()=>expStackMQ.removeEventListener('change', onChange);
+        return ()=>{icon.removeEventListener('click',onClick);expStackMQ.removeEventListener('change', onChange);};
       },[]);
+      React.useEffect(()=>window.__registerRouteControl('work:professional-experience',function(route){
+        if(route.desk!=='professional') return;
+        var nextOpen=route.work==='professional-experience';
+        setOpen(nextOpen);
+        setSelected(nextOpen?route.workItem:null);
+        if(!nextOpen) setClappyPick(null);
+      }),[]);
       React.useEffect(()=>{
         if(!open || !tlRef.current) return;
         var stage=tlRef.current.closest('.desk-stage');
@@ -1374,11 +1464,11 @@
       },[selected,stack]);
       return (
         <React.Fragment>
-          {open && <div ref={tlRef}><window.WorkTimeline selected={selected} stack={stack} onOpen={(id)=>{setSelected(id);setClappyPick(id);}} onClose={()=>{setOpen(false);setSelected(null);}} /></div>}
-          {open && selected && !stack && <div ref={detRef}><window.WorkDetailPanel id={selected} onClose={()=>setSelected(null)} /></div>}
+          {open && <div ref={tlRef}><window.WorkTimeline selected={selected} stack={stack} onOpen={(id)=>{window.__navigateWork('professional-experience',id,true);setClappyPick(id);}} onClose={()=>window.__navigateWork('professional-experience',null,false)} /></div>}
+          {open && selected && !stack && <div ref={detRef}><window.WorkDetailPanel id={selected} onClose={()=>window.__navigateWork('professional-experience',null,true)} /></div>}
           {open && selected && stack && (
-            <div className="exp-modal-backdrop" onClick={()=>setSelected(null)}>
-              <div onClick={(e)=>e.stopPropagation()}><window.WorkDetailPanel id={selected} stack onClose={()=>setSelected(null)} /></div>
+            <div className="exp-modal-backdrop" onClick={()=>window.__navigateWork('professional-experience',null,true)}>
+              <div onClick={(e)=>e.stopPropagation()}><window.WorkDetailPanel id={selected} stack onClose={()=>window.__navigateWork('professional-experience',null,true)} /></div>
             </div>
           )}
           {open && clappyPick && clappyDelayed && !clappyClosed && window.ClappyAssistant && (
@@ -1542,12 +1632,15 @@
     var hallMountEl=document.getElementById('hallOfFameMount');
     var stackMQ=window.matchMedia('(max-width:760px)');
     function ReadmeMount(){
-      const [open,setOpen]=React.useState(true);
-      const [hallOpen,setHallOpen]=React.useState(true);
+      const readmeInitial=window.__initialRoute.desk==='professional'
+        ? window.__initialRoute.work==='read-me' : true;
+      const [open,setOpen]=React.useState(readmeInitial);
+      const [hallOpen,setHallOpen]=React.useState(readmeInitial);
       const [stack,setStack]=React.useState(stackMQ.matches);
       const ref=React.useRef(null);
       const hallRef=React.useRef(null);
       const closePair=()=>{setOpen(false);setHallOpen(false);};
+      const closeWithRoute=()=>window.__navigateWork('read-me',null,false);
       React.useEffect(()=>{
         var icon=document.getElementById('iconReadme');
         if(icon) icon.classList.toggle('is-open', open);
@@ -1573,15 +1666,21 @@
       },[open]);
       React.useEffect(()=>{
         var icon=document.getElementById('iconReadme');
-        var onClick=()=>setOpen((o)=>{var next=!o;setHallOpen(next);return next;});
+        var onClick=()=>window.__navigateWork('read-me',null,!icon.classList.contains('is-open'));
         if(icon) icon.addEventListener('click',onClick);
         var onChange=function(e){ setStack(e.matches); };
         stackMQ.addEventListener('change', onChange);
         return ()=>{if(icon) icon.removeEventListener('click',onClick);stackMQ.removeEventListener('change', onChange);};
       },[]);
+      React.useEffect(()=>window.__registerRouteControl('work:read-me',function(route){
+        if(route.desk!=='professional') return;
+        var nextOpen=route.work==='read-me';
+        setOpen(nextOpen);
+        setHallOpen(nextOpen);
+      }),[]);
       return open ? (
         <React.Fragment>
-          <div ref={ref}><window.ReadmeWindow stack={stack} onClose={closePair} /></div>
+          <div ref={ref}><window.ReadmeWindow stack={stack} onClose={closeWithRoute} /></div>
           {hallOpen && hallMountEl && window.HallOfFameWindow && ReactDOM.createPortal(
             <div ref={hallRef}><window.HallOfFameWindow onClose={()=>setHallOpen(false)} /></div>,
             hallMountEl
