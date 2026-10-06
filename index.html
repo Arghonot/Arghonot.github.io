@@ -1682,7 +1682,8 @@
         <React.Fragment>
           <div ref={ref}><window.ReadmeWindow stack={stack} onClose={closeWithRoute} /></div>
           {hallOpen && hallMountEl && window.HallOfFameWindow && ReactDOM.createPortal(
-            <div ref={hallRef}><window.HallOfFameWindow onClose={()=>setHallOpen(false)} /></div>,
+            <div ref={hallRef}><window.HallOfFameWindow onClose={()=>setHallOpen(false)}
+              onSelect={(id)=>window.__navigateWork('professional-experience',id,true)} /></div>,
             hallMountEl
           )}
         </React.Fragment>

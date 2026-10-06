@@ -66,7 +66,7 @@ function ReelVideo({ src = 'assets/videos/freelance.mp4', label = 'EXPERIENCE \u
 function ReadmeWindow({ onClose, stack }) {
   const NOTE_MENUS = ['File', 'Edit', 'Format', 'View', 'Help'];
   const wordart = (
-    <div style={{ padding: stack ? '4px 4px 10px' : '16px 10px 14px' }}>
+    <div style={{ padding: stack ? '4px 4px 10px' : '16px 10px 14px', display: 'flex', justifyContent: 'center' }}>
       <window.WordArt variant="spectrum" lines={['My experience']} size={stack ? 'clamp(22px,8.6vw,40px)' : 56} />
     </div>
   );
