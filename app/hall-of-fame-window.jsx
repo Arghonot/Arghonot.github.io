@@ -6,6 +6,8 @@ const HALL_OF_FAME_ITEMS = [
     text: 'Took part from early R&D through production and maintenance.',
     spine: 'Airbus Group Official VR',
     cover: 'assets/hof/hof-1.png',
+    coverClass: 'clear',
+    showTitle: false,
     workItem: 'dragonfly',
   },
   {
@@ -13,6 +15,8 @@ const HALL_OF_FAME_ITEMS = [
     text: 'Made 360 video player allowing 8k video playback on low end XR hardware',
     spine: 'Mission Control',
     cover: 'assets/hof/hof-2.png',
+    coverClass: 'faint',
+    showTitle: false,
     workItem: 'compression',
   },
   {
@@ -27,6 +31,8 @@ const HALL_OF_FAME_ITEMS = [
     text: 'Collider-free raycasting on static and animated geometry.',
     spine: 'Millions in 30ms',
     cover: 'assets/hof/hof-4.png',
+    coverClass: 'dim',
+    showTitle: false,
     workItem: 'gpuray',
   },
   {
@@ -34,6 +40,7 @@ const HALL_OF_FAME_ITEMS = [
     text: 'Built and maintained an AR application, its updater, asset pipeline and cloud/backend.',
     spine: '8K on AR Glasses',
     cover: 'assets/hof/hof-5.png',
+    showTitle: false,
     workItem: 'freelance',
   },
 ];
@@ -84,9 +91,9 @@ function HallOfFameWindow({ onClose, onSelect }) {
                 }}>
                 <div className="bx">
                   <div className="cart"><span className="cl">CLICK ME</span></div>
-                  <div className="fc">
+                  <div className={'fc' + (item.coverClass ? ' ' + item.coverClass : '')}>
                     <div className="cv"><img src={item.cover} alt="" /></div>
-                    <div className="tz"><span className="t">{item.title}</span></div>
+                    {item.showTitle !== false && <div className="tz"><span className="t">{item.title}</span></div>}
                     <div className="ft">{item.text}</div>
                   </div>
                   <div className="sd">{item.spine}</div>
