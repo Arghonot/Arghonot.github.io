@@ -52,14 +52,15 @@ function LegalWindow({ onClose }) {
 
         <Div />
         <Head>PRIVACY</Head>
-        <p style={{ margin: '9px 0 0' }}>This website does not intentionally collect personal data.</p>
+        <p style={{ margin: '9px 0 0' }}>This website uses Cloudflare Web Analytics to measure page and section views and website performance. According to Cloudflare, this service does not use cookies or browser storage for analytics and does not fingerprint visitors.</p>
+        <p style={{ margin: '9px 0 0' }}>For more information, see <A href="https://developers.cloudflare.com/web-analytics/about/">Cloudflare Web Analytics</A>.</p>
         <p style={{ margin: '9px 0 0' }}>No user account is required.</p>
         <p style={{ margin: '9px 0 0' }}>If you contact me by email, the information you provide will only be used to answer your request.</p>
 
         <Div />
         <Head>COOKIES</Head>
         <p style={{ margin: '9px 0 0' }}>This website does not use cookies for advertising purposes.</p>
-        <p style={{ margin: '9px 0 0' }}>If analytics or other third-party services are enabled in the future, this document will be updated accordingly.</p>
+        <p style={{ margin: '9px 0 0' }}>Cloudflare Web Analytics does not use analytics cookies.</p>
 
         <Div />
         <Head>LIABILITY</Head>
@@ -79,7 +80,7 @@ function LegalWindow({ onClose }) {
 
         <Div />
         <div style={{ color: '#6a6a6a' }}>Last updated:</div>
-        <div>July 2026</div>
+        <div>October 14, 2026</div>
       </div>
     </window.FlowWindow>
   );

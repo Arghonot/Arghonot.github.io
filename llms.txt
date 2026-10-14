@@ -17,6 +17,13 @@ For the complete, plain-HTML career history, read /cv.html - it is the canonical
 - [Portfolio desktop](https://loick.rivemale.space/): interactive Windows 98 desktop with project windows and galleries.
 - [Legal notice](https://loick.rivemale.space/legal.html): publisher, hosting, intellectual property, privacy.
 
+## Achievements
+- Airbus Group VR visualizer
+- 10K to 4K lossless video pipeline
+- Complete VR UI framework
+- Millions of GPU raycasts under 5 ms
+- End-to-end XR platform
+
 ## Contact
 - Email: lo.rivemale@gmail.com
 - LinkedIn: https://www.linkedin.com/in/loick-rivemale-080b9789

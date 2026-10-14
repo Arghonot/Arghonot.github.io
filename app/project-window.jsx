@@ -7,11 +7,11 @@
    window's own height/width just fits however many shots a project has —
    no oversized empty grid for a 2-shot project.
    Requires window.FlowWindow and window.PixelIcon. */
-function ProjShot({ hue, label, file, dims, tag, big, compact, src, fit }) {
+function ProjShot({ hue, label, file, dims, tag, big, compact, src, fit, original }) {
   const h = hue;
   if (src) return (
     <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', background: '#000' }}>
-      <img src={src} alt={label || ''} draggable="false" loading={compact ? 'lazy' : undefined} decoding="async"
+      <img {...(original ? { src } : window.responsiveImage(src, compact ? '(max-width: 700px) 45vw, 240px' : '(max-width: 700px) 90vw, 600px'))} alt={label || ''} draggable="false" loading={compact ? 'lazy' : undefined} decoding="async"
         style={{ width: '100%', height: '100%', objectFit: fit || 'cover', display: 'block', imageRendering: 'auto' }} />
       {tag && <span style={{ position: 'absolute', top: 5, left: 5, fontFamily: '"Courier New", monospace', fontSize: 10, color: '#0b0b0b', background: 'rgba(207,214,200,.92)', padding: '0 5px' }}>{tag}</span>}
     </div>
@@ -105,7 +105,7 @@ function ProjLightbox({ shots, index, setIndex, onClose, previewAspect }) {
         <div style={{ padding: 6, minWidth: 0 }}>
           <div className="w98-sunken" style={{ padding: 3, background: '#000' }}>
             <div style={{ width: '100%', height: h }}>
-              <ProjShot hue={s.hue} label={s.label} file={s.file} dims={s.dims} src={s.src} fit={s.src ? 'contain' : undefined} big />
+              <ProjShot hue={s.hue} label={s.label} file={s.file} dims={s.dims} src={s.src} fit={s.src ? 'contain' : undefined} big original />
             </div>
           </div>
           <div className="w98-field" style={{ marginTop: 6, fontSize: 11, display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10, minWidth: 0 }}>

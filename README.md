@@ -1,7 +1,7 @@
 # Portfolio 98 — Loïck Rivemale
 
-A Windows 98 desktop as a portfolio. Static site: no backend, no build step, no package
-manager. React and Babel load from a CDN at runtime; everything else is local and
+A Windows 98 desktop as a portfolio. Static site: no backend. A local build generates
+responsive WebP images and compiles JSX with production React; everything is local and
 referenced with **relative** paths, so the site works from any base URL — a user page, a
 project page under a subpath, or a custom domain.
 
@@ -51,6 +51,22 @@ files/                downloads (resume PDF, ARCANA rules addendum)
 ```
 
 ## Deploy
+
+### Build before deploying
+
+Install Node.js and ImageMagick (with WebP support), then run `npm ci` once and
+`npm run build` after changing content or images. Set `IMAGEMAGICK_BINARY` if
+ImageMagick is not on PATH. `npm run images` regenerates only image assets.
+
+Edit `site.template.html` for desktop HTML/CSS/startup code and `app/*.jsx` for
+window components. `index.html`, `app/generated/`, `app/image-variants.js`, and
+`assets/optimized/` are generated outputs: include them in the deployed commit.
+The build does not run on visitors' devices, and GitHub Pages needs no server.
+
+Project galleries use 320/640/1280px WebP variants selected by the browser;
+clicking a gallery image requests its unchanged original. Image generation skips
+unchanged originals. When changing conversion settings, remove the corresponding
+generated variants before rebuilding. Icons retain their original pixel art.
 
 1. Push the **contents of this folder** (not the folder itself) to the branch you serve —
    `index.html` must sit at the branch root.

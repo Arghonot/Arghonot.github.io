@@ -232,7 +232,7 @@ function getPhoto(src) {
   const im = new Image();
   photoCache.set(src, null);
   im.onload = () => { photoCache.set(src, im); notifyStrips(); };
-  im.src = src;
+  im.src = window.responsiveImage(src).src;
   return null;
 }
 
@@ -473,7 +473,7 @@ function WorkDetailPanel({ id, onClose, stack }) {
         <div className="w98-sunken" style={{ padding: 2, background: '#000' }}>
           <div style={{ aspectRatio: '16 / 9' }}>
             {p.youtube ? <WorkVideo id={p.youtube} label={p.name} />
-              : p.hero ? <img src={p.hero} alt={p.name} draggable="false"
+              : p.hero ? <img {...window.responsiveImage(p.hero)} alt={p.name} draggable="false" decoding="async"
                   style={{ width: '100%', height: '100%', objectFit: p.heroFit || 'cover', background: p.heroFit === 'contain' ? '#000' : undefined, display: 'block' }} />
               : (
                 <WorkShot p={p} style={{ aspectRatio: '16 / 9', height: 'auto' }}>

@@ -92,7 +92,7 @@ function HallOfFameWindow({ onClose, onSelect }) {
                 <div className="bx">
                   <div className="cart"><span className="cl">CLICK ME</span></div>
                   <div className={'fc' + (item.coverClass ? ' ' + item.coverClass : '')}>
-                    <div className="cv"><img src={item.cover} alt="" /></div>
+                    <div className="cv"><img {...window.responsiveImage(item.cover, '180px')} alt="" loading="lazy" decoding="async" /></div>
                     {item.showTitle !== false && <div className="tz"><span className="t">{item.title}</span></div>}
                     <div className="ft">{item.text}</div>
                   </div>

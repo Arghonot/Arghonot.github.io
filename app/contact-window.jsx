@@ -47,7 +47,7 @@ const CONTACT = {
   eyebrow: '04 >_ CONTACT',
   heading: "Let's build something together",
   blurb: 'Open to freelance projects or full-time roles.',
-  blurb2: 'Every side project on my GitHub is opensource - feel free to explore !',
+  blurb2: 'Every side project on my GitHub is opensource, feel free to explore !',
   channels: [
     { label: 'Email', icon: 'mail', handle: 'lo.rivemale@gmail.com', href: 'mailto:lo.rivemale@gmail.com' },
     { label: 'GitHub', icon: 'term', handle: 'github.com/Arghonot', href: 'https://github.com/Arghonot' },
