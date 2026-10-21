@@ -310,10 +310,10 @@ const ART_PROJECT = {
     { n: '14', label: 'DUNE VISTA', file: 'dune_vista.jpg', dims: '1600\u00d7896', hue: 30, src: 'assets/projects/art/dune-vista.jpg' },
     { n: '15', label: 'CONTOUR RELIEF', file: 'contour_relief.jpg', dims: '1600\u00d7875', hue: 320, src: 'assets/projects/art/contour-relief.jpg' },
     { n: '16', label: 'MOON SCHEMATICS', file: 'moon_schematics.png', dims: '1927\u00d7922', hue: 210, src: 'assets/projects/art/moon-schematics.png' },
-    { n: '17', label: 'COLD METAL LOGO', file: 'cold_metal_logo.png', dims: '1536\u00d71024', hue: 200, src: 'assets/projects/art/cold-metal-logo.png' },
-    { n: '18', label: 'WIREFRAME PRIMITIVES', file: 'wireframe_primitives.png', dims: '1139\u00d71298', hue: 225, src: 'assets/projects/art/wireframe-primitives.png' },
-    { n: '19', label: 'VOXEL DUNES', file: 'voxel_dunes.png', dims: '1891\u00d71024', hue: 48, src: 'assets/projects/art/voxel-dunes.png' },
-    { n: '20', label: 'RED TOWER', file: 'red_tower.png', dims: '1080\u00d71923', hue: 6, src: 'assets/projects/art/red-tower.png' },
+    { n: '17', label: 'COLD METAL LOGO', file: 'cold_metal_logo.png', dims: '1536\u00d71024', hue: 200, src: 'assets/projects/art/cold-metal-logo.jpg' },
+    { n: '18', label: 'WIREFRAME PRIMITIVES', file: 'wireframe_primitives.png', dims: '1139\u00d71298', hue: 225, src: 'assets/projects/art/wireframe-primitives.jpg' },
+    { n: '19', label: 'VOXEL DUNES', file: 'voxel_dunes.png', dims: '1891\u00d71024', hue: 48, src: 'assets/projects/art/voxel-dunes.jpg' },
+    { n: '20', label: 'RED TOWER', file: 'red_tower.png', dims: '1080\u00d71923', hue: 6, src: 'assets/projects/art/red-tower.jpg' },
   ],
 };
 
@@ -362,11 +362,11 @@ const XNOISE_PROJECT = {
     { n: '05', label: 'VORONOI', file: 'voronoi.jpg', dims: '1200\u00d7675', hue: 140, src: 'assets/projects/xnoise/voronoi.jpg' },
     { n: '06', label: 'PERLIN', file: 'perlin_sun.jpg', dims: '1200\u00d7675', hue: 18, src: 'assets/projects/xnoise/perlin-sun.jpg' },
     { n: '07', label: 'TURBULENCE', file: 'jade_turbulence.jpg', dims: '1200\u00d7675', hue: 150, src: 'assets/projects/xnoise/jade-turbulence.jpg' },
-    { n: '08', label: 'WOOD \u2014 GRAPH VIEW', file: 'wood_graph.png', dims: '2890\u00d71630', hue: 140, src: 'assets/projects/xnoise/wood-graph.png' },
-    { n: '09', label: 'WOOD \u2014 RENDER VIEW', file: 'wood_render.png', dims: '2890\u00d71624', hue: 36, src: 'assets/projects/xnoise/wood-render.png' },
-    { n: '10', label: 'PERLIN \u2014 PLAYER', file: 'perlin_player.png', dims: '1915\u00d71080', hue: 150, src: 'assets/projects/xnoise/perlin-render.png' },
-    { n: '11', label: 'VORONOI \u2014 CUBE', file: 'voronoi_cube.png', dims: '2898\u00d71632', hue: 350, src: 'assets/projects/xnoise/voronoi-cube.png' },
-    { n: '12', label: 'BILLOW \u2014 CYLINDER', file: 'billow_cylinder.png', dims: '2897\u00d71634', hue: 220, src: 'assets/projects/xnoise/billow-cylinder.png' },
+    { n: '08', label: 'WOOD \u2014 GRAPH VIEW', file: 'wood_graph.png', dims: '2890\u00d71630', hue: 140, src: 'assets/projects/xnoise/wood-graph.jpg' },
+    { n: '09', label: 'WOOD \u2014 RENDER VIEW', file: 'wood_render.png', dims: '2890\u00d71624', hue: 36, src: 'assets/projects/xnoise/wood-render.jpg' },
+    { n: '10', label: 'PERLIN \u2014 PLAYER', file: 'perlin_player.png', dims: '1915\u00d71080', hue: 150, src: 'assets/projects/xnoise/perlin-render.jpg' },
+    { n: '11', label: 'VORONOI \u2014 CUBE', file: 'voronoi_cube.png', dims: '2898\u00d71632', hue: 350, src: 'assets/projects/xnoise/voronoi-cube.jpg' },
+    { n: '12', label: 'BILLOW \u2014 CYLINDER', file: 'billow_cylinder.png', dims: '2897\u00d71634', hue: 220, src: 'assets/projects/xnoise/billow-cylinder.jpg' },
   ],
 };
 

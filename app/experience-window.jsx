@@ -19,8 +19,8 @@ const DF_GREEN = '#2f9b46';
 
 const WORK_ITEMS = [
   { id: 'freelance', name: 'XR freelancing', s: '2025', e: 'now', dur: '7 mo', icon: 'picture', hue: 206, depth: 0, owner: true,
-    photo: 'assets/work/freelance.png',
-    hero: 'assets/work/render-test.png',
+    photo: 'assets/work/freelance.jpg',
+    hero: 'assets/work/render-test.jpg',
     role: 'Freelance \u00b7 Unity XR Engineer (NDA client)',
     desc: 'An AR application along with its whole ecosystem and R&D.',
     full: 'Confidential AR/XR application developed in Unity for a private client under NDA. The project involved building a production-ready immersive experience with strong constraints around mobile performance, stability, offline usage, content delivery, and on-device deployment.',
@@ -129,8 +129,8 @@ const WORK_ITEMS = [
     full: 'Helped a manufacturing team validate facility layout using VR. Users could explore building architecture at scale, test movement flows, and evaluate design choices in a virtual environment.',
     tech: ['C#', 'Unity', 'Git', 'SQLite', 'VR', 'XML'] },
   { id: 'autostereo', name: 'VisioPM', s: '2016', e: '2016', dur: '5 mo', icon: 'page', hue: 32, depth: 0, owner: true,
-    photo: 'assets/work/autostereoscopy.png',
-    hero: 'assets/work/autostereoscopy.png',
+    photo: 'assets/work/autostereoscopy.jpg',
+    hero: 'assets/work/autostereoscopy.jpg',
     role: 'Internal R&D',
     desc: 'A glass-free 3D video rendering engine.',
     full: 'Worked on internal rendering tools and early-stage display technology prototypes.',
