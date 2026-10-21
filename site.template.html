@@ -73,10 +73,10 @@
   .desk{position:absolute;left:0;right:0;top:0;bottom:var(--tb-h);display:none;}
   .desk.is-active{display:block;}
   html{background:var(--w98-face);}
-  .desk[data-desk="welcome"]{background:#008080;}
-  .desk[data-desk="professional"]{background:#3f8f8a;}
-  .desk[data-desk="personal"]{background:radial-gradient(ellipse at center, rgba(0,0,0,0) 52%, rgba(0,0,0,0.24) 100%), rgb(13,107,64);}
-  .desk[data-desk="about"]{background:#7c98d6;}
+  .desk[data-desk="welcome"]{background:#008080;--icon-outline:#005555;}
+  .desk[data-desk="professional"]{background:#3f8f8a;--icon-outline:#2a605c;}
+  .desk[data-desk="personal"]{background:radial-gradient(ellipse at center, rgba(0,0,0,0) 52%, rgba(0,0,0,0.24) 100%), rgb(13,107,64);--icon-outline:#084529;}
+  .desk[data-desk="about"]{background:#7c98d6;--icon-outline:#4f6d94;}
 
   /* ---------- taskbar ---------- */
   .d98-taskbar{
@@ -394,7 +394,7 @@
   .win-icon-img{position:relative;width:80px;height:80px;}
   .win-icon-img .win-icon-main{width:80px;height:80px;image-rendering:pixelated;display:block;}
   .win-icon-img .win-icon-arrow{position:absolute;left:-4px;bottom:-4px;width:20px;height:20px;image-rendering:pixelated;}
-  .win-icon .win-icon-lbl{color:#fff;font-size:13px;text-align:center;line-height:1.25;text-shadow:1px 1px 2px rgba(0,0,0,.6);padding:1px 5px;}
+  .win-icon .win-icon-lbl{color:#fff;font-size:13px;text-align:center;line-height:1.25;text-shadow:-1px 0 var(--o),1px 0 var(--o),0 -1px var(--o),0 1px var(--o),-1px -1px var(--o),1px -1px var(--o),-1px 1px var(--o),1px 1px var(--o);--o:var(--icon-outline,#666);padding:1px 5px;}
   .win-icon.is-open .win-icon-lbl{background:#000080;text-shadow:none;outline:1px dotted #fff;outline-offset:-2px;}
 
   .ct-chan{display:flex;align-items:center;gap:10px;padding:9px 4px;text-decoration:none;color:#1d1d1d;border-bottom:1px dotted #b0b0b0;}
@@ -499,6 +499,9 @@
   /* ---------- per-desk scroll: mobile stacks windows in flow; the desk
      itself scrolls only if its own content overflows ---------- */
   @media (max-width:760px){
+    /* finger-sized tap targets (desktop keeps the Win98 21x18) */
+    .w98-tb-btn{width:28px;height:24px;}
+    .w98-tool-btn{min-height:28px;}
     /* relative (not static): the stage must keep a z-index so the absolutely
        positioned wallpaper canvas behind it (z-index:0) does not paint over the
        now-static, in-flow windows */
@@ -1328,7 +1331,7 @@
       const [open,setOpen]=React.useState(()=>workSection && window.__initialRoute.desk==='professional'
         ? window.__initialRoute.work===workSection : !!defaultOpen);
       const ref=React.useRef(null);
-      React.useEffect(()=>{
+      React.useLayoutEffect(()=>{
         var icon=document.getElementById(iconId);
         if(icon) icon.classList.toggle('is-open', open);
         if(!open || !ref.current) return;
@@ -1372,7 +1375,7 @@
       const [open,setOpen]=React.useState(()=>window.__initialRoute.desk==='professional' && window.__initialRoute.work==='education');
       const [stack,setStack]=React.useState(eduStackMQ.matches);
       const ref=React.useRef(null);
-      React.useEffect(()=>{
+      React.useLayoutEffect(()=>{
         var icon=document.getElementById('iconEducation');
         if(icon) icon.classList.toggle('is-open', open);
         if(!open || !ref.current) return;
@@ -1462,7 +1465,7 @@
         setSelected(nextOpen?route.workItem:null);
         if(!nextOpen) setClappyPick(null);
       }),[]);
-      React.useEffect(()=>{
+      React.useLayoutEffect(()=>{
         if(!open || !tlRef.current) return;
         var stage=tlRef.current.closest('.desk-stage');
         var win=tlRef.current.querySelector('.w98-window');
@@ -1470,7 +1473,7 @@
         if(stack||!stage||!win||!window.makeDraggable) return;
         window.makeDraggable(win, stage, {fx:0.2400,fy:0.3882}, 'work-timeline');
       },[open,stack]);
-      React.useEffect(()=>{
+      React.useLayoutEffect(()=>{
         if(!selected || !detRef.current || stack) return;
         var stage=detRef.current.closest('.desk-stage');
         var win=detRef.current.querySelector('.w98-window');
@@ -1529,7 +1532,7 @@
         setOpen(next);
         if(!next) setZoom(null);
       }),[]);
-      React.useEffect(()=>{
+      React.useLayoutEffect(()=>{
         if(!open || !ref.current) return;
         var win=ref.current.querySelector('.w98-window');
         if(win) window.bringToFront(win);
@@ -1580,7 +1583,7 @@
         setOpen(next);
         if(!next) setZoom(null);
       }),[]);
-      React.useEffect(()=>{
+      React.useLayoutEffect(()=>{
         if(!open || !ref.current) return;
         var win=ref.current.querySelector('.w98-window');
         if(win) window.bringToFront(win);
@@ -1618,7 +1621,7 @@
         if(!icon) return;
         icon.addEventListener('click',function(){ setOpen(function(o){ return !o; }); });
       },[]);
-      React.useEffect(()=>{
+      React.useLayoutEffect(()=>{
         if(!open || !ref.current) return;
         var win=ref.current.querySelector('.w98-window');
         if(win) window.bringToFront(win);
@@ -1657,7 +1660,7 @@
       const hallRef=React.useRef(null);
       const closePair=()=>{setOpen(false);setHallOpen(false);};
       const closeWithRoute=()=>window.__navigateWork('read-me',null,false);
-      React.useEffect(()=>{
+      React.useLayoutEffect(()=>{
         var icon=document.getElementById('iconReadme');
         if(icon) icon.classList.toggle('is-open', open);
         if(!open || !ref.current) return;
@@ -1668,7 +1671,7 @@
         if(!stage||!win||!window.makeDraggable) return;
         window.makeDraggable(win, stage, 'readme-hof');
       },[open,stack]);
-      React.useEffect(()=>{
+      React.useLayoutEffect(()=>{
         if(!open || !hallOpen || !hallRef.current || stack) return;
         const stage=hallRef.current.closest('.desk-stage');
         const win=hallRef.current.querySelector('.w98-window');

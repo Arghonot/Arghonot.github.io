@@ -77,7 +77,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  height: 24px;
+  height: 28px;
   padding: 1px 3px 1px 4px;
   background: linear-gradient(90deg, var(--w98-navy) 0%, var(--w98-blue) 100%);
   color: #fff;
@@ -89,7 +89,7 @@
 .w98-titlebar-icon { width: 20px !important; height: 20px !important; image-rendering: pixelated; flex: 0 0 auto; }
 .w98-titlebar-text {
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: .3px;
   flex: 1 1 auto;
   white-space: nowrap;

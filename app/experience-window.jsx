@@ -31,7 +31,7 @@ const WORK_ITEMS = [
     ],
     tech: ['C#', 'ShaderLab', 'ShaderGraph', 'Unity', 'Rider', 'Git', 'AugmentedReality'] },
   { id: 'compression', name: '8K\u21924K Compression Pipeline', s: '2025', e: 'now', dur: '7 mo', icon: 'reel', hue: 206, depth: 1, parent: 'freelance',
-    hero: 'assets/work/render-test.png',
+    hero: 'assets/work/VideoCompression.jpg',
     role: 'Pipeline author \u00b7 Freelance',
     desc: 'Custom encoding/decoding pipeline compressing 8K masters into a 4K mobile delivery format.',
     full: 'A bespoke video encoding and decoding pipeline built to bring 8K source content onto AR glasses: masters are transcoded into a 4K-compatible delivery format that decodes on-device within the headset\u2019s memory and bandwidth budget, with no perceptible loss at viewing distance.',
