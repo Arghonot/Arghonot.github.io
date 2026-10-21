@@ -17,12 +17,12 @@ For the complete, plain-HTML career history, read /cv.html - it is the canonical
 - [Portfolio desktop](https://loick.rivemale.space/): interactive Windows 98 desktop with project windows and galleries.
 - [Legal notice](https://loick.rivemale.space/legal.html): publisher, hosting, intellectual property, privacy.
 
-## Achievements
-- Airbus Group VR visualizer
-- 10K to 4K lossless video pipeline
-- Complete VR UI framework
-- Millions of GPU raycasts under 5 ms
-- End-to-end XR platform
+## My hall of fame
+- **Airbus Group's VR visualizer**: Took part from early R&D through production and maintenance. Project: [Airbus DS](https://loick.rivemale.space/work/professional-experience/airbus-ds)
+- **8K -> 4K lossless video pipeline**: Made a 360 video player allowing 8K video playback on low-end XR hardware. Project: [8K->4K compression pipeline](https://loick.rivemale.space/work/professional-experience/8k-4k-compression-pipeline)
+- **VR UI Framework**: Built and maintained a UI/interaction system used for 3+ years in a commercial VR product. Project: [VR worldspace UI toolkit](https://loick.rivemale.space/work/professional-experience/vr-worldspace-ui-toolkit)
+- **Millions of GPU raycasts <5ms**: Collider-free raycasting on static and animated geometry. Project: [Collider-free raycast system](https://loick.rivemale.space/work/professional-experience/collider-free-raycast-system)
+- **End-to-end XR platform**: Built and maintained an AR application, its updater, asset pipeline and cloud/backend. Project: [XR freelancing](https://loick.rivemale.space/work/professional-experience/xr-freelancing)
 
 ## Contact
 - Email: lo.rivemale@gmail.com

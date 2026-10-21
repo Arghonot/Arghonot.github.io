@@ -34,8 +34,16 @@ function ProjShot({ hue, label, file, dims, tag, big, compact, src, fit, origina
    page never loads the player on mount. */
 function ProjVideo({ id, label }) {
   const [on, setOn] = React.useState(false);
+  const frame = React.useRef(null);
+  /* stop the player once its window is closed or its desk is switched away (both hide it) */
+  React.useEffect(() => {
+    if (!on) return;
+    const io = new IntersectionObserver(() => { if (frame.current && !frame.current.getClientRects().length) setOn(false); });
+    io.observe(frame.current);
+    return () => io.disconnect();
+  }, [on]);
   if (on) return (
-    <iframe title={label || 'video'} src={'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0'}
+    <iframe ref={frame} title={label || 'video'} src={'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0'}
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" allowFullScreen
       style={{ width: '100%', height: '100%', border: 0, display: 'block', background: '#000' }} />
   );
@@ -45,7 +53,7 @@ function ProjVideo({ id, label }) {
       <img src={'https://i.ytimg.com/vi/' + id + '/sddefault.jpg'} alt={label || ''} draggable="false"
         onError={(e) => { e.currentTarget.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg'; }}
         style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-      <span style={{ position: 'absolute', inset: 0, display: 'grid', placeItems: 'center', background: 'rgba(0,0,0,.18)' }}>
+      <span style={{ position: 'absolute', inset: 0, display: 'grid', placeItems: 'end', padding: 14, background: 'rgba(0,0,0,.18)' }}>
         <span className="w98-raised" style={{ display: 'grid', placeItems: 'center', width: 58, height: 40, background: 'var(--w98-face)', paddingLeft: 4 }}>
           <span style={{ width: 0, height: 0, borderLeft: '17px solid #1d1d1d', borderTop: '11px solid transparent', borderBottom: '11px solid transparent' }} />
         </span>
@@ -159,7 +167,7 @@ function ProjectWindow({ proj, onClose, onZoom, stack }) {
       </div>
       <div className="proj-head" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, marginTop: 12 }}>
         <div style={{ minWidth: 0 }}>
-          <h1 style={{ margin: 0, fontSize: 35, fontWeight: 700, letterSpacing: '-.3px' }}>{proj.label}</h1>
+          <h2 style={{ margin: 0, fontSize: 35, fontWeight: 700, letterSpacing: '-.3px' }}>{proj.label}</h2>
           <div style={{ fontSize: 16, color: 'var(--w98-text-dim)', marginTop: 2 }}>{proj.kind}</div>
         </div>
         <div className="proj-head-actions" style={{ display: 'flex', alignItems: 'center', gap: 7, flex: '0 0 auto' }}>
@@ -240,7 +248,7 @@ function ProjectWindow({ proj, onClose, onZoom, stack }) {
         <span className="w98-group-title">Screenshots</span>
         <div className={scrolls ? 'w98-sunken w98-scroll' : 'w98-sunken'}
           style={{ padding: 8, background: '#fff', flex: '1 1 auto', minHeight: 0, overflowY: scrolls ? 'auto' : undefined }}>
-          <div style={{ display: 'grid', gridTemplateColumns: twoCol ? 'repeat(3, 1fr)' : 'repeat(2, 1fr)', gap: 10 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: twoCol && proj.shots.length > 4 ? 'repeat(3, 1fr)' : 'repeat(2, 1fr)', gap: 10 }}>
             {proj.shots.map((s, i) => (
               <button key={s.n} onClick={() => onZoom && onZoom(proj.shots, i)} title={s.label}
                 className="w98-raised proj-shot" style={{ all: 'unset', cursor: 'pointer', display: 'block', padding: 3, background: 'var(--w98-face)' }}>
@@ -577,7 +585,7 @@ function ProjectReelWindow({ proj, onClose, stack, onZoom }) {
             : <MediaPlayer ratio="9 / 16" caption={proj.label.toUpperCase() + ' \u2014 REEL'} hint="drop 9:16 reel / clip" />}
         </div>
         <div style={{ flex: '1 1 auto', minWidth: 0, display: 'flex', flexDirection: 'column' }}>
-          <h1 style={{ margin: 0, fontSize: 35, fontWeight: 700, letterSpacing: '-.3px' }}>{proj.label}</h1>
+          <h2 style={{ margin: 0, fontSize: 35, fontWeight: 700, letterSpacing: '-.3px' }}>{proj.label}</h2>
           <div style={{ fontSize: 17, color: 'var(--w98-text-dim)', marginTop: 3 }}>{proj.meta}</div>
           {proj.links && proj.links.length > 0 && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginTop: 12 }}>

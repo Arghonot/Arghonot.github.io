@@ -175,7 +175,7 @@ function EducationTimeline({ onClose, stack }) {
       width={stack ? undefined : 760}
       style={stack
         ? { display: 'flex', flexDirection: 'column' }
-        : { height: 700, maxHeight: 'calc(var(--vph) - 70px)', maxWidth: 'calc(var(--vpw) - 24px)', display: 'flex', flexDirection: 'column' }}
+        : { height: 'auto', maxHeight: 'calc(var(--vph) - 70px)', maxWidth: 'calc(var(--vpw) - 24px)', display: 'flex', flexDirection: 'column' }}
       menubar={
         <div className="w98-menubar">
           {['File', 'Edit', 'View', 'Go', 'Help'].map((m) => (

@@ -88,7 +88,7 @@ function ContactWindow({ onClose }) {
     <FlowWindow img="assets/icons/email.png" title="Contact" onClose={onClose} width={1000}>
       <div className="ct-layout" style={{ display: 'flex', gap: 20, padding: '16px 16px 18px' }}>
         <div className="ct-main" style={{ flex: '1 1 auto', minWidth: 0 }}>
-          <h1 className="ct-heading" style={{ margin: 0, fontSize: 37, lineHeight: 1.08, fontWeight: 700, letterSpacing: '-.4px' }}>{CONTACT.heading}</h1>
+          <h2 className="ct-heading" style={{ margin: 0, fontSize: 37, lineHeight: 1.08, fontWeight: 700, letterSpacing: '-.4px' }}>{CONTACT.heading}</h2>
           <div className="w98-prose ct-blurb" style={{ marginTop: 11 }}>
           </div>
           <p style={{ marginBottom: 0, fontSize: 15.5, marginTop: 37 }}>{CONTACT.blurb} {CONTACT.blurb2}</p>

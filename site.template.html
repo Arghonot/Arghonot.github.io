@@ -16,7 +16,7 @@
     document.head.appendChild(el);
   })();
 </script>
-<meta name="description" content="Portfolio of Loïck Rivemale, Unity XR and rendering engineer with 8+ years building VR/AR applications, GPU rendering systems, custom shaders and worldspace VR UI toolkits for Retinize, Airbus Defence &amp; Space and freelance clients.">
+<meta name="description" content="Loïck Rivemale, Unity XR and rendering engineer. 8+ years of VR/AR apps, GPU rendering, shaders and VR UI toolkits for Retinize, Airbus DS and freelance clients.">
 <meta name="author" content="Loïck Rivemale">
 <link rel="canonical" href="https://loick.rivemale.space/">
 <meta property="og:type" content="website">
@@ -518,15 +518,33 @@
     .lv2-name .first,.lv2-name .last{display:inline;font-size:clamp(30px,8.6vw,52px);letter-spacing:-1px;padding-right:0;}
     .lv2-name .role{flex:0 0 100%;margin-top:6px;font-size:clamp(24px,6.6vw,42px) !important;white-space:nowrap;letter-spacing:-.5px;}
   }
+  /* screen-reader-only page heading + skip link */
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+  .skip-link{position:fixed;left:8px;top:-60px;z-index:99999;padding:6px 12px;background:var(--w98-face);color:#000;font:700 13px Tahoma,sans-serif;text-decoration:none;
+    box-shadow:inset -1px -1px 0 #0a0a0a,inset 1px 1px 0 #fff,inset -2px -2px 0 #808080,inset 2px 2px 0 #dfdfdf;}
+  .skip-link:focus{top:8px;outline:1px dotted #000;outline-offset:-5px;}
+  #main:focus{outline:none;}
+  /* Win98 focus rectangle on everything keyboard-focusable; !important beats the
+     inline all:unset on cards and thumbnails */
+  :focus-visible{outline:1px dotted #000 !important;outline-offset:-4px !important;}
+  .win-icon:focus-visible .win-icon-lbl{outline:1px dotted #fff;outline-offset:-2px;background:#000080;}
+  .d98-taskbtn:focus-visible,.d98-start:focus-visible{outline:1px dotted #000;outline-offset:-5px;}
+  /* desktop icons lift on hover; the label gets the dotted Win98 rect */
+  .win-icon .win-icon-img{transition:translate .12s steps(3);}
+  .win-icon:hover .win-icon-img{translate:0 -3px;}
+  .win-icon:hover .win-icon-lbl{outline:1px dotted #fff;outline-offset:-2px;}
 </style>
 </head>
 <body>
 <noscript><div style="max-width:640px;margin:0 auto;padding:28px;background:#fff;font-family:Tahoma,sans-serif;font-size:14px;line-height:1.6;-webkit-user-select:text;user-select:text;">
-<h1 style="font-size:19px;margin:0 0 4px;">Loïck Rivemale - Unity XR &amp; Rendering Engineer</h1>
+<p style="font-size:19px;margin:0 0 4px;"><strong>Loïck Rivemale, Unity XR &amp; rendering engineer</strong></p>
 <p style="margin:0 0 16px;color:#555;">8+ years building VR/AR applications, GPU rendering systems, custom shaders and worldspace VR UI toolkits.</p>
 <p style="margin:0;">This portfolio is an interactive Windows 98 desktop and needs JavaScript. The full CV is available as a plain text page: <a href="cv.html"><strong>read the complete CV</strong></a> &middot; <a href="files/resume-loick-rivemale.pdf">download the resume (PDF)</a> &middot; <a href="legal.html">legal information</a></p>
 </div></noscript>
+<a class="skip-link" href="#main">Skip to the open window</a>
+<h1 id="pageH1" class="sr-only">Loïck Rivemale, Unity XR and rendering engineer</h1>
 <div id="desktop">
+  <main id="main" tabindex="-1">
   <div class="desk is-active" data-desk="welcome">
     <div class="welcome-bg" id="welcomeBg"></div>
     <div class="welcome-stage desk-stage">
@@ -541,11 +559,11 @@
           </div>
         </div>
         <div class="lv2-hero">
-          <h1 class="lv2-name" style="margin-top:16px;margin-bottom:26px">
+          <h2 class="lv2-name" style="margin-top:16px;margin-bottom:26px">
             <span class="first" style="font-weight:500">Lo&iuml;ck</span>
             <span class="last" style="font-weight:500">Rivemale</span>
             <span class="role" style="font-size:58px">XR Engineer</span>
-          </h1>
+          </h2>
           <p class="lv2-tag">Welcome to my portfolio!<br>It is a collection of stuff I made for work and fun.<br>Hope you enjoy the experience.</p>
           <p class="lv2-tag-ps" style="font-size:16px;margin-bottom:14px;color:#3C3C3C;font-style:italic">PS: Clappy doesn't bite.</p>
           <div class="lv2-cta">
@@ -706,6 +724,8 @@
     </div>
   </div>
 
+  </main>
+
   <div class="d98-startmenu fsm" id="startMenu" hidden>
     <div class="d98-sm-side"><b>LoickRivemale<i>95</i></b></div>
     <div class="fsm-list" id="startList"></div>
@@ -816,8 +836,31 @@
     : location.pathname;
   window.__currentRoute=window.__initialRoute;
 
+  /* per-route document title and page heading: labels come from the desktop icons so they never drift */
+  var WORK_ITEM_NAMES={freelance:'XR freelancing',compression:'8K→4K compression pipeline',animotive:'RETìníZE',vrui:'VR worldspace UI toolkit',
+    gpuray:'Collider-free raycast system',shaders:'In-house shaders & render features',dragonfly:'Airbus DS',s3:'S³ satellite sizing suite',
+    spacesim:'Solar system simulation',pla:'Factory layout VR validation tool',autostereo:'VisioPM'};
+  function iconLabel(id){ var el=document.getElementById(id), l=el&&el.querySelector('.win-icon-lbl'); return l?l.textContent.trim():''; }
+  function routeLabel(route){
+    if(route.desk==='personal'){
+      var pr=route.project&&ROUTE_PROJECTS.find(function(p){return p.slug===route.project;});
+      return (pr&&iconLabel(pr.icon))||'Personal projects';
+    }
+    if(route.desk==='professional'){
+      if(route.workItem) return WORK_ITEM_NAMES[route.workItem]||'Professional experience';
+      var sec=route.work&&ROUTE_WORK_SECTIONS.find(function(p){return p.slug===route.work;});
+      return (sec&&iconLabel(sec.icon))||'Professional';
+    }
+    return route.desk==='about'?'About me':'';
+  }
+  function labelRoute(route){
+    var l=routeLabel(route), h=document.getElementById('pageH1');
+    document.title=l ? l+' · Loïck Rivemale' : 'Loïck Rivemale, Unity XR & rendering engineer';
+    if(h) h.textContent=l ? l+', Loïck Rivemale' : 'Loïck Rivemale, Unity XR and rendering engineer';
+  }
   function applyRoute(route){
     window.__currentRoute=route;
+    labelRoute(route);
     select(route.desk,true);
     Object.keys(routeControls).forEach(function(key){routeControls[key](route);});
   }
@@ -1282,6 +1325,22 @@
   })();
 </script>
 
+<script>
+  /* desktop icons, taskbar buttons, Start and tech items are divs; make them real keyboard targets */
+  (function(){
+    function arm(el){
+      if(el.__kb||el.tagName==='A'||el.tagName==='BUTTON') return; el.__kb=1;
+      el.setAttribute('role','button'); el.tabIndex=0;
+      el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); el.click(); } });
+    }
+    function scan(){
+      document.querySelectorAll('.win-icon,.d98-taskbtn,.d98-start,.ts-item').forEach(arm);
+      /* scroll panes must be reachable without a mouse */
+      document.querySelectorAll('.w98-scroll,.ts-files,.hof-scroll').forEach(function(el){ if(!el.hasAttribute('tabindex')) el.tabIndex=0; });
+    }
+    scan(); new MutationObserver(scan).observe(document.body,{childList:true,subtree:true});
+  })();
+</script>
 <script src="app/image-slot.js"></script>
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
