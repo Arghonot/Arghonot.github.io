@@ -243,7 +243,7 @@ function ProjectWindow({ proj, onClose, onZoom, stack }) {
           <div style={{ display: 'grid', gridTemplateColumns: twoCol ? 'repeat(3, 1fr)' : 'repeat(2, 1fr)', gap: 10 }}>
             {proj.shots.map((s, i) => (
               <button key={s.n} onClick={() => onZoom && onZoom(proj.shots, i)} title={s.label}
-                className="w98-raised" style={{ all: 'unset', cursor: 'pointer', display: 'block', padding: 3, background: 'var(--w98-face)' }}>
+                className="w98-raised proj-shot" style={{ all: 'unset', cursor: 'pointer', display: 'block', padding: 3, background: 'var(--w98-face)' }}>
                 <div className="w98-sunken" style={{ padding: 2, background: '#000' }}>
                   <div style={{ aspectRatio: '1 / 1' }}>
                     <ProjShot hue={s.hue} label={s.label} tag={s.n} src={s.src} compact />
@@ -620,7 +620,7 @@ function ProjectReelWindow({ proj, onClose, stack, onZoom }) {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: 10 }}>
                   {proj.shots.map((s, i) => (
                     <button key={s.n} onClick={() => onZoom && onZoom(proj.shots, i)} title={s.label}
-                      className="w98-raised" style={{ all: 'unset', cursor: 'pointer', display: 'block', padding: 3, background: 'var(--w98-face)' }}>
+                      className="w98-raised proj-shot" style={{ all: 'unset', cursor: 'pointer', display: 'block', padding: 3, background: 'var(--w98-face)' }}>
                       <div className="w98-sunken" style={{ padding: 2, background: '#000' }}>
                         <div style={{ aspectRatio: '1 / 1' }}>
                           <ProjShot hue={s.hue} label={s.label} tag={s.n} src={s.src} compact />

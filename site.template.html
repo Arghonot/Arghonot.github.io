@@ -401,6 +401,10 @@
   .ct-chan:last-child{border-bottom:none;}
   .ct-chan:hover{background:#000080;color:#fff;}
   .ct-chan:hover .ct-lbl,.ct-chan:hover .ct-handle,.ct-chan:hover .ct-go{color:#fff;}
+  .proj-dl-btn:hover,.ct-resume-btn:hover{filter:brightness(1.2);}
+  .proj-dl-btn>span:last-child,.ct-resume-btn>span:last-child{transition:transform .12s;}
+  .proj-dl-btn:hover>span:last-child,.ct-resume-btn:hover>span:last-child{transform:translateX(4px);}
+  .proj-shot:hover{background:#000080 !important;}
   .ct-lbl{font-weight:700;font-size:15px;flex:0 0 auto;}
   .ct-handle{flex:1 1 auto;min-width:0;font-family:"Courier New",monospace;font-size:13px;color:#4a4a4a;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .ct-go{flex:0 0 auto;font-size:14px;color:#1d1d1d;}
@@ -1091,6 +1095,7 @@
 
   /* draggable windows, clamped to their desk stage (screen minus taskbar) */
   window.__deskWinRegistry = window.__deskWinRegistry || [];
+  var settling=false;
   function makeDraggable(win, stage, anchor, posKey){
     anchor=anchor||'center';
     var dragged=false;
@@ -1139,15 +1144,48 @@
         l=minL+free/2; t=(stage.clientHeight-h)/2;
       }
       else { l=(stage.clientWidth-w)/2; t=(stage.clientHeight-h)/2; }
-      var p=clampPos(l,t);
+      var p=freeSpot(l,t);
       win.style.left=p[0]+'px'; win.style.top=p[1]+'px';
+      /* windows opened together (list + detail) are placed one at a time, so let
+         the earlier ones re-settle once around the newcomer */
+      if(!settling){
+        settling=true;
+        window.__deskWinRegistry.forEach(function(e){ if(e.win!==win && e.win.isConnected && e.stage===stage) e.center(); });
+        settling=false;
+      }
+    }
+    /* keep the anchor as a preference, but slide the window to wherever it
+       overlaps the other open windows least, never over the left icon column
+       (unless the window is too wide to fit beside it).
+       ponytail: brute-force 16px grid scan, ~5k cells; fine for a handful of windows */
+    function freeSpot(l,t){
+      var p=clampPos(l,t);
+      if(getComputedStyle(win).position!=='absolute') return p;
+      var s=window.__deskScale||1, sr=stage.getBoundingClientRect(), w=win.offsetWidth, h=win.offsetHeight;
+      function box(el){ var r=el.getBoundingClientRect(); return [(r.left-sr.left)/s,(r.top-sr.top)/s,(r.right-sr.left)/s,(r.bottom-sr.top)/s]; }
+      var icons=stage.querySelector('.win-icons');
+      var maxL=Math.max(0,stage.clientWidth-w), maxT=Math.max(0,stage.clientHeight-h);
+      var minL=Math.min(icons&&icons.offsetWidth ? box(icons)[2]+16 : 0, maxL);
+      var others=Array.prototype.filter.call(stage.querySelectorAll('.w98-window'),function(o){
+        return o!==win && !o.contains(win) && !win.contains(o) && o.offsetWidth>0 && o.style.left!=='';
+      }).map(box);
+      var best=null;
+      for(var x=minL;x<maxL+16;x+=16) for(var y=0;y<maxT+16;y+=16){
+        var cx=Math.min(x,maxL), cy=Math.min(y,maxT), ov=0;
+        others.forEach(function(b){
+          ov+=Math.max(0,Math.min(cx+w,b[2])-Math.max(cx,b[0]))*Math.max(0,Math.min(cy+h,b[3])-Math.max(cy,b[1]));
+        });
+        var score=ov*1000+Math.hypot(cx-p[0],cy-p[1]);
+        if(!best||score<best[0]) best=[score,cx,cy];
+      }
+      return best ? [best[1],best[2]] : p;
     }
     /* mounting while the desk is hidden means the stage has no size yet, so the
        restore can't run - flag it anyway so nothing re-centers over it, and let
        the registry pass retry once the desk is visible */
     if(hasSavedPos()) dragged=true;
     if(!restorePos()) center();
-    window.__deskWinRegistry.push({win:win, center:function(){ if(restorePos()) return; if(!dragged) center(); }});
+    window.__deskWinRegistry.push({win:win, stage:stage, center:function(){ if(restorePos()) return; if(!dragged) center(); }});
     window.addEventListener('resize',function(){
       var p=clampPos(parseFloat(win.style.left)||0, parseFloat(win.style.top)||0);
       win.style.left=p[0]+'px'; win.style.top=p[1]+'px';

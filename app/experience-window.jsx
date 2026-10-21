@@ -347,7 +347,7 @@ function WorkRow({ p, selected, hov, onSel, onHov, nodeRef, hideArrow, stack }) 
       </span>
       <span ref={strip.ref} style={{ flex: 1, minWidth: 0, position: 'relative', overflow: 'hidden', display: 'flex', gap: 12, alignItems: (child || stack) ? 'center' : 'flex-start',
         margin: (child ? '2px' : '3px') + ' 12px ' + (child ? '2px' : '3px') + ' ' + (child ? 14 : 0) + 'px', padding: child ? '15px 12px' : '22px 12px',
-        border: on ? '1px solid #00004d' : ((child || own) ? '1px solid ' + own.cardBorder : '1px solid transparent'),
+        border: on ? '1px solid #00004d' : hov ? '1px solid #000080' : ((child || own) ? '1px solid ' + own.cardBorder : '1px solid transparent'),
         background: on ? 'var(--w98-navy)' : (hov && own ? (own.cardBgHover || own.cardBg) : (hov ? '#eef2f7' : (child ? (own.cardBgLight || own.cardBg) : (own ? own.cardBg : 'transparent')))),
         color: on ? '#fff' : 'var(--w98-text)' }}>
         {!child && strip.url && (

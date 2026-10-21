@@ -84,7 +84,7 @@ function EduRow({ p, selected, hov, onSel, onHov, nodeRef, stack }) {
       </span>
       <span style={{ flex: 1, minWidth: 0, display: 'flex', gap: 12, alignItems: 'flex-start',
         margin: (child ? '2px' : '3px') + ' 12px ' + (child ? '2px' : '3px') + ' ' + (child ? 14 : 0) + 'px', padding: child ? '8px 12px' : '11px 12px',
-        border: on ? '1px solid #00004d' : (child ? '1px solid ' + own.cardBorder : '1px solid transparent'),
+        border: on ? '1px solid #00004d' : hov ? '1px solid #000080' : (child ? '1px solid ' + own.cardBorder : '1px solid transparent'),
         background: on ? 'var(--w98-navy)' : (hov ? '#eef2f7' : (child ? own.cardBg : 'transparent')),
         color: on ? '#fff' : 'var(--w98-text)' }}>
         {!stack && <span className="w98-sunken" style={{ display: 'block', flex: '0 0 auto', padding: 2, background: '#000', width: child ? 58 : 112 }}>

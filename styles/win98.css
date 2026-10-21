@@ -110,6 +110,7 @@
   cursor: pointer;
   padding: 0;
 }
+.w98-tb-btn:hover { background: #f0deb0; }
 .w98-tb-btn:active {
   box-shadow:
     inset  1px  1px 0 var(--w98-dark),
@@ -197,7 +198,7 @@
   cursor: pointer;
   text-align: center;
 }
-.w98-btn:hover { background: #cacaca; }
+.w98-btn:hover { background: #cacaca; outline: 1px dotted #000; outline-offset: -5px; }
 .w98-btn:active {
   box-shadow:
     inset  1px  1px 0 var(--w98-dark),
