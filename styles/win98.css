@@ -109,6 +109,7 @@
     inset  2px  2px 0 var(--w98-face-light);
   cursor: pointer;
   padding: 0;
+  border: 0;
 }
 .w98-tb-btn:hover { background: #f0deb0; }
 .w98-tb-btn:active {
@@ -118,8 +119,24 @@
     inset  2px  2px 0 var(--w98-shadow),
     inset -2px -2px 0 var(--w98-face-light);
 }
-.w98-tb-glyph { display: grid; place-items: center; line-height: 0; }
-.w98-tb-btn svg, .w98-tb-glyph svg { display: block; width: 11px; height: 11px; }
+/* Pixel-exact Win98 glyphs on a shared 9x9 grid (minimize/close sit on the same
+   baseline as the maximize box). Integer coords + fixed offsets stay crisp at 1x/2x; centering
+   would land on half pixels. ponytail: inline <svg> glyphs in the markup are hidden, not used */
+.w98-tb-glyph {
+  place-self: start;
+  width: 9px; height: 9px;
+  margin: 4px 0 0 5px;
+  background: no-repeat 0 0 / 100% 100%;
+}
+.w98-tb-glyph svg { display: none; }
+.w98-tb-btn:active .w98-tb-glyph { transform: translate(1px, 1px); }
+[aria-label="minimize"] .w98-tb-glyph { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 9'%3E%3Cpath d='M1 7h6v2H1z'/%3E%3C/svg%3E"); }
+[aria-label="maximize"] .w98-tb-glyph { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 9'%3E%3Cpath fill-rule='evenodd' d='M0 0h9v9H0zM1 2v6h7V2z'/%3E%3C/svg%3E"); }
+[aria-label="close"] .w98-tb-glyph { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 9'%3E%3Cpath d='M1 1h2v1H1zM7 1h2v1H7zM2 2h2v1H2zM6 2h2v1H6zM3 3h4v1H3zM4 4h2v1H4zM3 5h4v1H3zM2 6h2v1H2zM6 6h2v1H6zM1 7h2v1H1zM7 7h2v1H7z'/%3E%3C/svg%3E"); }
+/* mobile buttons are 28x24: same glyphs at exactly 2x */
+@media (max-width: 760px) {
+  .w98-tb-glyph { width: 18px; height: 18px; margin: 3px 0 0 5px; }
+}
 
 /* ===== Menu bar ===== */
 .w98-menubar {
