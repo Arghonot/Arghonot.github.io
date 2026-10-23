@@ -1190,7 +1190,9 @@
         l=minL+free/2; t=(stage.clientHeight-h)/2;
       }
       else { l=(stage.clientWidth-w)/2; t=(stage.clientHeight-h)/2; }
-      var p=freeSpot(l,t);
+      /* Read Me + Hall of Fame always open as icons > readme > hall, so the
+         overlap scan must not shuffle them */
+      var p=(anchor==='readme-hof'||anchor==='right-center') ? clampPos(l,t) : freeSpot(l,t);
       win.style.left=p[0]+'px'; win.style.top=p[1]+'px';
       /* windows opened together (list + detail) are placed one at a time, so let
          the earlier ones re-settle once around the newcomer */

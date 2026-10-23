@@ -1,5 +1,5 @@
 /* app/contact-window.jsx — ContactWindow ported verbatim from index_old
-   (animotive-contact.jsx CI/CONTACT + animotive-about.jsx SEAL_BG +
+   (animotive-contact.jsx CONTACT + animotive-about.jsx SEAL_BG +
    final-windows.jsx TBG/FlowWindow/ContactWindow). Requires app/pixel-icons.jsx. */
 
 const SEAL_BG = 'linear-gradient(90deg, #00007b 0%, #1083d4 100%)';
@@ -10,49 +10,16 @@ const TBG = {
   close: <svg width="8" height="8" viewBox="0 0 8 8"><path d="M1 1 L7 7 M7 1 L1 7" stroke="#000" strokeWidth="1.3" /></svg>,
 };
 
-const CI = {
-  mail: [
-    '                ', '                ', '  kkkkkkkkkkk   ', '  kwwwwwwwwwk   ',
-    '  kwkwwwwwkwk   ', '  kwwkwwwkwwk   ', '  kwwwkkkwwwk   ', '  kwwwwwwwwwk   ',
-    '  kwwwwwwwwwk   ', '  kkkkkkkkkkk   ', '                ', '                ',
-    '                ', '                ', '                ', '                ',
-  ],
-  term: [
-    '                ', '  kkkkkkkkkkkk  ', '  kZZZZZZZZZZk  ', '  kZeeZZZZZZZk  ',
-    '  kZeeeZZZZZZk  ', '  kZeeeeZiiZk   ', '  kZeeeZZZZZZk  ', '  kZeeZZZZZZZk  ',
-    '  kZZZZZZZZZZk  ', '  kkkkkkkkkkkk  ', '                ', '                ',
-    '                ', '                ', '                ', '                ',
-  ],
-  cam: [
-    '                ', '      kkk       ', '   kkkmmmkkk    ', '  kmmmmmmmmmmk  ',
-    '  km  kkk   mk  ', '  km kbbbk  mk  ', '  km kbiibk mk  ', '  km kbbbk  mk  ',
-    '  km  kkk   mk  ', '  kmmmmmmmmmmk  ', '  kkkkkkkkkkkk  ', '                ',
-    '                ', '                ', '                ', '                ',
-  ],
-  badge: [
-    '                ', '  kkkkkkkkkkkk  ', '  kwwwwwwwwwwk  ', '  kwkkwwwwwwwk  ',
-    '  kwbbkwwnnnwk  ', '  kwbbkwwwwwwk  ', '  kwkkkwwnnnwk  ', '  kwbbbbwwwwwk  ',
-    '  kwbbbbwwnnwk  ', '  kwwwwwwwwwwk  ', '  kkkkkkkkkkkk  ', '                ',
-    '                ', '                ', '                ', '                ',
-  ],
-  doc: [
-    '                ', '   kkkkkkkk     ', '   kwwwwwwkk    ', '   kwbbbbwkwk   ',
-    '   kwwwwwwkkk   ', '   kwbbbbwwwk   ', '   kwwwwwwwwk   ', '   kwbbbwwwwk   ',
-    '   kwwwwwwwwk   ', '   kwbbwwwwwk   ', '   kwwwwwwwwk   ', '   kkkkkkkkkk   ',
-    '                ', '                ', '                ', '                ',
-  ],
-};
-
 const CONTACT = {
   eyebrow: '04 >_ CONTACT',
   heading: "Let's build something together",
   blurb: 'Open to freelance projects or full-time roles.',
   blurb2: 'Every side project on my GitHub is opensource, feel free to explore !',
   channels: [
-    { label: 'Email', icon: 'mail', handle: 'lo.rivemale@gmail.com', href: 'mailto:lo.rivemale@gmail.com' },
-    { label: 'GitHub', icon: 'term', handle: 'github.com/Arghonot', href: 'https://github.com/Arghonot' },
-    { label: 'Instagram', icon: 'cam', handle: '@argrafix', href: 'https://www.instagram.com/argrafix' },
-    { label: 'LinkedIn', icon: 'badge', handle: 'in/loick-rivemale', href: 'https://www.linkedin.com/in/loick-rivemale-080b9789' },
+    { label: 'Email', handle: 'lo.rivemale@gmail.com', href: 'mailto:lo.rivemale@gmail.com' },
+    { label: 'GitHub', handle: 'github.com/Arghonot', href: 'https://github.com/Arghonot' },
+    { label: 'Instagram', handle: '@argrafix', href: 'https://www.instagram.com/argrafix' },
+    { label: 'LinkedIn', handle: 'in/loick-rivemale', href: 'https://www.linkedin.com/in/loick-rivemale-080b9789' },
   ],
 };
 
@@ -110,8 +77,7 @@ function ContactWindow({ onClose }) {
                 <a key={c.label} className="ct-chan" href={c.href} style={{ height: 45 }}
                   onClick={(e) => { if (c.href === '#') e.preventDefault(); }}
                   target={c.href.startsWith('mailto') ? undefined : '_blank'} rel="noreferrer">
-                  <window.PixelIcon pattern={CI[c.icon]} size={16} style={{ marginLeft: 10 }} />
-                  <span className="ct-lbl">{c.label}</span>
+                  <span className="ct-lbl" style={{ marginLeft: 10 }}>{c.label}</span>
                   <span className="ct-handle" style={{ fontSize: 10 }}>{c.handle}</span>
                   <span className="ct-go" style={{ marginRight: 10 }}>{'\u2197'}</span>
                 </a>
